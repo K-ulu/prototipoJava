@@ -10,6 +10,7 @@ import db.Util;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -299,15 +300,101 @@ public class Usuario {
       return usuarios;
     }
     
+    //metodo que se se encarga de crear un usuario y anexarlo a la tabla que corresponda según el tipo
+    public static boolean crearUsuarioCompleto(Usuario usuario, Docente docente){
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        String consulta;
+        
+        try {
+            //verificamos si ya está registrado con el correo proporcionado            
+            //verificamos los resultados, si existe alguno regresamos false (indica que ya se encuentra registrado ese correo)            
+            if(Util.existe("correo", usuario.getCorreo(), "usuarios")){
+                return false;
+            }
+            
+            //si no está registrado continuamos con el proceso normal            
+            consulta = "insert into usuarios (idUsuario, correo, contrasenia, fechaCreacion) values(null,?,?,?)";
+            pst = Conexion.getConexion().prepareStatement(consulta);
+            pst.setString(1, usuario.getCorreo());
+            pst.setString(2, usuario.getContrasenia());
+            pst.setString(3, Util.getFecha());
+            
+            //si afecto a algun registro (se inserto)
+            if(pst.executeUpdate() == 1){
+                int idUsuario = Util.getUltimoId("idUsuario", "usuarios"); //recuperamos id del ultimo usuario (el que acabamos de insertar)                
+                if(Docente.guardarObjeto(docente.getNombreD(), docente.getApPaternoD(), docente.getApMaternoD(), docente.getGeneroD(), docente.getFechaNacimientoD(), idUsuario)){
+                    return true;
+                }                
+                return false;
+            }
+        } catch(Exception e){
+            System.err.println("Error"+e);            
+        } finally {
+            try {//cerramos las conexiones
+                if(Conexion.getConexion() != null) Conexion.cerrarConexion();
+                if(pst != null) pst.close();                
+            } catch(Exception e){
+                System.err.println("Error"+e);
+            }
+        }
+        return false;
+    }
+    
+    //metodo que se se encarga de crear un usuario y anexarlo a la tabla que corresponda según el tipo
+    public static boolean crearUsuarioCompleto(Usuario usuario, Alumno alumno){
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        String consulta;
+        
+        try {
+            //verificamos si ya está registrado con el correo proporcionado            
+            //verificamos los resultados, si existe alguno regresamos false (indica que ya se encuentra registrado ese correo)            
+            if(Util.existe("correo", usuario.getCorreo(), "usuarios")){
+                return false;
+            }
+            
+            //si no está registrado continuamos con el proceso normal            
+            consulta = "insert into usuarios (idUsuario, correo, contrasenia, fechaCreacion) values(null,?,?,?)";
+            pst = Conexion.getConexion().prepareStatement(consulta);
+            pst.setString(1, usuario.getCorreo());
+            pst.setString(2, usuario.getContrasenia());
+            pst.setString(3, Util.getFecha());
+            
+            //si afecto a algun registro (se inserto)
+            if(pst.executeUpdate() == 1){
+                int idUsuario = Util.getUltimoId("idUsuario", "usuarios"); //recuperamos id del ultimo usuario (el que acabamos de insertar)                
+                /*if(Alumno.guardarObjeto(docente.getNombreD(), docente.getApPaternoD(), docente.getApMaternoD(), docente.getGeneroD(), docente.getFechaNacimientoD(), idUsuario)){
+                    return true;
+                }  */              
+                return false;
+            }
+        } catch(Exception e){
+            System.err.println("Error"+e);            
+        } finally {
+            try {//cerramos las conexiones
+                if(Conexion.getConexion() != null) Conexion.cerrarConexion();
+                if(pst != null) pst.close();                
+            } catch(Exception e){
+                System.err.println("Error"+e);
+            }
+        }
+        return false;
+    }
+    
     
     public static void main(String[] args){
-        Usuario user = new Usuario(3, "lalo@test.com", "hola2", "2017-11-11");
+        Usuario user = new Usuario(Util.getUltimoId("idUsuario", "usuarios"), "caro@test.com", "hola2", "2017-11-11");
+        Docente d = new Docente(Util.getUltimoId("idDocente", "docente"), "Carolina", "Javier", "Gonzalez", "femenino", Util.getFecha(), Util.getUltimoId("idUsuario", "usuarios"));
+        System.out.println(Usuario.crearUsuarioCompleto(user, d));
         //Usuario.guardarObjeto(user);*/
+        
+        
         
         /*Usuario us;
         us = Usuario.obtenerPorId(20);
         System.out.println(us.getCorreo());*/
-        try {
+        /*try {
             List<Usuario> usuarios = new ArrayList<>();
             usuarios = Usuario.obtenerTodos();
             
@@ -317,7 +404,7 @@ public class Usuario {
             }
         } catch(Exception e){
             
-        }
+        }*/
         
     }
     
