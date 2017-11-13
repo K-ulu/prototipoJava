@@ -56,7 +56,7 @@ public class Cuenta {
         return false;
     }
     
-    //metodos para registrar cuentas para
+    //metodos para registrar cuentas para docente 
     public boolean registrar(String correo, String contrasenia, String nombre, String apPaterno, String apMaterno, String genero, String fechaNacimiento){
         
         PreparedStatement pst = null;

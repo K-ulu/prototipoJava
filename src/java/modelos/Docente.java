@@ -112,7 +112,7 @@ public class Docente {
     */  
     
     //devuelve true cuando es guardado exitosamente, false cuando paso un 
-    public static boolean guardarObjeto(String nombre, String apPaterno, String apMaterno, String genero, String fechaNacimiento, int idUsuario) {
+    public static boolean guardarObjeto(String nombreD, String apPaternoD, String apMaternoD, String generoD, String fechaNacimientoD, int idUsuario) {
         //variables a usar
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -122,11 +122,11 @@ public class Docente {
             //caso cuando no existe el docente, se iserta uno  
             consulta = "insert into docente (idDocente, nombreD, apPaternoD, apMaternoD, generoD, fechaNacimientoD, idUsuario) values(null,?,?,?,?,?,?)";
             pst = Conexion.getConexion().prepareStatement(consulta);
-            pst.setString(1, nombre);
-            pst.setString(2, apPaterno);
-            pst.setString(3, apMaterno);
-            pst.setString(4, genero);
-            pst.setString(5, fechaNacimiento);
+            pst.setString(1, nombreD);
+            pst.setString(2, apPaternoD);
+            pst.setString(3, apMaternoD);
+            pst.setString(4, generoD);
+            pst.setString(5, fechaNacimientoD);
             pst.setString(6, String.valueOf(idUsuario));                        
             
             //si afecto a algun registro (se inserto correctamente)
@@ -172,7 +172,7 @@ public class Docente {
     }
     
     //devuelve true si es actualizado correctamente, false cuando pasa un error al actualizar    
-    public static boolean actualizarObjeto(String nombre, String apPaterno, String apMaterno, String genero, String fechaNacimiento, int idDocente) {
+    public static boolean actualizarObjeto(int idDocente, String nombreD, String apPaternoD, String apMaternoD, String generoD, String fechaNacimientoD) {
         //variables a usar
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -193,11 +193,11 @@ public class Docente {
                 //caso cuando no existe el docente, se iserta uno  
                 consulta = "update docente set nombreD = ?, apPaternoD = ?, apMaternoD = ?, generoD = ?, fechaNacimientoD = ? where idDocente = ?";
                 pst = Conexion.getConexion().prepareStatement(consulta);
-                pst.setString(1, nombre);
-                pst.setString(2, apPaterno);
-                pst.setString(3, apMaterno);
-                pst.setString(4, genero);
-                pst.setString(5, fechaNacimiento);
+                pst.setString(1, nombreD);
+                pst.setString(2, apPaternoD);
+                pst.setString(3, apMaternoD);
+                pst.setString(4, generoD);
+                pst.setString(5, fechaNacimientoD);
                 pst.setString(6, String.valueOf(idDocente)); 
                 
                 //si afecto a algun registro (se actualizo correctamente)
@@ -236,7 +236,7 @@ public class Docente {
                 pst = Conexion.getConexion().prepareStatement(consulta);
                 pst.setString(1, docente.getNombreD());
                 pst.setString(2, docente.getApPaternoD());
-                pst.setString(3, docente.apMaternoD);
+                pst.setString(3, docente.getApMaternoD());
                 pst.setString(4, docente.getGeneroD());
                 pst.setString(5, docente.getFechaNacimientoD());
                 pst.setString(6, String.valueOf(docente.getIdUsuario())); 
