@@ -173,7 +173,7 @@ public class Grupos {
             //ejecutamos la consulta y guardamos resultados
             rs = pst.executeQuery();
             
-            //verificamos los resultados, si existe alguno lo actualizamos con los datos
+            //verificamos los resultados, si existe alguno lo actualizamos con los datos            
             if(rs.absolute(1)){
                 //caso cuando no existe el docente, se iserta uno  
                 consulta = "update grupos set Grado = ?, letra = ?, Turno = ?, totalAlumnos = ? where idGrupo = ?";
@@ -181,13 +181,13 @@ public class Grupos {
                 pst.setString(1, Grado);
                 pst.setString(2, letra);
                 pst.setString(3, Turno);
-                pst.setString(4, String.valueOf(totalAlumnos)); 
-                
+                pst.setInt(4, totalAlumnos);
+                pst.setInt(5, idGrupo);
                 //si afecto a algun registro (se actualizo correctamente)
                 if(pst.executeUpdate() == 1){
                     return true;
                 }
-            }     
+            }              
             return false; //no se encontró ningun registro para actualizar con esos datos
         } catch (SQLException ex) {
             Logger.getLogger(Grupos.class.getName()).log(Level.SEVERE, null, ex);
@@ -212,16 +212,16 @@ public class Grupos {
             //ejecutamos la consulta y guardamos resultados
             rs = pst.executeQuery();
             
-            //verificamos los resultados, si existe alguno lo actualizamos con los datos
+            //verificamos los resultados, si existe alguno lo actualizamos con los datos            
             if(rs.absolute(1)){
-                //caso cuando no existe el grupo, se inserta uno  
+                //caso cuando no existe el docente, se iserta uno  
                 consulta = "update grupos set Grado = ?, letra = ?, Turno = ?, totalAlumnos = ? where idGrupo = ?";
                 pst = Conexion.getConexion().prepareStatement(consulta);
                 pst.setString(1, grupos.getGrado());
                 pst.setString(2, grupos.getLetra());
                 pst.setString(3, grupos.getTurno());
-                pst.setString(4, String.valueOf(grupos.getTotalAlumnos()));  
-                
+                pst.setInt(4, grupos.getTotalAlumnos());
+                pst.setInt(5, grupos.getIdGrupo());
                 //si afecto a algun registro (se actualizo correctamente)
                 if(pst.executeUpdate() == 1){
                     return true;
@@ -325,6 +325,7 @@ public class Grupos {
       return grupos;
     }
     
+<<<<<<< HEAD
     public static void main(String[] args) {
  
         Grupos.actualizarObjeto(4, "2", "B", "Vesp", 1);
@@ -332,5 +333,11 @@ public class Grupos {
 //                a.guardarObjeto(001, 001, "5", "B", "Matutino", 10);
  
 	}
+=======
+    public static void main(String[] args){
+        Grupos g = new Grupos(2, 2, "3", "Z", "Vesp", 300);
+        System.out.println(Grupos.actualizarObjeto(g));
+    }
+>>>>>>> 1463a3d3e400e8a01d5e6867ec11f48f142e2a30
 
 }
