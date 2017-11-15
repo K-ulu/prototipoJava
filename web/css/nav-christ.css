@@ -1,0 +1,222 @@
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css?family=Raleway:800');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* estilos del bloque navbar */
+
+.navbar {
+    font-family: 'Raleway', sans-serif;
+    z-index: 1;
+    height: 65px;
+    background-color: #fff;
+    /*box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);*/
+    border: solid #e5e5e5 1px;
+    z-index: 1;
+}
+
+
+/*estilos generales para cada bloque del nav*/
+
+div.nav-logo,
+div.nav-menu,
+div.nav-buscador,
+div.nav-enlaces {
+    height: 100%;
+    display: inline-block;
+    float: left;
+}
+
+
+/*inicio de estilos blque del logo*/
+
+div.nav-logo {
+    width: 20%;
+}
+
+.nav-logo img {
+    padding: 15px;
+    margin-left: 10px;
+}
+
+
+/* Bloque menu*/
+
+div.nav-menu {
+    width: 10%;
+    text-decoration: none;
+    list-style: none;
+}
+
+.dropDown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 5;
+}
+
+.dropDown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropDown-content a:hover {
+    background-color: #f1f1f1
+}
+
+.dropDown:hover .dropDown-content {
+    display: block;
+}
+
+
+/*inicio de estilos blque del buscador*/
+
+div.nav-buscador {
+    width: 35%;
+}
+
+form.buscarNav {
+    padding: 15px;
+    margin-left: 20%;
+}
+
+.buscarTerm {
+    float: left;
+    width: 50%;
+    border: 2px solid #147ce5;
+    padding: 5px;
+    height: 35px;
+    border-radius: 5px;
+    outline: none;
+    color: #9DBFAF;
+}
+
+.buscarTerm:focus {
+    color: #147ce5;
+}
+
+.searchButton {
+    margin-left: 5px;
+    border: solid #147ce5;
+    background: #147ce5;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.25em;
+    height: 34px;
+    width: 35px;
+}
+
+.buscarNav input[type=search] {
+    width: 250px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.buscarNav input[type=search]:focus {
+    width: 300px;
+}
+
+
+/*inicio de estilos blque de los enlaces*/
+
+div.nav-enlaces {
+    width: 35%;
+}
+
+
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    z-index: 1;
+    float: right;
+}
+
+.navbar li {
+    float: right;
+    line-height: 35px;
+}
+
+.navbar li a {
+    display: inline-block;
+    color: #312013;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar li a:hover:not(.active) {
+    color: #147ce5;
+}
+
+.navbar .active {
+    background-color: #f5f5f5;
+    color: #147ce5;
+    border: dashed #e5e5e5 1px;
+}
+
+
+/*inicio barras de navegacion estilos */
+
+.nav-extras {
+    font-family: 'Raleway', sans-serif;
+    display: inline-block;
+    height: 40px;
+    width: 100%;
+   background: #f5f5f5;
+}
+
+.nav-extras-fondo {
+   background: #147ce5;
+}
+
+.nav-extras ul {
+    list-style: none;
+    width: 80%;
+    height: 50px;
+    margin: 0 auto;
+}
+
+.nav-extras ul li {
+    float: left;
+    text-align: center;
+    padding: 1em;
+}
+
+.nav-extras ul li a {
+    display: block;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.0em;
+}
+
+
+/*fin barras de navegacion estilos */
+hr.style13 {
+    height: 10px;
+    border: 0;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2) inset;
+}
+
+hr.style13a {
+    height: 10px;
+    border: 0;
+    box-shadow: 0px -10px 5px 0px rgba(0, 0, 0, 0.2) ;
+}
+
+.footer {
+    background: #147CE5;
+}

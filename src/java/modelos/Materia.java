@@ -9,6 +9,8 @@ import db.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -252,6 +254,47 @@ public class Materia {
             Logger.getLogger(Docente.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+    
+    public static Materia obtenerPorId(int idMateria){
+        //variables a usar
+        PreparedStatement pst = null;
+        ResultSet resultado;
+        String consulta;
+        Materia materia = null;
+            
+        try {   
+            //verificamos si ya existe el registro (en caso que exista lo actualizamos, de lo contrario insertamos)
+            //preparacion de la consulta
+            consulta = "select * from materia where idMateria = ? ";
+            pst = Conexion.getConexion().prepareStatement(consulta);
+            //asignamos valores
+            pst.setInt(1, idMateria);
+            //ejecutamos la consulta y guardamos resultados
+            resultado = pst.executeQuery();
+            while(resultado.next()){
+                materia = new Materia(resultado.getInt("idMateria"), resultado.getString("Nombre"), resultado.getString("Grado"), resultado.getInt("idDocente"));
+             }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Docente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return materia;
+    }
+    
+    //nos devuelve una lista con todos los objetos de la tabla
+    public static List<Materia> obtenerTodos() throws SQLException {
+        List<Materia> materias = new ArrayList<>();
+        try{
+         PreparedStatement consulta = Conexion.getConexion().prepareStatement("select * from materia");
+         ResultSet resultado = consulta.executeQuery();
+         while(resultado.next()){
+            materias.add(new Materia(resultado.getInt("idMateria"), resultado.getString("Nombre"), resultado.getString("Grado"), resultado.getInt("idDocente")));
+         }
+      }catch(SQLException ex){
+         throw new SQLException(ex);
+      }
+      return materias;
     }
     
     public static void main(String[] args){

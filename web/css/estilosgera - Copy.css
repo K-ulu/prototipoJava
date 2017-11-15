@@ -1,0 +1,169 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Acme', sans-serif;
+  font-size: 1.2em;
+}
+
+header {
+  background-image: url(../img/fondo.png);
+  height: 4%;
+}
+
+.logo, .buscar, .perfil {
+  background: inherit;
+  display: inline-block;
+  height: 80px;
+  float: left;
+}
+
+.logo {
+  text-align: center;
+  display: table;
+  width: 30%;
+}
+
+.logo img {
+  padding: 10px;
+  width: 240px;
+}
+
+.buscar {
+  text-align: center;
+  display: table;
+  width: 40%;
+}
+
+.buscar form {
+  display: table-cell;
+	vertical-align: middle;
+}
+
+.buscar form input {
+  margin-right: 10px;
+  height: 30px;
+  width: 300px;
+}
+
+.buscar form button {
+  margin-right: 10px;
+  height: 32px;
+  width: 80px;
+}
+
+.perfil {
+  text-align: center;
+  display: table;
+  width: 30%;
+}
+
+.perfil p {
+  margin-right: 0;
+}
+.perfil p, .perfil i, .perfil img {
+  display: table-cell;
+	vertical-align: middle;
+}
+
+.perfil img {
+  margin-top: 10px;
+  width: 60px;
+}
+
+
+nav {
+  display: inline-block;
+  height: 60px;
+  width: 100%;
+}
+
+ul {
+  list-style: none;
+  width: 70%;
+  height: 60px;
+  margin: 0 auto;
+}
+
+ul li {
+  float: left;
+  text-align: center;
+  padding: 1em;
+}
+
+ul li a {
+  color: #147CE5;
+  display: block;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.maestro img {
+  width: 100%;
+}
+
+.sesion img {
+  width: 100%;
+}
+
+div.maestro, div.sesion, div.materias, div.bloques {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 90%;
+}
+
+.titulo {
+  color: #147CE5;
+  margin: 10px;
+}
+
+.materias, .bloques {
+  height: 400px;
+}
+
+.item {
+  display: inline-block;
+  margin: 10px;
+  float: left;
+  width: 31%;
+}
+
+.item img{
+  width: 95%;
+}
+
+footer {
+  float: left;
+  width: 100%;
+  height: 130px;
+  margin: 0;
+}
+
+.logo-foot {
+  width: 90%;
+  height: 80px;
+}
+
+.logo-foot img {
+    float: right;
+    clear: both;
+}
+
+.foot {
+    background: #147CE5;
+    float: left;
+    width: 100%;
+    height: 60px;;
+}
+
+.foot ul {
+    width: 90%;
+}
+
+.foot ul li a{
+    color: white;
+}

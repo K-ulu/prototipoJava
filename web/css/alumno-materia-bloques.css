@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Acme', sans-serif;
+}
+
+/*inicio barras de navegacion estilos */
+nav.nav-extras {
+  font-family: 'Raleway', sans-serif;
+  display: inline-block;
+  height: 50px;
+  width: 100%;
+}
+
+.nav-extras ul {
+  list-style: none;
+  width: 70%;
+  height: 50px;
+  margin: 0 auto;
+}
+
+.nav-extras ul li {
+  float: left;
+  text-align: center;
+  padding: 1em;
+}
+
+.nav-extras ul li a {
+  color: #147CE5;
+  display: block;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.0em;
+}
+/*fin barras de navegacion estilos */
+
+/* estilos propios del tipo de pagina*/
+div.bloques {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 90%;
+}
+
+.titulo {
+  color: #147CE5;
+  margin: 10px;
+}
+
+.bloque {
+  border: 3px solid #f2f2f2;
+  border-radius: 5px;
+  margin: 15px 0 15px 0;
+  padding: 15px;
+}
+
+.bloque h2, .bloque p, .bloque a {
+  margin-bottom: 10px;
+  color: #333333;
+}
+
+.bloque a {
+  display: block;
+  color: #147CE5;
+}
+
+/* fin de estilos propios del tipo de pagina*/
+
+/*inicio footer estilos */
+
+footer {
+  float: left;
+  width: 100%;
+  height: 55px;
+  margin: 0;
+}
+
+.foot {
+    background: #147CE5;
+    float: left;
+    width: 100%;
+    height: 55px;
+}
+
+.foot ul {
+    width: 90%;
+}
+
+.foot ul li a{
+    color: white;
+}
+/*fin footer estilos */
