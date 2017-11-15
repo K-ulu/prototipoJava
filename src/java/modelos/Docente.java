@@ -111,7 +111,7 @@ public class Docente {
     
     */  
     
-    //devuelve true cuando es guardado exitosamente, false cuando paso un 
+    //devuelve true cuando es guardado exitosamente, false cuando pasa un error 
     public static boolean guardarObjeto(String nombreD, String apPaternoD, String apMaternoD, String generoD, String fechaNacimientoD, int idUsuario) {
         //variables a usar
         PreparedStatement pst = null;
@@ -141,7 +141,7 @@ public class Docente {
         return false;
     }
     
-    //devuelve true cuando es guardado exitosamente, false cuando paso un 
+    //devuelve true cuando es guardado exitosamente, false cuando pasa un error 
     public static boolean guardarObjeto(Docente docente) {
         //variables a usar
         PreparedStatement pst = null;
