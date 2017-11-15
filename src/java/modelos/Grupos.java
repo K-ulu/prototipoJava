@@ -324,5 +324,13 @@ public class Grupos {
       }
       return grupos;
     }
+    
+    public static void main(String[] args) {
+ 
+        Grupos.actualizarObjeto(4, "2", "B", "Vesp", 1);
+//		Grupos a = new Grupos();
+//                a.guardarObjeto(001, 001, "5", "B", "Matutino", 10);
+ 
+	}
 
 }
