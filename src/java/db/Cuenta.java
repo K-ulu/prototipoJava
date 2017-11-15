@@ -138,6 +138,5 @@ public class Cuenta {
         } catch (Exception ex) {
             Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }*/
-    
+    }*/    
 }

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Maestro Dashboard</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!--Css para la pagina (El cuerpo y footer)-->
+    <link rel="stylesheet" href="css/maestro-mis-documentos.css">
+   <!--  <link href="https://
+        fonts.googleapis.com/css?family=Acme" rel="stylesheet"> -->
+    <!--CSS para el header-->
+    <link rel="stylesheet" href="css/nav-christ.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="nav-logo">
+            <a href="index.html"><img src="img/kulu_logo_160.png"></a>
+        </div>
+        <div class="nav-menu">
+            <li class="dropDown"><a href="javascript:void(0)" class="dropButton"><i class="fa fa-bars"></i> Menu</a>
+                <div class="dropDown-content">
+                    <a href="#">Noticias</a>
+                    <a href="#">Recursos Pedagógicos</a>
+                    <a href="#">null</a>
+                    <a href="#">null</a>
+                </div>
+            </li>
+        </div>
+        <div class="nav-buscador">
+            <form class="buscarNav" action="">
+                <input type="search" name="search" class="buscarTerm" placeholder="¿Qué estás buscando?">
+                <button type="submit" class="searchButton"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+        <div class="nav-enlaces">
+            <ul>
+                <li><a href="">Inicia sesión</a></li>
+                <li><a class="active" href="registro.html">Regístrate</a></li>
+            </ul>
+        </div>
+    </div>
+    <hr class="style13">
+    <nav class="nav-extras">
+        <ul>
+            <li><a href="maestro-Grupos.html">Mis grupos</a></li>
+            <li><a href="maestro-Alumnos.html">Mis alumnos</a></li>
+            <li><a href="maestro-materias.html">Mis materias</a></li>
+            <li><a href="maestro-tareas.html">Admin tareas</a></li>
+            <li><a href="maestro-mis-documentos.html">Mis documentos</a></li>
+            <li><a href="maestro-contenido-multimedia.html">Admin contenido Mult.</a></li>
+        </ul>
+    </nav>
+    <hr class="style13">
+    <!--Empieza a escrbir aquí -->
+    <div class="container">
+        <h2 class="titulo">Mis Alumnos</h2>
+        <div class="herramientas">
+            <div class="add">
+                <button class="boton" id="myBtn"><i class="fa fa-plus" aria-hidden="true"></i> Agregar</button>
+            </div>
+            <div class="form">
+                <form action="">
+                    <input class="busqueda" type="search" name="buscar" placeholder="Buscar...">
+                    <button class="boton">Buscar</button>
+                    <button class="boton">Limpiar</button>
+                </form>
+            </div>
+        </div>
+        <div class="tabla">
+            <table>
+                <tr>
+                    <th>Nombre Alumno</th>
+                    <th>Apellido Alumno</th>
+                    <th>Genero</th>
+                    <th>Curp</th>
+                    <th>Grupo</th>
+                    <th colspan="3">Acciones</th>
+                </tr>
+                <tr>
+                    <td>Mariana Victoria</td>
+                    <td>Cruz</td>
+                    <td>Femenino</td>
+                    <td>CRMN9876hidhd98</td>
+                    <td>B</td>
+                    <td><a href=""><i class="fa fa-share-alt" aria-hidden="true"></i></a></td>
+                    <td><a href=""><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                    <td><a href=""><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Santiago Alomar</td>
+                    <td>Baack</td>
+                    <td>Masculino</td>
+                    <td>BAAS0404MYNRTYUI09</td>
+                    <td>A</td>
+                    <td><a href=""><i class="fa fa-share-alt" aria-hidden="true"></i></a></td>
+                    <td><a href=""><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                    <td><a href=""><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Javier Eduardo</td>
+                    <td>Gonzalez</td>
+                    <td>Masculino</td>
+                    <td>GONJAV9864MYNVNR08</td>
+                    <td>B</td>
+                    <td><a href=""><i class="fa fa-share-alt" aria-hidden="true"></i></a></td>
+                    <td><a href=""><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                    <td><a href=""><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Brisa Argentina</td>
+                    <td>Martin</td>
+                    <td>Femenino</td>
+                    <td>MarB987612muyhjk98</td>
+                    <td>B</td>
+                    <td><a href=""><i class="fa fa-share-alt" aria-hidden="true"></i></a></td>
+                    <td><a href=""><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                    <td><a href=""><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Luis Mendez</td>
+                    <td>Gomez</td>
+                    <td>Masculino</td>
+                    <td>MarB987612muyhjk98</td>
+                    <td>A</td>
+                    <td><a href=""><i class="fa fa-share-alt" aria-hidden="true"></i></a></td>
+                    <td><a href=""><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                    <td><a href=""><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="pagination">
+            <a href="#">&laquo;</a>
+            <a href="#">1</a>
+            <a class="active" href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">6</a>
+            <a href="#">&raquo;</a>
+        </div>
+    </div>
+    <!-- Modal content-->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Agregar un Alumno nuevo!</h2>
+            </div>
+            <div class="modal-body">
+                <form action="crudAlumno" method='post'>
+                    <label>Nombre del alumno </label>
+                    <input class="input" type="text" name="nombre" placeholder="Nombre" />
+                    <label>Apellido Paterno del alumno</label>
+                    <input class="input" type="text" name="apellidoP" placeholder="apellido" />
+                    <label>Apellido Materno del alumno</label>
+                    <input class="input" type="text" name="apellidoM" placeholder="apellido" />
+                    <label>Genero del alumno</label>
+                    <input class="input" type="text" name="generoA" placeholder="Genero" />
+                    <label>Fecha de nacimiento</label>
+                    <input class="input" type="text" name="fecha" placeholder="aa-mm-dd" />
+                    <label>Curp</label>
+                    <input class="input" type="text" name="curp" placeholder="curp" />
+                    <label>id del Grupo</label>
+                    <input class="input" type="text" name="idGrupo" placeholder="Grupo" />
+                    <label>id de la Materia</label>
+                    <input class="input" type="text" name="idMateria" placeholder="Materia" />
+                    <input class="modal-boton active-boton" type="submit" value="Agregar">
+                    <input class="modal-boton" type="reset" value="Cancelar">
+                    <div class="clear"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="foot">
+            <nav class="nav-extras">
+                <ul>
+                    <li class="active"><a href="">¿Quienes Somos?</a></li>
+                    <li><a href="">Kulu for bussines</a></li>
+                    <li><a href="">Contacto</a></li>
+                    <li><a href="">Soporte</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+    <script src="js/modal.js"></script>
+</body>
