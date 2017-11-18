@@ -151,7 +151,12 @@ public class Alumno {
             pst.setString(4, generoA);
             pst.setString(5, fechaNacimientoA);
             pst.setString(6, CURP);
-            pst.setString(7, String.valueOf(idGrupo));
+            if (idGrupo == null){
+                pst.setString(7, null);
+            }
+            else{
+                pst.setString(7, String.valueOf(String.valueOf(idGrupo)));
+            }
             pst.setString(8, String.valueOf(idUsuario));                        
             
             //si afecto a algun registro (se inserto correctamente)
