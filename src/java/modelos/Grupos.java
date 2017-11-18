@@ -6,6 +6,7 @@
 package modelos;
 
 import db.Conexion;
+import db.Cuenta;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -325,4 +326,12 @@ public class Grupos {
       return grupos;
     }
 
+    public static void insertar(String nombre, Integer idDocente, String grado, String turno){  
+        try {
+            Grupos grupo = new Grupos(1, idDocente, grado, nombre, turno, 10) ;
+            Grupos.guardarObjeto(grupo);
+        } catch (Exception ex) {
+            Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

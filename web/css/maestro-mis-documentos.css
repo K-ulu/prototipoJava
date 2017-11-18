@@ -209,7 +209,9 @@ tr:hover {background-color: #f5f5f5}
     padding: 5px;
 }
 
-.modal-body {padding: 2px 16px;}
+.modal-body {
+    padding: 2px 16px; 
+}
 
 .modal-footer {
     padding: 2px 16px;
@@ -227,6 +229,13 @@ tr:hover {background-color: #f5f5f5}
 
 .input {
   width: 330px;
+}
+
+.input .input2{
+  display: inline-block;
+  float: left;
+  //background-color: red;
+  margin: 2px;
 }
 
 input.modal-boton {
@@ -251,10 +260,7 @@ input.modal-boton {
   clear: both;
 }
 
-
-
 /*inicio footer estilos */
-
 footer {
   float: left;
   width: 100%;

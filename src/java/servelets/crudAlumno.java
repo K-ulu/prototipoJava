@@ -7,6 +7,7 @@ package servelets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
@@ -33,25 +34,50 @@ public class crudAlumno extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    public static void pr(){
+        out.println("hola");
+    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)           
         throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
                 
-        try{            
-            String nombreA = request.getParameter("nombre");
-            String apPaternoA = request.getParameter("apellidoP");
-            String apMaternoA = request.getParameter("apellidoM");
-            String generoA = request.getParameter("generoA");
-            String fechaNacimientoA = request.getParameter("fecha");
-            String CURP = request.getParameter("curp");
-            Integer idGrupo =Integer.parseInt(request.getParameter("idGrupo"));
-            Alumno.insertar(nombreA, apPaternoA, apMaternoA, generoA, fechaNacimientoA, CURP, idGrupo, 3) ; 
+        try{    
+            Integer idAlumno=0;
+            if (request.getParameter("agregar") != null) {                    
+                String nombreA = request.getParameter("nombre");
+                String apPaternoA = request.getParameter("apellidoP");
+                String apMaternoA = request.getParameter("apellidoM");
+                String generoA = request.getParameter("generoA");
+                String anio= request.getParameter("anio");
+                String mes= request.getParameter("mes");
+                String dia= request.getParameter("dia");
+                String fechaNacimientoA = anio + "-" + mes + "-"+dia;
+                String CURP = request.getParameter("curp");
+                Integer idGrupo =Integer.parseInt(request.getParameter("idGrupo"));
+                Alumno.guardarObjeto(nombreA, apPaternoA, apMaternoA, generoA, fechaNacimientoA, CURP, idGrupo, 3) ; 
+            } 
+            else if (request.getParameter("eliminar") != null) {
+                idAlumno =Integer.parseInt(request.getParameter("idAlumno"));
+                Alumno.eliminarObjeto(idAlumno);
+            }
+            else if (request.getParameter("editar") != null) {
+                idAlumno =Integer.parseInt(request.getParameter("idAlum"));
+                String nombreA = request.getParameter("nombre");
+                String apPaternoA = request.getParameter("apellidoP");
+                String apMaternoA = request.getParameter("apellidoM");
+                String generoA = request.getParameter("genero");
+                String fechaNacimientoA = request.getParameter("fechaNac");
+                String CURP = request.getParameter("curp");
+                Integer idGrupo =Integer.parseInt(request.getParameter("idGrupo"));
+                Alumno.actualizarObjeto(idAlumno,nombreA, apPaternoA, apMaternoA, generoA, fechaNacimientoA, CURP, idGrupo,3);
+            }
+            //response.sendRedirect("maestro-Alumnos.jsp?op=op&idAlumno="+idAlumno);
         }
         catch (Exception e){
             
         }
-        response.sendRedirect("maestro-Alumnos.html");
+        response.sendRedirect("maestro-Alumnos.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

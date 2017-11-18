@@ -369,7 +369,7 @@ public class Alumno {
     public static List<Alumno> obtenerTodos() throws SQLException {
         List<Alumno> alumnos = new ArrayList<>();
         try{
-         PreparedStatement consulta = Conexion.getConexion().prepareStatement("select * from docente");
+         PreparedStatement consulta = Conexion.getConexion().prepareStatement("select * from Alumnos");
          ResultSet resultado = consulta.executeQuery();
          while(resultado.next()){
             alumnos.add(new Alumno(resultado.getInt("idAlumno"), resultado.getString("nombreA"), resultado.getString("apPaternoA"), resultado.getString("apMaternoA"), resultado.getString("generoA"), resultado.getString("fechaNacimientoA"),resultado.getString("CURP"),resultado.getInt("idGrupo"), resultado.getInt("idUsuario")));
@@ -380,49 +380,7 @@ public class Alumno {
       return alumnos;
     }
     
-    public static String mostrar(){
-        
-        try {
-            Alumno alumno = new Alumno();
-            alumno = Alumno.obtenerPorId(13);
-            if(alumno != null){
-                return alumno.getNombreA();
-            }/*
-            List<Alumno> alumnito = new ArrayList<>();
-            alumnito = Alumno.obtenerTodos();
-            
-            Iterator<Alumno> it = alumnito.iterator();
-            while(it.hasNext()){
-                System.out.println(it.next().getNombreA());
-            }*/                
-        } catch (Exception ex) {
-            Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return "nada";
+    public static String imo(){
+        return "hola";
     }
-    
-    public static void insertar(String nombreA, String apPaternoA, String apMaternoA, String generoA, String fechaNacimientoA, String CURP, Integer idGrupo, Integer idUsuario){  
-        try {
-            Alumno alumno = new Alumno(1, nombreA, apPaternoA, apMaternoA, generoA, fechaNacimientoA, CURP, idGrupo, 3) ;
-            Alumno.guardarObjeto(alumno);
-        } catch (Exception ex) {
-            Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    /*
-    public static void main(String[] args){
-        
-        try {
-            List<Alumno> alumnito = new ArrayList<>();
-            alumnito = Alumno.obtenerTodos();
-            
-            Iterator<Alumno> it = alumnito.iterator();
-            while(it.hasNext()){
-                System.out.println(it.next().getNombreA());
-            }
-                
-        } catch (Exception ex) {
-            Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }*/
 }
