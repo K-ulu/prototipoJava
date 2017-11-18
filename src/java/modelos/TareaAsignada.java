@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,49 +18,60 @@ import java.util.logging.Logger;
  *
  * @author gerar
  */
-public class Materia {
-    private Integer idMateria;
-    private String nombre;
-    private String grado;
+public class TareaAsignada {
+    private Integer idTareaAsignada;
+    private String nombreTarea;
+    private String descripcionT;
+    private Integer idBloque;
     private Integer idDocente;
     
-    public Materia(){
-        this.idMateria = null;
-        this.nombre = null;
-        this.grado = null;
-        this.idDocente = null;
+    
+    public TareaAsignada(){
+        this.idTareaAsignada = null;
+        this.nombreTarea = null;
+        this.descripcionT = null;
+        this.idBloque = null;
     }
     
-    public Materia(Integer idMateria, String nombre, String grado, Integer idDocente){
-        this.idMateria = idMateria;
-        this.nombre = nombre;
-        this.grado = grado;
+    public TareaAsignada(Integer idTareaAsignada, String nombreTarea, String descripcionT, int idBloque, int idDocente){
+        this.idTareaAsignada = idTareaAsignada;
+        this.nombreTarea = nombreTarea;
+        this.descripcionT = descripcionT;
+        this.idBloque = idBloque;
         this.idDocente = idDocente;
     }
 
-    public Integer getIdMateria() {
-        return idMateria;
+    public Integer getIdTareaAsignada() {
+        return idTareaAsignada;
     }
 
-    public void setIdMateria(Integer idMateria) {
-        this.idMateria = idMateria;
+    public void setIdTareaAsignada(Integer idTareaAsignada) {
+        this.idTareaAsignada = idTareaAsignada;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreTarea() {
+        return nombreTarea;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreTarea(String nombreTarea) {
+        this.nombreTarea = nombreTarea;
     }
 
-    public String getGrado() {
-        return grado;
+    public String getDescripcionT() {
+        return descripcionT;
     }
 
-    public void setGrado(String grado) {
-        this.grado = grado;
+    public void setDescripcionT(String descripcionT) {
+        this.descripcionT = descripcionT;
     }
+
+    public Integer getIdBloque() {
+        return idBloque;
+    }
+
+    public void setIdBloque(Integer idBloque) {
+        this.idBloque = idBloque;
+    }    
 
     public Integer getIdDocente() {
         return idDocente;
@@ -71,14 +81,16 @@ public class Materia {
         this.idDocente = idDocente;
     }
     
+    
+    
     /*
     
         MMETODOS PARA OPERACIONES SOBRE LA BD, SON METODOS ESTATICOS (NO ES NECESARIO INSTANCIAR UN OBJETO DE LA CLASE)
     
-    */ 
+    */
     
     //devuelve true cuando es guardado exitosamente, false cuando pasa un error
-    public static boolean guardarObjeto(String nombre, String grado, int idDocente) {
+    public static boolean guardarObjeto(String nombreTarea, String descripcionT, int idBloque, int idDocente) {
         //variables a usar
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -86,11 +98,12 @@ public class Materia {
             
         try {           
             //caso cuando no existe el docente, se iserta uno  
-            consulta = "insert into materia (idMateria, Nombre, Grado, idDocente) values(null,?,?,?)";
+            consulta = "insert into tareas_asignadas (idTareaAsignada, nombreTarea, descripcionT, idBloque, idDocente) values(null,?,?,?,?)";
             pst = Conexion.getConexion().prepareStatement(consulta);
-            pst.setString(1, nombre);
-            pst.setString(2, grado);
-            pst.setInt(3, idDocente);                      
+            pst.setString(1, nombreTarea);
+            pst.setString(2, descripcionT);
+            pst.setInt(3, idBloque); 
+            pst.setInt(4, idDocente);
             
             //si afecto a algun registro (se inserto correctamente)
             if(pst.executeUpdate() == 1){
@@ -105,7 +118,7 @@ public class Materia {
     }
     
     //devuelve true cuando es guardado exitosamente, false cuando pasa un error
-    public static boolean guardarObjeto(Materia materia) {
+    public static boolean guardarObjeto(TareaAsignada tareaAsignada) {
         //variables a usar
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -113,11 +126,12 @@ public class Materia {
             
         try {           
             //caso cuando no existe el docente, se iserta uno  
-            consulta = "insert into materia (idMateria, Nombre, Grado, idDocente) values(null,?,?,?)";
+            consulta = "insert into tareas_asignadas (idTareaAsignada, nombreTarea, descripcionT, idBloque, idDocente) values(null,?,?,?,?)";
             pst = Conexion.getConexion().prepareStatement(consulta);
-            pst.setString(1, materia.getNombre());
-            pst.setString(2, materia.getGrado());
-            pst.setInt(3, materia.getIdDocente());                      
+            pst.setString(1, tareaAsignada.getNombreTarea());
+            pst.setString(2, tareaAsignada.getDescripcionT());
+            pst.setInt(3, tareaAsignada.getIdBloque()); 
+            pst.setInt(4, tareaAsignada.getIdDocente());
             
             //si afecto a algun registro (se inserto correctamente)
             if(pst.executeUpdate() == 1){
@@ -132,7 +146,7 @@ public class Materia {
     }
     
     //devuelve true si es actualizado correctamente, false cuando pasa un error al actualizar    
-    public static boolean actualizarObjeto(int idMateria, String nombre, String grado) {
+    public static boolean actualizarObjeto(int idTareaAsignada, String nombreTarea, String descripcionT, int idBloque) {
         //variables a usar
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -141,21 +155,22 @@ public class Materia {
         try {   
             //verificamos si ya existe el registro (en caso que exista lo actualizamos, de lo contrario insertamos)
             //preparacion de la consulta
-            consulta = "select * from materia where idMateria = ? ";
+            consulta = "select * from tareas_asignadas where idTareaAsignada = ? ";
             pst = Conexion.getConexion().prepareStatement(consulta);
             //asignamos valores
-            pst.setInt(1, idMateria);
+            pst.setInt(1, idTareaAsignada);
             //ejecutamos la consulta y guardamos resultados
             rs = pst.executeQuery();
             
             //verificamos los resultados, si existe alguno lo actualizamos con los datos
             if(rs.absolute(1)){
                 //caso cuando no existe el docente, se iserta uno  
-                consulta = "update materia set Nombre = ?, Grado = ? where idMateria = ?";
+                consulta = "update tareas_asignadas set nombreTarea = ?, descripcionT = ?, idBloque = ? where idTareaAsignada = ?";
                 pst = Conexion.getConexion().prepareStatement(consulta);
-                pst.setString(1, nombre);
-                pst.setString(2, grado);
-                pst.setInt(3, idMateria);
+                pst.setString(1, nombreTarea);
+                pst.setString(2, descripcionT);
+                pst.setInt(3, idBloque);
+                pst.setInt(4, idTareaAsignada);
                 
                 //si afecto a algun registro (se actualizo correctamente)
                 if(pst.executeUpdate() == 1){
@@ -170,7 +185,7 @@ public class Materia {
     }
     
     //devuelve true si es actualizado correctamente, false cuando pasa un error al actualizar    
-    public static boolean actualizarObjeto(Materia materia) {
+    public static boolean actualizarObjeto(TareaAsignada tareaAsignada) {
         //variables a usar
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -179,21 +194,22 @@ public class Materia {
         try {   
             //verificamos si ya existe el registro (en caso que exista lo actualizamos, de lo contrario insertamos)
             //preparacion de la consulta
-            consulta = "select * from materia where idMateria = ? ";
+            consulta = "select * from tareas_asignadas where idTareaAsignada = ? ";
             pst = Conexion.getConexion().prepareStatement(consulta);
             //asignamos valores
-            pst.setInt(1, materia.getIdMateria());
+            pst.setInt(1, tareaAsignada.getIdTareaAsignada());
             //ejecutamos la consulta y guardamos resultados
             rs = pst.executeQuery();
             
             //verificamos los resultados, si existe alguno lo actualizamos con los datos
             if(rs.absolute(1)){
                 //caso cuando no existe el docente, se iserta uno  
-                consulta = "update materia set Nombre = ?, Grado = ? where idMateria = ?";
+                consulta = "update tareas_asignadas set nombreTarea = ?, descripcionT = ?, idBloque = ? where idTareaAsignada = ?";
                 pst = Conexion.getConexion().prepareStatement(consulta);
-                pst.setString(1, materia.getNombre());
-                pst.setString(2, materia.getGrado());
-                pst.setInt(3, materia.getIdMateria());
+                pst.setString(1, tareaAsignada.getNombreTarea());
+                pst.setString(2, tareaAsignada.getDescripcionT());
+                pst.setInt(3, tareaAsignada.getIdBloque());
+                pst.setInt(4, tareaAsignada.getIdTareaAsignada());
                 
                 //si afecto a algun registro (se actualizo correctamente)
                 if(pst.executeUpdate() == 1){
@@ -208,7 +224,7 @@ public class Materia {
     }
     
     //devuelve true si es eliminado correctamente, false cuando pasa un error al eliminar    
-    public static boolean eliminarObjeto(int idMateria) {
+    public static boolean eliminarObjeto(int idTareaAsignada) {
         //variables a usar
         PreparedStatement pst = null;
         String consulta;
@@ -216,10 +232,10 @@ public class Materia {
         try {   
             //verificamos si ya existe el registro (en caso que exista lo actualizamos, de lo contrario insertamos)
             //preparacion de la consulta
-            consulta = "delete from materia where idMateria = ? ";
+            consulta = "delete from tareas_asignadas where idTareaAsignada = ? ";
             pst = Conexion.getConexion().prepareStatement(consulta);
             //asignamos valores
-            pst.setInt(1, idMateria);
+            pst.setInt(1, idTareaAsignada);
             //ejecutamos la consulta y guardamos resultados
             //si afecto a algun registro (se elimino correctamente)
             if(pst.executeUpdate() == 1){
@@ -233,7 +249,7 @@ public class Materia {
     }
     
     //devuelve true si es eliminado correctamente, false cuando pasa un error al eliminar    
-    public static boolean eliminarObjeto(Materia materia) {
+    public static boolean eliminarObjeto(TareaAsignada tareaAsignada) {
         //variables a usar
         PreparedStatement pst = null;
         String consulta;
@@ -241,10 +257,10 @@ public class Materia {
         try {   
             //verificamos si ya existe el registro (en caso que exista lo actualizamos, de lo contrario insertamos)
             //preparacion de la consulta
-            consulta = "delete from materia where idMateria = ? ";
+            consulta = "delete from tareas_asignadas where idTareaAsignada = ? ";
             pst = Conexion.getConexion().prepareStatement(consulta);
             //asignamos valores
-            pst.setInt(1, materia.getIdMateria());
+            pst.setInt(1, tareaAsignada.getIdTareaAsignada());
             //ejecutamos la consulta y guardamos resultados
             //si afecto a algun registro (se elimino correctamente)
             if(pst.executeUpdate() == 1){
@@ -257,44 +273,45 @@ public class Materia {
         return false;
     }
     
-    public static Materia obtenerPorId(int idMateria){
+    public static TareaAsignada obtenerPorId(int idTareaAsignada){
         //variables a usar
         PreparedStatement pst = null;
         ResultSet resultado;
         String consulta;
-        Materia materia = null;
+        TareaAsignada tareaAsignada = null;
             
         try {   
             //verificamos si ya existe el registro (en caso que exista lo actualizamos, de lo contrario insertamos)
             //preparacion de la consulta
-            consulta = "select * from materia where idMateria = ? ";
+            consulta = "select * from tareas_asignadas where idTareaAsignada = ? ";
             pst = Conexion.getConexion().prepareStatement(consulta);
             //asignamos valores
-            pst.setInt(1, idMateria);
+            pst.setInt(1, idTareaAsignada);
             //ejecutamos la consulta y guardamos resultados
             resultado = pst.executeQuery();
             while(resultado.next()){
-                materia = new Materia(resultado.getInt("idMateria"), resultado.getString("Nombre"), resultado.getString("Grado"), resultado.getInt("idDocente"));
+                tareaAsignada = new TareaAsignada(resultado.getInt("idTareaAsignada"), resultado.getString("nombreTarea"), resultado.getString("descripcionT"), resultado.getInt("idBloque"), resultado.getInt("idDocente"));
              }
             
         } catch (SQLException ex) {
             Logger.getLogger(Docente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return materia;
+        return tareaAsignada;
     }
     
     //nos devuelve una lista con todos los objetos de la tabla
-    public static List<Materia> obtenerTodos() throws SQLException {
-        List<Materia> materias = new ArrayList<>();
+    public static List<TareaAsignada> obtenerTodos() throws SQLException {
+        List<TareaAsignada> tareasAsignadas = new ArrayList<>();
         try{
-         PreparedStatement consulta = Conexion.getConexion().prepareStatement("select * from materia");
+         PreparedStatement consulta = Conexion.getConexion().prepareStatement("select * from tareas_asignadas");
          ResultSet resultado = consulta.executeQuery();
          while(resultado.next()){
-            materias.add(new Materia(resultado.getInt("idMateria"), resultado.getString("Nombre"), resultado.getString("Grado"), resultado.getInt("idDocente")));
+            tareasAsignadas.add(new TareaAsignada(resultado.getInt("idTareaAsignada"), resultado.getString("nombreTarea"), resultado.getString("descripcionT"), resultado.getInt("idBloque"), resultado.getInt("idDocente")));
          }
       }catch(SQLException ex){
          throw new SQLException(ex);
       }
-      return materias;
-    }    
+      return tareasAsignadas;
+    }   
+    
 }
