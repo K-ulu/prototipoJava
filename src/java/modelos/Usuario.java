@@ -364,9 +364,9 @@ public class Usuario {
             //si afecto a algun registro (se inserto)
             if(pst.executeUpdate() == 1){
                 int idUsuario = Util.getUltimoId("idUsuario", "usuarios"); //recuperamos id del ultimo usuario (el que acabamos de insertar)                
-                /*if(Alumno.guardarObjeto(docente.getNombreD(), docente.getApPaternoD(), docente.getApMaternoD(), docente.getGeneroD(), docente.getFechaNacimientoD(), idUsuario)){
+                if(Alumno.guardarObjeto(alumno.getNombreA(), alumno.getApPaternoA(), alumno.getApMaternoA(), alumno.getGeneroA(), alumno.getFechaNacimientoA(), alumno.getCURP(), null, idUsuario)){
                     return true;
-                }  */              
+                }                
                 return false;
             }
         } catch(Exception e){
@@ -383,10 +383,12 @@ public class Usuario {
     }
     
     
-    public static void main(String[] args){
-        Usuario user = new Usuario(Util.getUltimoId("idUsuario", "usuarios"), "caro@test.com", "hola2", "2017-11-11");
-        Docente d = new Docente(Util.getUltimoId("idDocente", "docente"), "Carolina", "Javier", "Gonzalez", "femenino", Util.getFecha(), Util.getUltimoId("idUsuario", "usuarios"));
-        System.out.println(Usuario.crearUsuarioCompleto(user, d));
+    /*public static void main(String[] args){
+        Usuario user = new Usuario(null, "carolina@test.com", "hola2", Util.getFecha());
+        Alumno alumno = new Alumno(null, "Carolina", "Javier", "Gonzalez", "Femenino", "1996-04-04", "jsdf", null, null);
+        System.out.println(Usuario.crearUsuarioCompleto(user, alumno));
+        /*Docente d = new Docente(Util.getUltimoId("idDocente", "docente"), "Carolina", "Javier", "Gonzalez", "femenino", Util.getFecha(), Util.getUltimoId("idUsuario", "usuarios"));
+        System.out.println(Usuario.crearUsuarioCompleto(user, d));*/
         //Usuario.guardarObjeto(user);*/
         
         
@@ -406,6 +408,6 @@ public class Usuario {
             
         }*/
         
-    }
+    //}
     
 }
