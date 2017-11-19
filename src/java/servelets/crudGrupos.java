@@ -56,13 +56,21 @@ public class crudGrupos extends HttpServlet {
                 String turno = request.getParameter("turno");
                 Grupos.actualizarObjeto(idGrupo, grado, nomb, turno, 0);
             }
+            /*
             else if (request.getParameter("eliminar") != null) {
                 idGrupo =Integer.parseInt(request.getParameter("idGrupo"));
                 Grupos.eliminarObjeto(idGrupo);
             }
+            */
             else if(request.getParameter("cancelar") != null){
                 out.println("hola");
                 response.sendRedirect("maestro-Grupos.jsp");
+            }
+            else{
+                idGrupo = Integer.parseInt(request.getParameter("variable1"));
+                out.println("El numero es: "+idGrupo);
+                Grupos.eliminarObjeto(idGrupo);
+            
             }
         response.sendRedirect("maestro-Grupos.jsp");
         }

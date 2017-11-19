@@ -57,10 +57,10 @@ public class crudAlumno extends HttpServlet {
                 out.println(apPaternoA);
                 Alumno.guardarObjeto(nombreA, apPaternoA, apMaternoA, generoA, fechaNacimientoA, CURP, idGrupo, 3) ; 
             } 
-            else if (request.getParameter("eliminar") != null) {
+            /*else if (request.getParameter("eliminar") != null) {
                 idAlumno =Integer.parseInt(request.getParameter("idAlumno"));
                 Alumno.eliminarObjeto(idAlumno);
-            }
+            }*/
             else if (request.getParameter("editar") != null) {
                 idAlumno =Integer.parseInt(request.getParameter("idAlum"));
                 String nombreA = request.getParameter("nombre");
@@ -73,8 +73,11 @@ public class crudAlumno extends HttpServlet {
                 Alumno.actualizarObjeto(idAlumno,nombreA, apPaternoA, apMaternoA, generoA, fechaNacimientoA, CURP, idGrupo,3);
             }
             else if(request.getParameter("cancelar") != null){
-                out.println("hola");
                 response.sendRedirect("maestro-Alumnos.jsp");
+            }
+            else{
+                idAlumno = Integer.parseInt(request.getParameter("variable1"));
+                Alumno.eliminarObjeto(idAlumno);
             }
             //response.sendRedirect("maestro-Alumnos.jsp?op=op&idAlumno="+idAlumno);
             response.sendRedirect("maestro-Alumnos.jsp");

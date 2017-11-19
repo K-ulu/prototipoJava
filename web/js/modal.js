@@ -86,3 +86,4 @@
       var turn = document.getElementById("turn");
       turn.value = turno;
     }
+    
