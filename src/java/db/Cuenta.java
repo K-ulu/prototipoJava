@@ -56,7 +56,7 @@ public class Cuenta {
         return false;
     }
     
-    //metodos para registrar cuentas para
+    //metodos para registrar cuentas para docente 
     public boolean registrar(String correo, String contrasenia, String nombre, String apPaterno, String apMaterno, String genero, String fechaNacimiento){
         
         PreparedStatement pst = null;
@@ -138,6 +138,5 @@ public class Cuenta {
         } catch (Exception ex) {
             Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }*/
-    
+    }*/    
 }
