@@ -9,6 +9,8 @@
 <%@page import="java.util.LinkedList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import = "modelos.Alumno"%> 
+<%@ page import = "modelos.Grupos"%> 
+
 
 <!DOCTYPE html>
 <html>
@@ -119,13 +121,14 @@
                        out.println("<td>"+gen+"</td>");
                        out.println("<td>"+miCurp+"</td>");
                        out.println("<td>"+grupo+"</td>");
-                       out.println("<td><button class='boton' id='myBtn2' onClick='getId("+ id + ",\"" + ap +"\", \""+ am +"\", \""+ nombr +"\", \""+ gen + "\", \""+ fech + "\", \""+ miCurp + "\", \""+ grupo + "\")' name='editar'><i class='fa fa-pencil' aria-hidden='true'></i>Editar </button></td>");
+                       out.println("<td><button class='boton' id='myBtn2' onClick='getAlumno("+ id + ",\"" + ap +"\", \""+ am +"\", \""+ nombr +"\", \""+ gen + "\", \""+ fech + "\", \""+ miCurp + "\", \""+ grupo + "\")' name='editar'><i class='fa fa-pencil' aria-hidden='true'></i>Editar </button></td>");
 
                        out.println("<form action=\"crudAlumno\" method='post'>");
                             out.println("<input class=\"input\" type=\"hidden\" name=\"idAlumno\" id='"+i+"'value=\""+id+"\"/>");
                             out.println("<td><button class=\"boton\" id=\"myBtn3\" name=\"eliminar\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i> Eliminar </button></td>");
                             out.println("<td><button class=\"boton\" id=\"myBtn4\" name=\"compartir\"><i class=\"fa fa-share-alt\" aria-hidden=\"true\"></i>Compartir </button></td>");
                        out.println("</form>");
+                       out.println("</tr>");
                     }            
                 %>
             </table>
@@ -187,11 +190,25 @@
                     <label class="input">Curp</label>
                     <input class="input" type="text" name="curp" placeholder="curp" />
                     <label>id del Grupo</label>
-                    <input class="input" type="text" name="idGrupo" placeholder="Grupo" />
-                    <label>id de la Materia</label>
-                    <input class="input" type="text" name="idMateria" placeholder="Materia" />
+                    <!--input class="input" type="text" name="idGrupo" placeholder="Grupo" /-->
+                    <select name="idGrupo" class="input2">
+                        <%
+                            int idG =0;
+                            String nombrG="";
+                        List<Grupos> grupito = new ArrayList<>();
+                        grupito = Grupos.obtenerTodos();  
+                
+                    for (int i=0;i<alumnito.size();i++)
+                    {
+                       idG = grupito.get(i).getIdGrupo();
+                       nombrG = grupito.get(i).getLetra();
+                       
+                       out.println("<option value="+ idG +"> Grupo "+ nombrG +"</option>");
+                    }            
+                %>
+                    </select>
                     <input class="modal-boton active-boton" type="submit" value="Agregar" name="agregar">
-                    <input class="modal-boton" type="reset" value="Cancelar">
+                    <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
                     <div class="clear"></div>
                 </form>
             </div>
@@ -238,7 +255,7 @@
                     <input class="input" id='idGroup' name="idGrupo" value= ''/>
                                         
                     <input class="modal-boton active-boton" type="submit" value="Editar" name="editar">
-                    <input class="modal-boton" type="reset" value="Cancelar">
+                    <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
                     <div class="clear"></div>
                 </form>
             </div>

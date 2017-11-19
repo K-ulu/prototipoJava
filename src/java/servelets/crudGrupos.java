@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 import modelos.Grupos;
 
 /**
@@ -33,19 +34,41 @@ public class crudGrupos extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
                 
-        try{       
-            String nombre = request.getParameter("nombre");
-            int tam = nombre.length();
-            String nomb = nombre.substring((tam-1),tam);
-            Integer idDocente = Integer.parseInt(request.getParameter("idDocente"));
-            String grado = request.getParameter("grado");
-            String turno = request.getParameter("turno");
-            Grupos.insertar(nomb, idDocente,grado,turno); 
+        try{  
+            Integer idGrupo=0;
+            if (request.getParameter("agregar") != null) {
+                String nombre = request.getParameter("nombre");
+                int tam = nombre.length();
+                String nomb = nombre.substring((tam-1),tam);
+                Integer idDocente = Integer.parseInt(request.getParameter("idDocente"));
+                String grado = request.getParameter("grado");
+                String turno = request.getParameter("turno");
+                Grupos.insertar(nomb, idDocente,grado,turno);
+            }
+
+            else if (request.getParameter("editar") != null) {  
+                idGrupo =Integer.parseInt(request.getParameter("idGrup"));
+                String nombre = request.getParameter("nombre");
+                int tam = nombre.length();
+                String nomb = nombre.substring((tam-1),tam);
+                //Integer idDocente = Integer.parseInt(request.getParameter("idDocente"));
+                String grado = request.getParameter("grado");
+                String turno = request.getParameter("turno");
+                Grupos.actualizarObjeto(idGrupo, grado, nomb, turno, 0);
+            }
+            else if (request.getParameter("eliminar") != null) {
+                idGrupo =Integer.parseInt(request.getParameter("idGrupo"));
+                Grupos.eliminarObjeto(idGrupo);
+            }
+            else if(request.getParameter("cancelar") != null){
+                out.println("hola");
+                response.sendRedirect("maestro-Grupos.jsp");
+            }
+        response.sendRedirect("maestro-Grupos.jsp");
         }
         catch (Exception e){
-            
+            out.println("Error");
         }
-        response.sendRedirect("maestro-Grupos.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

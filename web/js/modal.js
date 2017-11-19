@@ -36,7 +36,7 @@
       }
   }
   
-  function getId(id,apPat,am,nomb,gen,fech,miCurp,grupo){
+  function getAlumno(id,apPat,am,nomb,gen,fech,miCurp,grupo){
       edit.style.display = "block";
       var inp = document.getElementById("MyId");
       inp.value = id;
@@ -65,3 +65,24 @@
       var miGrup = document.getElementById("idGroup");
       miGrup.value = grupo;
   }
+  
+  function getGrupo(id,idDoc,grado,letra,turno){
+      edit.style.display = "block";
+      var inp = document.getElementById("MyId");
+      inp.value = id;
+      
+      var inp2 = document.getElementById("MyId2");
+      inp2.value = id;
+      
+      var idD = document.getElementById("idDoc");
+      idD.value = idDoc;
+      
+      var grad = document.getElementById("grad");
+      grad.value = grado;
+      
+      var nomb = document.getElementById("nomb");
+      nomb.value = 'Grupo '+letra;
+      
+      var turn = document.getElementById("turn");
+      turn.value = turno;
+    }

@@ -93,23 +93,33 @@
                         String grado="";
                         String letraG="";
                         String turno="";
-                        String total="";
+                        int total=0;
                     
                     List<Grupos> grupito = new ArrayList<>();
                     grupito = Grupos.obtenerTodos();  
 
-                        for (int i=0;i<grupito.size();i++)
-                        {
-                           out.println("<tr>");
-                           out.println("<td> Grupo "+grupito.get(i).getLetra()+"</td>");
-                           out.println("<td>"+grupito.get(i).getTotalAlumnos()+"</td>");
-                           out.println("<td>"+grupito.get(i).getTurno() +"</td>");
-                           out.println("<td><a href=\"\"><i class=\"fa fa-share-alt\" aria-hidden=\"true\"></i></a></td>");
-                           out.println("<td><a href=\"\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></a></td>");
-                           out.println("<td><a href=\"\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></a></td>");
-                           out.println("</tr>");
-                        }
-                    %>
+                    for (int i=0;i<grupito.size();i++)
+                    {
+                       id = grupito.get(i).getIdGrupo();
+                       idDoc = grupito.get(i).getIdDocente();
+                       grado = grupito.get(i).getGrado();
+                       letraG = grupito.get(i).getLetra();
+                       turno = grupito.get(i).getTurno();
+                       total = grupito.get(i).getTotalAlumnos();
+                        out.println("<tr>");
+                            out.println("<td> Grupo "+letraG+"</td>");
+                            out.println("<td>"+total+"</td>");
+                            out.println("<td>"+turno +"</td>");
+                            out.println("<td><button class='boton' id='myBtn2' onClick='getGrupo("+ id + ","+ idDoc  + ",\"" + grado +"\", \""+ letraG +"\", \""+ turno +"\")' name='editar'><i class='fa fa-pencil' aria-hidden='true'></i>Editar </button></td>");
+                       
+                            out.println("<form action=\"crudGrupos\" method='post'>");
+                                out.println("<input class=\"input\" type=\"hidden\" name=\"idGrupo\" id='"+i+"'value=\""+id+"\"/>");
+                                out.println("<td><button class=\"boton\" id=\"myBtn3\" name=\"eliminar\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i> Eliminar </button></td>");
+                                out.println("<td><button class=\"boton\" id=\"myBtn4\" name=\"compartir\"><i class=\"fa fa-share-alt\" aria-hidden=\"true\"></i>Compartir </button></td>");
+                            out.println("</form>");
+                        out.println("</tr>");
+                    }
+                %>
                 </table>
             </div>
             <div class="pagination">
@@ -145,8 +155,8 @@
                         </select>
                         <label>Turno escolar del alumno</label>
                         <input class="input" type="text" name="turno" placeholder="turno" />
-                        <input class="modal-boton active-boton" type="submit" value="Agregar" />
-                        <!--input class="modal-boton" type="reset" value="Cancelar"-->
+                        <input class="modal-boton active-boton" type="submit" value="Agregar" name="agregar"/>
+                        <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
                         <div class="clear"></div>
                     </form>
                 </div>
@@ -164,6 +174,36 @@
                 </nav>
             </div>
         </footer>
+        
+        <!-- The Modal aparece cuando se selecciona editar-->
+    <div id="edit" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close editarclose">&times;</span>
+                <h2>Editar un Alumno!</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                    <form action="crudGrupos" method='post'>
+                        <label>ID del grupo </label>
+                        <input class="input" id='MyId' name='idGrupo' value= '' disabled/>
+                        <input class="input" id='MyId2' name='idGrup' value= '' type="hidden" /> 
+                        <label>ID del Docente</label>
+                        <input class="input" id='idDoc' name='idDocente' value= '' disabled/>
+                        <input class="input" id='idDoc2' name='idDoc' value= '' type="hidden" /> 
+                        <label>Grado</label>
+                        <input class="input" id='grad' name="grado" value = ""/>
+                        <label>Nombre de grupo </label>
+                        <input class="input" id='nomb' name="nombre" value = ""/>
+                        <label>Turno escolar del alumno</label>
+                        <input class="input" id='turn' name="turno" value = ""/>
+                        <input class="modal-boton active-boton" type="submit" value="Editar" name="editar"/>
+                        <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
+                        <div class="clear"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <script src="js/modal.js"></script>
     </body>
 </html>

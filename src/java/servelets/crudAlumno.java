@@ -5,6 +5,7 @@
  */
 package servelets;
 
+import com.sun.java.swing.plaf.windows.resources.windows;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
@@ -34,9 +35,7 @@ public class crudAlumno extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    public static void pr(){
-        out.println("hola");
-    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)           
         throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -44,7 +43,7 @@ public class crudAlumno extends HttpServlet {
                 
         try{    
             Integer idAlumno=0;
-            if (request.getParameter("agregar") != null) {                    
+            if (request.getParameter("agregar") != null) {
                 String nombreA = request.getParameter("nombre");
                 String apPaternoA = request.getParameter("apellidoP");
                 String apMaternoA = request.getParameter("apellidoM");
@@ -55,6 +54,7 @@ public class crudAlumno extends HttpServlet {
                 String fechaNacimientoA = anio + "-" + mes + "-"+dia;
                 String CURP = request.getParameter("curp");
                 Integer idGrupo =Integer.parseInt(request.getParameter("idGrupo"));
+                out.println(apPaternoA);
                 Alumno.guardarObjeto(nombreA, apPaternoA, apMaternoA, generoA, fechaNacimientoA, CURP, idGrupo, 3) ; 
             } 
             else if (request.getParameter("eliminar") != null) {
@@ -72,12 +72,16 @@ public class crudAlumno extends HttpServlet {
                 Integer idGrupo =Integer.parseInt(request.getParameter("idGrupo"));
                 Alumno.actualizarObjeto(idAlumno,nombreA, apPaternoA, apMaternoA, generoA, fechaNacimientoA, CURP, idGrupo,3);
             }
+            else if(request.getParameter("cancelar") != null){
+                out.println("hola");
+                response.sendRedirect("maestro-Alumnos.jsp");
+            }
             //response.sendRedirect("maestro-Alumnos.jsp?op=op&idAlumno="+idAlumno);
+            response.sendRedirect("maestro-Alumnos.jsp");
         }
         catch (Exception e){
-            
+            out.println("Error");
         }
-        response.sendRedirect("maestro-Alumnos.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
