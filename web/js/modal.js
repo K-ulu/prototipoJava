@@ -1,6 +1,6 @@
 // Get the modal
-  var modal = document.getElementById('myModal');
-  var edit = document.getElementById('edit');
+  var modal = document.getElementById('myModal');//Sirve para desplegar la ventana de agregar algo nuevo
+  var edit = document.getElementById('edit');//Sirve para editar cualquier objeto
   
 
   // Get the button that opens the modal

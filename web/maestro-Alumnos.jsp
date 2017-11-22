@@ -11,7 +11,6 @@
 <%@ page import = "modelos.Alumno"%> 
 <%@ page import = "modelos.Grupos"%> 
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -115,21 +114,21 @@
                        miCurp = alumnito.get(i).getCURP();
                        grupo = alumnito.get(i).getIdGrupo();
                        
-                       out.println("<tr>");
-                       out.println("<td>"+nombr+"</td>");
-                       out.println("<td>"+ ap +"</td>");
-                       out.println("<td>"+gen+"</td>");
-                       out.println("<td>"+miCurp+"</td>");
-                       out.println("<td>"+grupo+"</td>");
-                       out.println("<td><button class='boton' id='myBtn2' onClick='getAlumno("+ id + ",\"" + ap +"\", \""+ am +"\", \""+ nombr +"\", \""+ gen + "\", \""+ fech + "\", \""+ miCurp + "\", \""+ grupo + "\")' name='editar'><i class='fa fa-pencil' aria-hidden='true'></i>Editar </button></td>");
-                       /*
+                        out.println("<tr>");
+                        out.println("<td>"+nombr+"</td>");
+                        out.println("<td>"+ ap +"</td>");
+                        out.println("<td>"+gen+"</td>");
+                        out.println("<td>"+miCurp+"</td>");
+                        out.println("<td>"+grupo+"</td>");
+                        out.println("<td><button class='boton' id='myBtn2' onClick='getAlumno("+ id + ",\"" + ap +"\", \""+ am +"\", \""+ nombr +"\", \""+ gen + "\", \""+ fech + "\", \""+ miCurp + "\", \""+ grupo + "\")' name='editar'><i class='fa fa-pencil' aria-hidden='true'></i>Editar </button></td>");
+                        /*
                        out.println("<form action=\"crudAlumno\" method='post'>");
                             out.println("<input class=\"input\" type=\"hidden\" name=\"idAlumno\" id='"+i+"'value=\""+id+"\"/>");
                             out.println("<td><button class=\"boton\" id=\"myBtn3\" name=\"eliminar\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i> Eliminar </button></td>");
                             out.println("<td><button class=\"boton\" id=\"myBtn4\" name=\"compartir\"><i class=\"fa fa-share-alt\" aria-hidden=\"true\"></i>Compartir </button></td>");
                        out.println("</form>");
 */
-                       out.println("<form name=\"formulario"+i+"\" action=\"servletDondeIr\" method=\"Post\">");
+                        out.println("<form name=\"formulario"+i+"\" action=\"servletDondeIr\" method=\"Post\">");
                         out.println("<td><input type=\"text\" name=\"variable1\" placeholder=\"numero3\" hidden= \"\" id=\"var\"/>"); 
                         out.println("<input type =\"button\" onclick=\"javascript:eliminar('crudAlumno', " + id +");\" value=\"Eliminar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"/>");
                     out.println("</td></form>");
@@ -203,7 +202,7 @@
                         List<Grupos> grupito = new ArrayList<>();
                         grupito = Grupos.obtenerTodos();  
                 
-                    for (int i=0;i<alumnito.size();i++)
+                    for (int i=0;i<grupito.size();i++)
                     {
                        idG = grupito.get(i).getIdGrupo();
                        nombrG = grupito.get(i).getLetra();
