@@ -110,20 +110,11 @@
                             out.println("<td> Grupo "+letraG+"</td>");
                             out.println("<td>"+total+"</td>");
                             out.println("<td>"+turno +"</td>");
-                            out.println("<td><button class='boton' id='myBtn2' onClick='getGrupo("+ id + ","+ idDoc  + ",\"" + grado +"\", \""+ letraG +"\", \""+ turno +"\")' name='editar'><i class='fa fa-pencil' aria-hidden='true'></i>Editar </button></td>");
-                            /*
-                            out.println("<form action=\"crudGrupos\" method='post'>");
-                                out.println("<input class=\"input\" type=\"hidden\" name=\"idGrupo\" id='"+i+"'value=\""+id+"\"/>");
-                                out.println("<td><button class=\"boton\" id=\"myBtn3\" name=\"eliminar\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i> Eliminar </button></td>");
-                                out.println("<td><button class=\"boton\" id=\"myBtn4\" name=\"compartir\"><i class=\"fa fa-share-alt\" aria-hidden=\"true\"></i>Compartir </button></td>");
-                            out.println("</form>");
-                        out.println("</tr>");*/
-                            
+                            out.println("<td><button class='boton' id='myBtn2' onClick='getGrupo("+ id + ","+ idDoc  + ",\"" + grado +"\", \""+ letraG +"\", \""+ turno +"\")' name='editar'><i class='fa fa-pencil' aria-hidden='true'></i>Editar </button></td>");                           
                             out.println("<form name=\"formulario"+i+"\" action=\"servletDondeIr\" method=\"Post\">");
                                 out.println("<td><input type=\"text\" name=\"variable1\" placeholder=\"numero3\" hidden= \"\" id=\"var\"/>"); 
                                 out.println("<input type =\"button\" class=\"boton\" onclick=\"javascript:eliminar('crudGrupos', " + id +");\" value=\"Eliminar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"/>");
                             out.println("</td></form>");
-                            out.println("<td><button class=\"boton\" id=\"myBtn4\" name=\"compartir\"><i class=\"fa fa-share-alt\" aria-hidden=\"true\"></i>Compartir </button></td>");
                         out.println("</tr>");
                     }
                 %>
@@ -160,7 +151,7 @@
                             <option value="5">5to</option>
                             <option value="6">6to</option>
                         </select>
-                        <label>Turno escolar del alumno</label>
+                        <label>Turno escolar</label>
                         <input class="input" type="text" name="turno" placeholder="turno" />
                         <input class="modal-boton active-boton" type="submit" value="Agregar" name="agregar"/>
                         <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
@@ -187,7 +178,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close editarclose">&times;</span>
-                <h2>Editar un Alumno!</h2>
+                <h2>Editar un Grupo!</h2>
             </div>
             <div class="modal-body">
                 <div class="modal-body">
@@ -202,7 +193,7 @@
                         <input class="input" id='grad' name="grado" value = ""/>
                         <label>Nombre de grupo </label>
                         <input class="input" id='nomb' name="nombre" value = ""/>
-                        <label>Turno escolar del alumno</label>
+                        <label>Turno escolar </label>
                         <input class="input" id='turn' name="turno" value = ""/>
                         <input class="modal-boton active-boton" type="submit" value="Editar" name="editar"/>
                         <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
