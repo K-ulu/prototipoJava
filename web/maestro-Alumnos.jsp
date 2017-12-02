@@ -59,7 +59,7 @@
         <ul>
             <li><a href="maestro-Grupos.jsp">Mis grupos</a></li>
             <li><a href="maestro-Alumnos.jsp">Mis alumnos</a></li>
-            <li><a href="maestro-materias.html">Mis materias</a></li>
+            <li><a href="maestro-materias.jsp">Mis materias</a></li>
             <li><a href="maestro-tareas.html">Admin tareas</a></li>
             <li><a href="maestro-mis-documentos.html">Mis documentos</a></li>
             <li><a href="maestro-contenido-multimedia.html">Admin contenido Mult.</a></li>

@@ -87,3 +87,21 @@
       turn.value = turno;
     }
     
+    function getMateria(id,nombre,grado,idDoc){
+      edit.style.display = "block";
+      var inp = document.getElementById("MyId");
+      inp.value = id;
+      
+      var inp2 = document.getElementById("MyId2");
+      inp2.value = id;
+      
+      var nomb = document.getElementById("nomb");
+      nomb.value = nombre;
+      
+      var grad = document.getElementById("grad");
+      grad.value = grado+"to";
+      
+      var idD = document.getElementById("idDoc");
+      idD.value = idDoc;
+    }
+    
