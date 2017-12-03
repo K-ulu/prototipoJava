@@ -12,6 +12,18 @@
         <servlet-name>crudMaterias</servlet-name>
         <servlet-class>servelets.crudMaterias</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>registroMaestro</servlet-name>
+        <servlet-class>servelets.registroMaestro</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>inicioSesion</servlet-name>
+        <servlet-class>servelets.inicioSesion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cerrarSesion</servlet-name>
+        <servlet-class>servelets.cerrarSesion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>crudAlumno</servlet-name>
         <url-pattern>/crudAlumno</url-pattern>
@@ -23,6 +35,18 @@
     <servlet-mapping>
         <servlet-name>crudMaterias</servlet-name>
         <url-pattern>/crudMaterias</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>registroMaestro</servlet-name>
+        <url-pattern>/registroMaestro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>inicioSesion</servlet-name>
+        <url-pattern>/inicioSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cerrarSesion</servlet-name>
+        <url-pattern>/cerrarSesion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
