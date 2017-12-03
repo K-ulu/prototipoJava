@@ -149,65 +149,67 @@
                 <h2>Agregar un Alumno nuevo!</h2>
             </div>
             <div class="modal-body">
-                <form action="crudAlumno" method='post'>
-                    <input class="input" type="hidden" name="idAlumno" value="0"/>                      
-                    <label>Nombre del alumno </label>
-                    <input class="input" type="text" name="nombre" placeholder="Nombre" />
-                    <label>Apellido Paterno del alumno</label>
-                    <input class="input" type="text" name="apellidoP" placeholder="apellido" />
-                    <label>Apellido Materno del alumno</label>
-                    <input class="input" type="text" name="apellidoM" placeholder="apellido" />
-                    <label>Genero del alumno</label>
-                    <select class="input" name="generoA">
-                        <option value="femenino">Femenino</option>
-                        <option value="masculino">Masculino</option>
-                    </select>
-                    
-                    <label>Fecha de nacimiento</label>
-                    <div class="input">
-                        <input class="input2" type="text" name="anio" placeholder="año" size="5"/>                        
-                        <select name="mes" class="input2">
-                            <option value="01">Enero</option>
-                            <option value="02">Febrero</option>
-                            <option value="03">Marzo</option>
-                            <option value="04">Abril</option>
-                            <option value="05">Mayo</option>
-                            <option value="06">Junio</option>
-                            <option value="07">Julio</option>
-                            <option value="08">Agosto</option>
-                            <option value="09">Septiembre</option>
-                            <option value="10">Octubre</option>
-                            <option value="11">Noviembre</option>
-                            <option value="12">Diciembre</option>                        
+                <div class="modal-body2">
+                    <form action="crudAlumno" method='post'>
+                        <input class="input" type="hidden" name="idAlumno" value="0"/>                      
+                        <label>Nombre del alumno </label>
+                        <input class="input" type="text" name="nombre" placeholder="Nombre" />
+                        <label>Apellido Paterno del alumno</label>
+                        <input class="input" type="text" name="apellidoP" placeholder="apellido" />
+                        <label>Apellido Materno del alumno</label>
+                        <input class="input" type="text" name="apellidoM" placeholder="apellido" />
+                        <label>Genero del alumno</label>
+                        <select class="input" name="generoA">
+                            <option value="femenino">Femenino</option>
+                            <option value="masculino">Masculino</option>
                         </select>
-                        
-                        <input class="input2" type="text" name="dia" placeholder="dia" size="5"/>                        
-                    </div>
 
-                    <label class="input">Curp</label>
-                    <input class="input" type="text" name="curp" placeholder="curp" />
-                    <label>id del Grupo</label>
-                    <!--input class="input" type="text" name="idGrupo" placeholder="Grupo" /-->
-                    <select name="idGrupo" class="input2">
-                        <%
-                            int idG =0;
-                            String nombrG="";
-                        List<Grupos> grupito = new ArrayList<>();
-                        grupito = Grupos.obtenerTodos();  
-                
-                    for (int i=0;i<grupito.size();i++)
-                    {
-                       idG = grupito.get(i).getIdGrupo();
-                       nombrG = grupito.get(i).getLetra();
-                       
-                       out.println("<option value="+ idG +"> Grupo "+ nombrG +"</option>");
-                    }            
-                %>
-                    </select>
-                    <input class="modal-boton active-boton" type="submit" value="Agregar" name="agregar">
-                    <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
-                    <div class="clear"></div>
-                </form>
+                        <label>Fecha de nacimiento</label>
+                        <div class="input">
+                            <input class="input2" type="text" name="anio" placeholder="año" size="5"/>                        
+                            <select name="mes" class="input2">
+                                <option value="01">Enero</option>
+                                <option value="02">Febrero</option>
+                                <option value="03">Marzo</option>
+                                <option value="04">Abril</option>
+                                <option value="05">Mayo</option>
+                                <option value="06">Junio</option>
+                                <option value="07">Julio</option>
+                                <option value="08">Agosto</option>
+                                <option value="09">Septiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>                        
+                            </select>
+
+                            <input class="input2" type="text" name="dia" placeholder="dia" size="5"/>                        
+                        </div>
+
+                        <label class="input">Curp</label>
+                        <input class="input" type="text" name="curp" placeholder="curp" />
+                        <label>id del Grupo</label>
+                        <!--input class="input" type="text" name="idGrupo" placeholder="Grupo" /-->
+                        <select name="idGrupo" class="input2">
+                            <%
+                                int idG =0;
+                                String nombrG="";
+                            List<Grupos> grupito = new ArrayList<>();
+                            grupito = Grupos.obtenerTodos();  
+
+                        for (int i=0;i<grupito.size();i++)
+                        {
+                           idG = grupito.get(i).getIdGrupo();
+                           nombrG = grupito.get(i).getLetra();
+
+                           out.println("<option value="+ idG +"> Grupo "+ nombrG +"</option>");
+                        }            
+                    %>
+                        </select>
+                        <input class="modal-boton active-boton" type="submit" value="Agregar" name="agregar">
+                        <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
+                        <div class="clear"></div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>   
@@ -224,7 +226,7 @@
         </div>
     </footer>
     
-            <!-- Aparece cuando se selecciona editar-->
+    <!-- Aparece cuando se selecciona editar-->
     <div id="edit" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -232,29 +234,31 @@
                 <h2>Editar un Alumno!</h2>
             </div>
             <div class="modal-body">
-                <form action="crudAlumno" method='post'>
-                    <label>ID del alumno </label>
-                    <input class="input" id='MyId' name='idAlumno' value= '' disabled/>
-                    <input class="input" id='MyId2' name='idAlum' value= '' type="hidden" />                    
-                    <label>Apellido Paterno del alumno </label>
-                    <input class='input' id='apd' name='apellidoP' value= ''/>
-                    <label>Apellido Materno del alumno</label>
-                    <input class="input" id='apm' name="apellidoM" value= ''/>
-                    <label>Nombre del alumno </label>
-                    <input class="input" id='nomb' name="nombre" value= ''/>
-                    <label>Genero del alumno</label>
-                    <input class="input" id='geni' name="genero" value= ''/>
-                    <label>Fecha de nacimiento del alumno</label>
-                    <input class="input" id='fecha' name="fechaNac" value= ''/>
-                    <label class="input">Curp</label>
-                    <input class="input" id='curpito' name="curp" value= ''/>
-                    <label>id del Grupo</label>
-                    <input class="input" id='idGroup' name="idGrupo" value= ''/>
-                                        
-                    <input class="modal-boton active-boton" type="submit" value="Editar" name="editar">
-                    <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
-                    <div class="clear"></div>
-                </form>
+                <div class="modal-body2">
+                    <form action="crudAlumno" method='post'>
+                        <label>ID del alumno </label>
+                        <input class="input" id='MyId' name='idAlumno' value= '' disabled/>
+                        <input class="input" id='MyId2' name='idAlum' value= '' type="hidden" />                    
+                        <label>Apellido Paterno del alumno </label>
+                        <input class='input' id='apd' name='apellidoP' value= ''/>
+                        <label>Apellido Materno del alumno</label>
+                        <input class="input" id='apm' name="apellidoM" value= ''/>
+                        <label>Nombre del alumno </label>
+                        <input class="input" id='nomb' name="nombre" value= ''/>
+                        <label>Genero del alumno</label>
+                        <input class="input" id='geni' name="genero" value= ''/>
+                        <label>Fecha de nacimiento del alumno</label>
+                        <input class="input" id='fecha' name="fechaNac" value= ''/>
+                        <label class="input">Curp</label>
+                        <input class="input" id='curpito' name="curp" value= ''/>
+                        <label>id del Grupo</label>
+                        <input class="input" id='idGroup' name="idGrupo" value= ''/>
+
+                        <input class="modal-boton active-boton" type="submit" value="Editar" name="editar">
+                        <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
+                        <div class="clear"></div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

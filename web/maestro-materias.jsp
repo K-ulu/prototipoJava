@@ -4,12 +4,14 @@
     Author     : Norma
 --%>
 
+<%@page import="modelos.GruposMateria"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.LinkedList"%>
 <%@ page import = "modelos.Materia"%> 
 <%@ page import = "modelos.Docente"%> 
+<%@ page import = "modelos.Grupos"%>
 
 <!DOCTYPE html>
 <html>
@@ -54,7 +56,54 @@
               <li><a class="active" href="registro.html">Regístrate</a></li>
           </ul>
       </div>
-  </div>
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+            <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Agregar un grupo nuevo</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body2">
+                    <form action="crudMaterias" method='post'>
+                        <label>Agregue un nombre a la materia </label>
+                        <input class="input" type="text" name="nombre" placeholder="Nombre" />
+                        <label>Seleccione el grado</label>
+                        <select class="input" name="grado">
+                            <option value="5">5to</option>
+                            <option value="6">6to</option>
+                        </select>
+                        <label>Seleccione el Docente</label>
+                        <!--input class="input" type="text" name="idGrupo" placeholder="Grupo" /-->
+                        <select name="idDocente" class="input2">
+                        <%
+                            int idD =0;
+                            String nombrD="";
+                            String apD = "";
+                            String nombreCom="";
+                        List<Docente> doc = new ArrayList<>();
+                        doc = Docente.obtenerTodos();  
+
+                    for (int i=0;i<doc.size();i++)
+                    {
+                       idD = doc.get(i).getIdDocente();
+                       nombrD = doc.get(i).getApPaternoD();
+                       apD = doc.get(i).getNombreD();
+                       nombreCom = nombrD + " " + apD;
+                       out.println("<option value="+ idD +"> "+ nombreCom +"</option>");
+                    }            
+                %>
+                        <input class="modal-boton active-boton" type="submit" value="Agregar" name="agregar"/>
+                        <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
+                        <div class="clear"></div>
+                        <br>
+                    </form>
+                </div>
+            </div>
+        </div>                
+    </div>
   <hr class="style13">
   <nav class="nav-extras">
     <ul>
@@ -92,6 +141,7 @@
                         <th colspan="3">Acciones</th>
                     </tr>
                     <%
+                        int NmFila=0;
                         int id =0, idDoc=0;
                         String nombreMat="";
                         String grado="";
@@ -108,85 +158,29 @@
                        out.println("<tr>");
                             out.println("<td> "+ nombreMat +"</td>");
                             out.println("<td>"+ grado +"</td>");
-                            out.println("<td> 001 </td>");
+                            out.println("<td> "+ GruposMateria.obtenerGrupos(id) +" </td>");
                             out.println("<td><button class='boton' id='myBtn2' onClick='getMateria("+ id + ", \""+ nombreMat  + "\",\"" + grado +"\", "+ idDoc +")' name='editar'><i class='fa fa-pencil' aria-hidden='true'></i>Editar </button></td>");
                             
                             out.println("<form name=\"formulario"+i+"\" action=\"servletDondeIr\" method=\"Post\">");
                                 out.println("<td><input type=\"text\" name=\"variable1\" placeholder=\"numero3\" hidden= \"\" id=\"var\"/>"); 
                                 out.println("<input type =\"button\" class=\"boton\" onclick=\"javascript:eliminar('crudMaterias', " + id +");\" value=\"Eliminar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"/>");
                             out.println("</td></form>");
-                            out.println("<td><button class=\"boton\" id=\"myBtn4\" name=\"compartir\"><i class=\"fa fa-share-alt\" aria-hidden=\"true\"></i>Compartir </button></td>");
+                            out.println("<td><button class=\"boton\" id=\"myBtn3\" onClick='agregar("+ id +")' name=\"agregarGrupo\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Agregar Grupo</button></td>");
                         out.println("</tr>");
                     }
                 %>
                 </table>
         </div>
-    </div
-    <!-- The Modal -->
-        <div id="myModal" class="modal">
-            <!-- Modal content -->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <span class="close">&times;</span>
-                    <h2>Agregar un grupo nuevo</h2>
-                </div>
-                <div class="modal-body">
-                    <form action="crudMaterias" method='post'>
-                        <label>Agregue un nombre a la materia </label>
-                        <input class="input" type="text" name="nombre" placeholder="Nombre" />
-                        <label>Seleccione el grado</label>
-                        <select class="input" name="grado">
-                            <option value="5">5to</option>
-                            <option value="6">6to</option>
-                        </select>
-                        <label>Seleccione el Docente</label>
-                    <!--input class="input" type="text" name="idGrupo" placeholder="Grupo" /-->
-                    <select name="idDocente" class="input2">
-                        <%
-                            int idD =0;
-                            String nombrD="";
-                            String apD = "";
-                            String nombreCom="";
-                        List<Docente> doc = new ArrayList<>();
-                        doc = Docente.obtenerTodos();  
-                
-                    for (int i=0;i<doc.size();i++)
-                    {
-                       idD = doc.get(i).getIdDocente();
-                       nombrD = doc.get(i).getApPaternoD();
-                       apD = doc.get(i).getNombreD();
-                       nombreCom = nombrD + " " + apD;
-                       out.println("<option value="+ idD +"> "+ nombreCom +"</option>");
-                    }            
-                %>
-                        <input class="modal-boton active-boton" type="submit" value="Agregar" name="agregar"/>
-                        <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
-                        <div class="clear"></div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    <footer>
-    <div class="foot">
-      <nav class="nav-extras nav-extras-fondo">
-        <ul>
-          <li class="active"><a href="">¿Quienes Somos?</a></li>
-          <li><a href="">Kulu for bussines</a></li>
-          <li><a href="">Contacto</a></li>
-          <li><a href="">Soporte</a></li>
-        </ul>
-      </nav>
     </div>
-  </footer>
   <!-- The Modal aparece cuando se selecciona editar-->
     <div id="edit" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <span class="close editarclose">&times;</span>
-                <h2>Editar un Alumno!</h2>
+                <span class="close editarclose">&times;</span><!--Como aparece tercero es el tercero en span-->
+                <h2>Editar datos de una materia!</h2>
             </div>
             <div class="modal-body">
-                <div class="modal-body">
+                <div class="modal-body2">
                     <form action="crudMaterias" method='post'>
                         <label>ID de la materia </label>
                         <input class="input" id='MyId' name='idMateria' value= '' disabled/>
@@ -204,6 +198,62 @@
                 </div>
             </div>
         </div>
+    </div> 
+    <footer>
+    <div class="foot">
+      <nav class="nav-extras nav-extras-fondo">
+        <ul>
+          <li class="active"><a href="">¿Quienes Somos?</a></li>
+          <li><a href="">Kulu for bussines</a></li>
+          <li><a href="">Contacto</a></li>
+          <li><a href="">Soporte</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+<!-- The Modal aparece cuando se selecciona el boton agregar grupo-->
+    <div id="Agregargrupo" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close editarclose">&times;</span><!--Como aparece primero es el primero en span-->
+                <h2>Agregar un grupo a materia!</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                    <br>
+                        <%
+                            out.println("<form action=\"crudGruposMaterias\" method='post' name=\"f1\"> ");
+                            out.println("<input class=\"input\" id=\'var2\' name='variable2' value= '' type=\"hidden\" />");
+                            int idG =0;
+                            String nombreG="";
+                    
+                            List<Grupos> grup = new ArrayList<>();
+                            grup = Grupos.obtenerTodos();  
+
+                            for (int i=0;i<grup.size();i++)
+                            {
+                                idG = grup.get(i).getIdGrupo();
+                                nombreG = grup.get(i).getLetra();
+                                out.println("<div class=\"contenedor\">");
+                                out.println("<label> Grupo "+ nombreG +"</label>");
+                                out.println("<input type=\"checkbox\" name='datos' value="+ idG +">");
+                                out.println("<span class=\"checkmark\"></span>");
+                                out.println("</div>");
+                            }
+                            out.println("<input class=\"modal-boton active-boton\" type=\"submit\" value=\"Agregar Grupo\" name=\"agregar\"/>");
+                            out.println("<input class=\"modal-boton\" type=\"submit\" value=\"Cancelar\" name=\"cancelar\">");
+                            out.println("<input type =\"button\" class=\"boton\" onclick='limpiar()' value=\"Limpiar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"/>");
+                            out.println("<div class=\"clear\"></div><br>");
+                            out.println("</form>");
+                        %>
+                        
+                        
+                        
+                    
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="js/modal.js"></script>
     <script src="js/funciones.js"></script>
 </body>

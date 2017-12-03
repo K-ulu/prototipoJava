@@ -140,23 +140,25 @@
                     <h2>Agregar un grupo nuevo</h2>
                 </div>
                 <div class="modal-body">
-                    <form action="crudGrupos" method='post'>
-                        <label>Agregue un nombre al grupo </label>
-                        <input class="input" type="text" name="nombre" placeholder="Nombre" />
-                        <label>ID del Docente</label>
-                        <input class="input" type="text" value = "1" disabled/>
-                        <input class="input" type="hidden" name="idDocente" value = "1"/>
-                        <label>Seleccione el grado</label>
-                        <select class="input" name="grado">
-                            <option value="5">5to</option>
-                            <option value="6">6to</option>
-                        </select>
-                        <label>Turno escolar</label>
-                        <input class="input" type="text" name="turno" placeholder="turno" />
-                        <input class="modal-boton active-boton" type="submit" value="Agregar" name="agregar"/>
-                        <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
-                        <div class="clear"></div>
-                    </form>
+                    <div class="modal-body2">
+                        <form action="crudGrupos" method='post'>
+                            <label>Agregue un nombre al grupo </label>
+                            <input class="input" type="text" name="nombre" placeholder="Nombre" />
+                            <label>ID del Docente</label>
+                            <input class="input" type="text" value = "1" disabled/>
+                            <input class="input" type="hidden" name="idDocente" value = "1"/>
+                            <label>Seleccione el grado</label>
+                            <select class="input" name="grado">
+                                <option value="5">5to</option>
+                                <option value="6">6to</option>
+                            </select>
+                            <label>Turno escolar</label>
+                            <input class="input" type="text" name="turno" placeholder="turno" />
+                            <input class="modal-boton active-boton" type="submit" value="Agregar" name="agregar"/>
+                            <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
+                            <div class="clear"></div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -181,7 +183,7 @@
                 <h2>Editar un Grupo!</h2>
             </div>
             <div class="modal-body">
-                <div class="modal-body">
+                <div class="modal-body2">
                     <form action="crudGrupos" method='post'>
                         <label>ID del grupo </label>
                         <input class="input" id='MyId' name='idGrupo' value= '' disabled/>
