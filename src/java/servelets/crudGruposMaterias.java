@@ -46,6 +46,7 @@ public class crudGruposMaterias extends HttpServlet {
         }
         catch (Exception e){
             out.println("Error "+ e.getCause()+ e.getMessage());
+            response.sendRedirect("maestro-materias.jsp");
         }
     }
 

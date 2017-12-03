@@ -165,11 +165,13 @@
                                 out.println("<td><input type=\"text\" name=\"variable1\" placeholder=\"numero3\" hidden= \"\" id=\"var\"/>"); 
                                 out.println("<input type =\"button\" class=\"boton\" onclick=\"javascript:eliminar('crudMaterias', " + id +");\" value=\"Eliminar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"/>");
                             out.println("</td></form>");
-                            out.println("<td><button class=\"boton\" id=\"myBtn3\" onClick='agregar("+ id +")' name=\"agregarGrupo\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Agregar Grupo</button></td>");
+                            out.println("<td><button class=\"boton\" id=\"myBtn3\" onClick='agregar("+ id +")' name=\"agregarGrupo\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Agregar Grupo</button>");
+                            out.println("<button class=\"boton\" id=\"myBtn3\" onClick='agregar("+ id +")' name=\"eliminarGrupo\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i> Eliminar Grupo</button></td>");
+
                         out.println("</tr>");
                     }
                 %>
-                </table>
+            </table>
         </div>
     </div>
   <!-- The Modal aparece cuando se selecciona editar-->
@@ -221,35 +223,31 @@
             <div class="modal-body">
                 <div class="modal-body">
                     <br>
-                        <%
-                            out.println("<form action=\"crudGruposMaterias\" method='post' name=\"f1\"> ");
-                            out.println("<input class=\"input\" id=\'var2\' name='variable2' value= '' type=\"hidden\" />");
-                            int idG =0;
-                            String nombreG="";
-                    
-                            List<Grupos> grup = new ArrayList<>();
-                            grup = Grupos.obtenerTodos();  
+                    <%
+                        out.println("<form action=\"crudGruposMaterias\" method='post' name=\"f1\"> ");
+                        out.println("<input class=\"input\" id=\'var2\' name='variable2' value= '' type=\"hidden\" />");
+                        int idG =0;
+                        String nombreG="";
 
-                            for (int i=0;i<grup.size();i++)
-                            {
-                                idG = grup.get(i).getIdGrupo();
-                                nombreG = grup.get(i).getLetra();
-                                out.println("<div class=\"contenedor\">");
-                                out.println("<label> Grupo "+ nombreG +"</label>");
-                                out.println("<input type=\"checkbox\" name='datos' value="+ idG +">");
-                                out.println("<span class=\"checkmark\"></span>");
-                                out.println("</div>");
-                            }
-                            out.println("<input class=\"modal-boton active-boton\" type=\"submit\" value=\"Agregar Grupo\" name=\"agregar\"/>");
-                            out.println("<input class=\"modal-boton\" type=\"submit\" value=\"Cancelar\" name=\"cancelar\">");
-                            out.println("<input type =\"button\" class=\"boton\" onclick='limpiar()' value=\"Limpiar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"/>");
-                            out.println("<div class=\"clear\"></div><br>");
-                            out.println("</form>");
-                        %>
-                        
-                        
-                        
-                    
+                        List<Grupos> grup = new ArrayList<>();
+                        grup = Grupos.obtenerTodos();  
+
+                        for (int i=0;i<grup.size();i++)
+                        {
+                            idG = grup.get(i).getIdGrupo();
+                            nombreG = grup.get(i).getLetra();
+                            out.println("<div class=\"contenedor\">");
+                            out.println("<label> Grupo "+ nombreG +"</label>");
+                            out.println("<input type=\"checkbox\" name='datos' value="+ idG +">");
+                            out.println("<span class=\"checkmark\"></span>");
+                            out.println("</div>");
+                        }
+                        out.println("<input class=\"modal-boton active-boton\" type=\"submit\" value=\"Agregar Grupo\" name=\"agregar\"/>");
+                        out.println("<input class=\"modal-boton\" type=\"submit\" value=\"Cancelar\" name=\"cancelar\">");
+                        out.println("<input type =\"button\" class=\"boton\" onclick='limpiar()' value=\"Limpiar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"/>");
+                        out.println("<div class=\"clear\"></div><br>");
+                        out.println("</form>");
+                    %>
                 </div>
             </div>
         </div>
