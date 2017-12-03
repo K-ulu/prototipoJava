@@ -58,14 +58,14 @@
                 <span>
                     <% 
                         if(request.getParameter("error") != null){
-                            out.println(request.getParameter("error"));
+                            out.println("<p style='color: red; font-family: \"Raleway\"';>Correo y/o clave incorrectas.</p>");
                         } else {
                             out.println("");
                         }
 
                     %>
                 </span>
-                <form action="proceso.jsp" method="POST">
+                <form action="inicioSesion" method="POST">
                     <div class="control">
                         <label for="correo" class="fa fa-user"></label>
                         <input type="email" id="pass3" name="correo" placeholder="Correo">

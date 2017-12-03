@@ -84,8 +84,8 @@
                         <option value="Femenino">Femenino</option>
                     </select>
                     <input class="campo" type="text" name="fecha" id="fecha" readonly="readonly" placeholder="Fecha Nacimiento">
-                    <input class="campo" type="text" name="contrasena" id="contrasena" placeholder="Contraseña">
-                    <input class="campo" type="text" name="contrasena2" id="contrasena2" placeholder="Confirmar contraseña">
+                    <input class="campo" type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
+                    <input class="campo" type="password" name="contrasena2" id="contrasena2" placeholder="Confirmar contraseña">
                     <button type="submit" name="registro">Registrar cuenta</button>
                     <div class="footer1"><a href="login.jsp">¿Ya eres miembro?</a></div>
                 </form>

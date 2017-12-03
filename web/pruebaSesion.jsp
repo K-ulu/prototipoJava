@@ -17,8 +17,9 @@
             HttpSession sesionStatus = request.getSession();
             out.println("id verificacion "+sesionStatus.getId());
             
-            Cuenta cuenta = (Cuenta)sesionStatus.getAttribute("invitado");
-            out.println("Sesion obtenida"+cuenta.getSaludo());
+            int id = (int)sesionStatus.getAttribute("idUsuario");
+            String tipo = (String)sesionStatus.getAttribute("tipoUsuario");
+            out.println("Sesion obtenida id:"+id+" tipo: "+tipo);
         %>
         <br>
         <a href="proceso-fin.jsp">cerrar sesion</a>

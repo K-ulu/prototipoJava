@@ -285,6 +285,60 @@ public class Usuario {
         return usuario;
     }
     
+    public static Usuario obtenerPorCorreo(String correo){
+        //variables a usar
+        PreparedStatement pst = null;
+        ResultSet resultado;
+        String consulta;
+        Usuario usuario = null;
+            
+        try {   
+            //verificamos si ya existe el registro (en caso que exista lo actualizamos, de lo contrario insertamos)
+            //preparacion de la consulta
+            consulta = "select * from usuarios where correo = ? ";
+            pst = Conexion.getConexion().prepareStatement(consulta);
+            //asignamos valores
+            pst.setString(1, correo);
+            //ejecutamos la consulta y guardamos resultados
+            resultado = pst.executeQuery();
+            while(resultado.next()){
+                usuario = new Usuario(resultado.getInt("idUsuario"), resultado.getString("correo"), resultado.getString("contrasenia"), resultado.getString("FechaCreacion"));
+             }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Docente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return usuario;
+    }
+    
+    public static String obtenerTipoUsuario(int idUsuario){
+        //variables a usar
+        PreparedStatement pst = null;
+        ResultSet resultado;
+        String consulta;
+        Usuario usuario = null;
+            
+        try {   
+            //verificamos si ya existe el registro (en caso que exista lo actualizamos, de lo contrario insertamos)
+            //preparacion de la consulta
+            consulta = "select * from alumnos where idUsuario = ? ";
+            pst = Conexion.getConexion().prepareStatement(consulta);
+            //asignamos valores
+            pst.setInt(1, idUsuario);
+            //ejecutamos la consulta y guardamos resultados
+            resultado = pst.executeQuery();
+            while(resultado.next()){
+                return "alumno";
+             }
+            return "docente";
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Docente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
     //nos devuelve una lista con todos los objetos de la tabla
     public static List<Usuario> obtenerTodos() throws SQLException {
         List<Usuario> usuarios = new ArrayList<>();
