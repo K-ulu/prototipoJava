@@ -1,0 +1,196 @@
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css?family=Raleway:800');
+
+
+
+.kulu-head {
+    position: absolute;
+    width: 279px;
+    height: 177px;
+    margin-left: -138px;
+    margin-top: -155px;
+    left: 50%;
+    top: 70%;
+    transform: translateX(-50%);
+    transform: translateY(-100%);
+    z-index: 1;
+}
+
+.kulu-hand {
+    z-index: 3;
+    width: 54px;
+    height: 64px;
+    border-radius: 40px;
+    background-color: #794419;
+    transform: scaleY(0.6);
+    position: absolute;
+    left: -50px;
+    bottom: 35px;
+    transition: 0.3s ease-out;
+}
+
+.kulu-hand-r {
+    z-index: 3;
+    width: 54px;
+    height: 64px;
+    border-radius: 40px;
+    background-color: #794419;
+    transform: scaleY(0.6);
+    position: absolute;
+    left: 260px;
+    bottom: 35px;
+    transition: 0.3s ease-out;
+}
+
+.kulu-hand.contrasena {
+    transform: translateX(95px) translateY(-0px) scale(0.7);
+    box-shadow: 10px 10px 15px #35271b;
+}
+
+.kulu-hand-r.contrasena {
+    transform: translateX(-95px) translateY(-0px) scale(0.7);
+    box-shadow: 10px 10px 15px #35271b;
+}
+
+.bg-img:before {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: -5;
+    display: block;
+    background-image: url("../img/news6.jpg");
+    width: 100%;
+    height: 100%;
+    filter: blur(2px);
+    filter: opacity(30%);
+}
+
+.bg-img {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+html,
+body {}
+
+body {
+    position: relative;
+    height: 100vh;
+    margin: 0;
+    background-color: #86bbe6;
+}
+
+.container {
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+.title {
+    border-style: solid;
+    border-width: 0px 0px 2px 0px;
+    border-color: #95989a #95989a #147ce5 #95989a;
+    border-radius: 5px 5px 0px 0px;
+    color: black;
+}
+
+.footer1 {
+    border-style: solid;
+    border-width: 2px 0px 0px 0px;
+    border-color: #147ce5 #95989a #147ce5 #95989a;
+    border-radius: 0px 0px 0px 0px;
+    color: #312013;
+    padding: 6px;
+    font-family: 'Raleway',
+    sans-serif;
+    
+}
+
+.login {
+    position: absolute;
+    width: 350px;
+    margin-left: -192px;
+   /* margin-top: 125px;*/
+   margin-top: 150px;
+    left: 50%;
+    top: 70%;
+    transform: translateX(-50%);
+    transform: translateY(-100%);
+    z-index: 1;
+    text-align: center;
+    border-style: solid;
+    border-color: #95989a;
+    border-width: 1px; //border-top: none;
+    border-radius: 5px;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.login h1,
+h2,
+h3 { 
+    //font-size: 1.25em;
+    font-family: 'Raleway',
+    sans-serif;
+    color: #312013;
+}
+
+.login .control label {
+    position: relative;
+    font-size: 1.25em;
+    top: 0px;
+    left: 30px;
+    color: rgba(0,
+    0,
+    0,
+    0.5);
+}
+
+.login .control input {
+    padding: 9px 6px 9px 35px;
+    border-radius: 5px;
+    font-size: 1.25em;
+    font-family: 'Raleway',
+    sans-serif;
+}
+
+div.login button {
+    background-color: #147ce5;
+    color: white;
+    border-radius: 5px;
+    font-size: 1.25em;
+    width: 250px;
+    height: 50px;
+    font-family: 'Raleway',
+    sans-serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+div.login hr {
+    height: 3px;
+    background-color: #147ce5;
+    color: #147ce5;
+}
+
+.login a:link,
+a:visited {
+    text-decoration: none;
+    color: #147ce5;
+}
+
+.campo {
+    font-family: 'Raleway';
+    display: block;
+    width: 80%;
+    margin: 10px 10px 10px 35px;
+    height: 30px;
+    border-radius: 5px;
+}

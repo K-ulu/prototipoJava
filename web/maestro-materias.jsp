@@ -30,7 +30,7 @@
 <body>
     <div class="navbar">
       <div class="nav-logo">
-          <a href="index.html"><img src="img/kulu_logo_160.png"></a>
+          <a href="index.jsp.html"><img src="img/kulu_logo_160.png"></a>
       </div>
       <div class="nav-menu">
           <li class="dropDown"><a href="javascript:void(0)" class="dropButton"><i class="fa fa-bars"></i> Menu</a>
