@@ -23,7 +23,7 @@ import modelos.Docente;
 public class Cuenta {
     
     //metodo que regresa true si el usuario tiene cuenta (iniciar sesion)
-    public boolean autenticacion(String correo, String contrasenia){
+    public static boolean autenticacion(String correo, String contrasenia){
         PreparedStatement pst = null;
         ResultSet rs = null;
         
@@ -116,7 +116,7 @@ public class Cuenta {
         return false;
     }
     
-    
+        
     
     /*public static void main(String[] args){
         
