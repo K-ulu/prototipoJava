@@ -3,7 +3,7 @@
     Created on : 27/11/2017, 02:48:24 PM
     Author     : Norma
 --%>
-
+<%@page session="true" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -49,9 +49,19 @@
           </form>
       </div>
       <div class="nav-enlaces">
-          <ul>
-              <li><a href="">Inicia sesión</a></li>
-              <li><a class="active" href="registro.html">Regístrate</a></li>
+          <ul>              
+              <li><a href="cerrarSesion">Cerrar sesión</a></li>
+              <li><a class="active" href="maestro-Grupos.jsp">¡Hola
+              <%
+                  //recuperamos los datos de la sesion
+                  HttpSession sesionStatus = request.getSession();
+                  //out.println("id verificacion "+sesionStatus.getId());
+                  int idU = (int)sesionStatus.getAttribute("idUsuario");
+                  String tipo = (String)sesionStatus.getAttribute("tipoUsuario");
+                  //out.println("Sesion obtenida id:"+id+" tipo: "+tipo);
+                  out.println(Docente.obtenerPorIdUsuario(idU).getNombreD()+"!");
+              %>
+                </a></li>
           </ul>
       </div>
   </div>
@@ -167,17 +177,17 @@
             </div>
         </div>
     <footer>
-    <div class="foot">
-      <nav class="nav-extras nav-extras-fondo">
-        <ul>
-          <li class="active"><a href="">¿Quienes Somos?</a></li>
-          <li><a href="">Kulu for bussines</a></li>
-          <li><a href="">Contacto</a></li>
-          <li><a href="">Soporte</a></li>
-        </ul>
-      </nav>
-    </div>
-  </footer>
+        <div class="foot">
+            <nav class="nav-extras nav-extras-fondo">
+                <ul>
+                    <li class="active"><a href="">¿Quienes Somos?</a></li>
+                    <li><a href="">Kulu for bussines</a></li>
+                    <li><a href="">Contacto</a></li>
+                    <li><a href="">Soporte</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
   <!-- The Modal aparece cuando se selecciona editar-->
     <div id="edit" class="modal">
         <div class="modal-content">

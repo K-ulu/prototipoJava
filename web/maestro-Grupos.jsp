@@ -3,6 +3,8 @@
     Created on : 15/11/2017, 11:04:41 PM
     Author     : Norma
 --%>
+<%@page import="modelos.Docente"%>
+<%@page session="true" %>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.LinkedList"%>
@@ -26,7 +28,7 @@
     <body>
         <div class="navbar">
             <div class="nav-logo">
-                <a href="index.jsp.html"><img src="img/kulu_logo_160.png"></a>
+                <a href="index.jsp"><img src="img/kulu_logo_160.png"></a>
             </div>
             <div class="nav-menu">
                 <li class="dropDown"><a href="javascript:void(0)" class="dropButton"><i class="fa fa-bars"></i> Menu</a>
@@ -46,8 +48,18 @@
             </div>
             <div class="nav-enlaces">
                 <ul>
-                    <li><a href="">Inicia sesión</a></li>
-                    <li><a class="active" href="registro.html">Regístrate</a></li>
+                    <li><a href="cerrarSesion">Cerrar sesión</a></li>
+                    <li><a class="active" href="maestro-Grupos.jsp">¡Hola
+                    <%
+                        //recuperamos los datos de la sesion
+                        HttpSession sesionStatus = request.getSession();
+                        //out.println("id verificacion "+sesionStatus.getId());
+                        int idU = (int)sesionStatus.getAttribute("idUsuario");
+                        String tipo = (String)sesionStatus.getAttribute("tipoUsuario");
+                        //out.println("Sesion obtenida id:"+id+" tipo: "+tipo);
+                        out.println(Docente.obtenerPorIdUsuario(idU).getNombreD()+"!");
+                    %>
+                    </a></li>
                 </ul>
             </div>
         </div>
@@ -171,7 +183,7 @@
         </div>
         <footer>
             <div class="foot">
-                <nav class="nav-extras">
+                <nav class="nav-extras nav-extras-fondo">
                     <ul>
                         <li class="active"><a href="">¿Quienes Somos?</a></li>
                         <li><a href="">Kulu for bussines</a></li>

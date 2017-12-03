@@ -4,6 +4,8 @@
     Author     : Norma
 --%>
 
+<%@page import="modelos.Docente"%>
+<%@page session="true" %>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.LinkedList"%>
@@ -49,8 +51,18 @@
         </div>
         <div class="nav-enlaces">
             <ul>
-                <li><a href="">Inicia sesión</a></li>
-                <li><a class="active" href="registro.html">Regístrate</a></li>
+                <li><a href="cerrarSesion">Cerrar sesión</a></li>
+                <li><a class="active" href="maestro-Grupos.jsp">¡Hola
+                <%
+                    //recuperamos los datos de la sesion
+                    HttpSession sesionStatus = request.getSession();
+                    //out.println("id verificacion "+sesionStatus.getId());
+                    int idU = (int)sesionStatus.getAttribute("idUsuario");
+                    String tipo = (String)sesionStatus.getAttribute("tipoUsuario");
+                    //out.println("Sesion obtenida id:"+id+" tipo: "+tipo);
+                    out.println(Docente.obtenerPorIdUsuario(idU).getNombreD()+"!");
+                %>
+                </a></li>
             </ul>
         </div>
     </div>
@@ -220,7 +232,7 @@
     </div>   
     <footer>
         <div class="foot">
-            <nav class="nav-extras">
+            <nav class="nav-extras nav-extras-fondo">
                 <ul>
                     <li class="active"><a href="">¿Quienes Somos?</a></li>
                     <li><a href="">Kulu for bussines</a></li>

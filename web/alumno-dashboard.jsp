@@ -3,7 +3,8 @@
     Created on : 3/12/2017, 01:47:05 AM
     Author     : gerar
 --%>
-
+<%@page session="true" %>
+<%@page import="modelos.Alumno"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -41,8 +42,18 @@
             </div>
             <div class="nav-enlaces">
                 <ul>
-                    <li><a href="">Inicia sesión</a></li>
-                    <li><a class="active" href="registro.html">Regístrate</a></li>
+                    <li><a href="cerrarSesion">Cerrar sesión</a></li>
+                    <li><a class="active" href="alumno-dashboard.jsp"> ¡Hola
+                    <% 
+                      //recuperamos los datos de la sesion
+                      HttpSession sesionStatus = request.getSession();
+                      //out.println("id verificacion "+sesionStatus.getId());
+                      int id = (int)sesionStatus.getAttribute("idUsuario");
+                      String tipo = (String)sesionStatus.getAttribute("tipoUsuario");
+                      //out.println("Sesion obtenida id:"+id+" tipo: "+tipo);
+                      out.println(Alumno.obtenerPorIdUsuario(id).getNombreA()+"!");
+                    %>                        
+                    </a></li>
                 </ul>
             </div>
         </div>
