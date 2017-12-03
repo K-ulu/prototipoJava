@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>crudAlumno</servlet-name>
+        <servlet-class>servelets.crudAlumno</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>crudGrupos</servlet-name>
+        <servlet-class>servelets.crudGrupos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>crudMaterias</servlet-name>
+        <servlet-class>servelets.crudMaterias</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>crudAlumno</servlet-name>
+        <url-pattern>/crudAlumno</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crudGrupos</servlet-name>
+        <url-pattern>/crudGrupos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crudMaterias</servlet-name>
+        <url-pattern>/crudMaterias</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

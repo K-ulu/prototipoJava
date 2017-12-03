@@ -370,6 +370,32 @@ public class Alumno {
         return alumno;
     }
     
+    public static Alumno obtenerPorIdUsuario(int idUsuario){
+        //variables a usar
+        PreparedStatement pst = null;
+        ResultSet resultado;
+        String consulta;
+        Alumno alumno = null;
+            
+        try {   
+            //verificamos si ya existe el registro (en caso que exista lo actualizamos, de lo contrario insertamos)
+            //preparacion de la consulta
+            consulta = "select * from alumnos where idUsuario = ? ";
+            pst = Conexion.getConexion().prepareStatement(consulta);
+            //asignamos valores
+            pst.setInt(1, idUsuario);
+            //ejecutamos la consulta y guardamos resultados
+            resultado = pst.executeQuery();
+            while(resultado.next()){
+                alumno = new Alumno(resultado.getInt("idAlumno"), resultado.getString("nombreA"), resultado.getString("apPaternoA"), resultado.getString("apMaternoA"), resultado.getString("generoA"), resultado.getString("fechaNacimientoA"),resultado.getString("CURP"),resultado.getInt("idGrupo"), resultado.getInt("idUsuario"));
+             }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Docente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return alumno;
+    }
+    
     //nos devuelve una lista con todos los objetos de la tabla
     public static List<Alumno> obtenerTodos() throws SQLException {
         List<Alumno> alumnos = new ArrayList<>();

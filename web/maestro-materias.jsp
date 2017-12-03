@@ -5,6 +5,7 @@
 --%>
 
 <%@page import="modelos.GruposMateria"%>
+<%@page session="true" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -32,7 +33,7 @@
 <body>
     <div class="navbar">
       <div class="nav-logo">
-          <a href="index.html"><img src="img/kulu_logo_160.png"></a>
+          <a href="index.jsp"><img src="img/kulu_logo_160.png"></a>
       </div>
       <div class="nav-menu">
           <li class="dropDown"><a href="javascript:void(0)" class="dropButton"><i class="fa fa-bars"></i> Menu</a>
@@ -51,9 +52,19 @@
           </form>
       </div>
       <div class="nav-enlaces">
-          <ul>
-              <li><a href="">Inicia sesión</a></li>
-              <li><a class="active" href="registro.html">Regístrate</a></li>
+          <ul>              
+              <li><a href="cerrarSesion">Cerrar sesión</a></li>
+              <li><a class="active" href="maestro-Grupos.jsp">¡Hola
+              <%
+                  //recuperamos los datos de la sesion
+                  HttpSession sesionStatus = request.getSession();
+                  //out.println("id verificacion "+sesionStatus.getId());
+                  int idU = (int)sesionStatus.getAttribute("idUsuario");
+                  String tipo = (String)sesionStatus.getAttribute("tipoUsuario");
+                  //out.println("Sesion obtenida id:"+id+" tipo: "+tipo);
+                  out.println(Docente.obtenerPorIdUsuario(idU).getNombreD()+"!");
+              %>
+                </a></li>
           </ul>
       </div>
     </div>
@@ -215,6 +226,8 @@
   </footer>
 <!-- The Modal aparece cuando se selecciona el boton agregar grupo-->
     <div id="Agregargrupo" class="modal">
+  <!-- The Modal aparece cuando se selecciona editar-->
+    <div id="edit" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close editarclose">&times;</span><!--Como aparece primero es el primero en span-->
