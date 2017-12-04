@@ -1,4 +1,4 @@
-    // Get the modal
+   // Get the modal
     var Agregargrupo = document.getElementById('Agregargrupo');//Sirve para agregar un grupo
     var modal = document.getElementById('myModal');//Sirve para desplegar la ventana de agregar algo nuevo
     var edit = document.getElementById('edit');//Sirve para editar cualquier objeto
@@ -54,7 +54,7 @@
         inp.value = id;
     }
     
-    function quitar(id){
+    function quitar(id, grupM){
         desasociar.style.display = "block";
         var inp = document.getElementById("var2");//Si se selecciona que se desea eliminar
         inp.value = id;

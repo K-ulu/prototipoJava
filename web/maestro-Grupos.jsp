@@ -120,7 +120,7 @@
                        total = grupito.get(i).getTotalAlumnos();
                         out.println("<tr>");
                             out.println("<td> Grupo "+letraG+"</td>");
-                            out.println("<td>"+total+"</td>");
+                            out.println("<td>"+Grupos.totAlum(id)+"</td>");
                             out.println("<td>"+turno +"</td>");
                             out.println("<td><button class='boton' id='myBtn2' onClick='getGrupo("+ id + ","+ idDoc  + ",\"" + grado +"\", \""+ letraG +"\", \""+ turno +"\")' name='editar'><i class='fa fa-pencil' aria-hidden='true'></i>Editar </button></td>");                           
                             out.println("<form name=\"formulario"+i+"\" action=\"servletDondeIr\" method=\"Post\">");

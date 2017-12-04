@@ -334,4 +334,26 @@ public class Grupos {
             Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public static String totAlum(int idG){
+        PreparedStatement pst = null;
+        ResultSet resultado;
+        String consulta;
+        String total = "";
+        try {
+            consulta = "select COUNT(alumnos.idAlumno) from alumnos where alumnos.idGrupo = ?";
+            pst = Conexion.getConexion().prepareStatement(consulta);
+            //asignamos valores
+            pst.setString(1, String.valueOf(idG));
+            //ejecutamos la consulta y guardamos resultados
+            resultado = pst.executeQuery();
+            
+            while(resultado.next()){
+                total = resultado.getString(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Grupos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      return total;
+    }
 }

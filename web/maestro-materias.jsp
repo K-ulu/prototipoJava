@@ -153,8 +153,10 @@
                     </tr>
                     <%
                         int id =0, idDoc=0;
-                        String nombreMat="";
-                        String grado="";
+                        String nombreMat="", nombreMateria="";
+                        String grado="", idGrupMateria="";
+                        String consulta = "select Grupos.letra  from grupos_materia, Grupos where grupos_materia.idMateria=? AND Grupos.idGrupo = grupos_materia.idGrupo";
+                        String consulta2 = "select grupos_materia.idGruposMateria from grupos_materia, Grupos where grupos_materia.idMateria=? AND Grupos.idGrupo = grupos_materia.idGrupo";
                     
                     List<Materia> mat = new ArrayList<>();
                     mat = Materia.obtenerTodos();  
@@ -165,10 +167,12 @@
                        nombreMat = mat.get(i).getNombre();
                        grado = mat.get(i).getGrado();
                        idDoc = mat.get(i).getIdDocente();
+                       nombreMateria = GruposMateria.obtenerGrupos(id, consulta);
+                       idGrupMateria = GruposMateria.obtenerGrupos(id, consulta2);
                        out.println("<tr>");
                             out.println("<td> "+ nombreMat +"</td>");
                             out.println("<td>"+ grado +"</td>");
-                            out.println("<td> "+ GruposMateria.obtenerGrupos(id) +" </td>");
+                            out.println("<td> "+ nombreMateria +" </td>");
                             out.println("<td><button class='boton' id='myBtn2' onClick='getMateria("+ id + ", \""+ nombreMat  + "\",\"" + grado +"\", "+ idDoc +")' name='editar'><i class='fa fa-pencil' aria-hidden='true'></i>Editar </button></td>");
                             
                             out.println("<form name=\"formulario"+i+"\" action=\"servletDondeIr\" method=\"Post\">");
@@ -176,7 +180,7 @@
                                 out.println("<input type =\"button\" class=\"boton\" onclick=\"javascript:eliminar('crudMaterias', " + id +");\" value=\"Eliminar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"/>");
                             out.println("</td></form>");
                             out.println("<td><button class=\"boton\" id=\"myBtn3\" onClick='agregar("+ id +")' name=\"agregarGrupo\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Asociar Grupo</button>");
-                            out.println("<button class=\"boton\" id=\"myBtn3\" onClick='quitar("+ id +")' name=\"quitarGrupo\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i> Desasociar Grupo</button></td>");
+                            out.println("<button class=\"boton\" id=\"myBtn3\" onClick='quitar(\""+ nombreMateria + "\" , \"" + idGrupMateria + "\" )' name=\"quitarGrupo\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i> Desasociar Grupo</button></td>");
 
                         out.println("</tr>");
                     }
@@ -276,7 +280,7 @@
                     <%
                         out.println("<form action=\"crudGruposMaterias\" method='post' name=\"f1\"> ");
                         out.println("<input class=\"input\" id=\'var2\' name='variable2' value= '' type=\"hidden\" />");
-                        
+
                         grup = Grupos.obtenerTodos();  
 
                         for (int i=0;i<grup.size();i++)
@@ -284,7 +288,7 @@
                             idG = grup.get(i).getIdGrupo();
                             nombreG = grup.get(i).getLetra();
                             out.println("<div class=\"contenedor\">");
-                            out.println("<label> Grupo "+ nombreG +"</label>");
+                            out.println("<label> Grupo "+ id +"</label>");
                             out.println("<input type=\"checkbox\" name='datos' value="+ idG +">");
                             out.println("<span class=\"checkmark\"></span>");
                             out.println("</div>");

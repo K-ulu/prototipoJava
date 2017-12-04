@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package modelos;
-
 import db.Conexion;
 import db.Cuenta;
 import java.sql.PreparedStatement;
@@ -23,8 +22,7 @@ public class GruposMateria {
     private Integer idGruposMateria;
     private Integer idGrupo;
     private Integer idMateria;
-    private static String idTemp;
-       
+    
     public GruposMateria(){
         this.idGruposMateria = null;
         this.idGrupo = null;
@@ -59,14 +57,6 @@ public class GruposMateria {
     
     public void setidMateria(int idMateria) {
         this.idMateria = idMateria;
-    }
-    
-    public String getidTemp(){
-        return idTemp;
-    }
-    
-    public static void setidTemp(String idT){
-        idTemp = idT;
     }
     /*
         MMETODOS PARA OPERACIONES SOBRE LA BD, SON METODOS ESTATICOS (NO ES NECESARIO INSTANCIAR UN OBJETO DE LA CLASE)
@@ -288,40 +278,35 @@ public class GruposMateria {
       return grupos;
     }
     
-    public static String obtenerGrupos(int idMateria) throws SQLException {
+    public static String obtenerGrupos(int idMateria, String consulta) throws SQLException {
         PreparedStatement pst = null;
-        String consulta;
         ResultSet resultado;
         String resul = "";
-        String id="";
         
         try{
-         consulta = "select Grupos.letra, grupos_materia.idGruposMateria  from grupos_materia, Grupos where grupos_materia.idMateria=? AND Grupos.idGrupo = grupos_materia.idGrupo";
-         pst = Conexion.getConexion().prepareStatement(consulta);
+            pst = Conexion.getConexion().prepareStatement(consulta);
             //asignamos valores
             pst.setString(1, String.valueOf(idMateria));
             //ejecutamos la consulta y guardamos resultados
             resultado = pst.executeQuery();
             while (resultado.next()){
                 resul +=  resultado.getString(1) + " ";
-                id += resultado.getString(2) + " ";
             }
-        }catch(SQLException ex){
-           throw new SQLException(ex);
-        }
-        idTemp = id;
-        return resul;
+      }catch(SQLException ex){
+         throw new SQLException(ex);
+      }
+      return resul;
     }
     
-          
     public static void main(String[] args){
-        
+        String consulta = "select Grupos.letra  from grupos_materia, Grupos where grupos_materia.idMateria=? AND Grupos.idGrupo = grupos_materia.idGrupo";
+        String consulta2 = "select grupos_materia.idGruposMateria from grupos_materia, Grupos where grupos_materia.idMateria=? AND Grupos.idGrupo = grupos_materia.idGrupo";
+
         try {
-            System.out.println(GruposMateria.obtenerGrupos(3));
+            System.out.println(obtenerGrupos(3, consulta));
+            System.out.println(obtenerGrupos(3, consulta2));
         } catch (SQLException ex) {
             Logger.getLogger(GruposMateria.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
 }
-}
-    
-
