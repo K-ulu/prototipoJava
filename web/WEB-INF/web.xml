@@ -8,6 +8,10 @@
         <servlet-name>crudGrupos</servlet-name>
         <servlet-class>servelets.crudGrupos</servlet-class>
     </servlet>
+        <servlet>
+        <servlet-name>crudGruposMaterias</servlet-name>
+        <servlet-class>servelets.crudGruposMaterias</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>crudMaterias</servlet-name>
         <servlet-class>servelets.crudMaterias</servlet-class>
@@ -24,6 +28,7 @@
         <servlet-name>cerrarSesion</servlet-name>
         <servlet-class>servelets.cerrarSesion</servlet-class>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>crudAlumno</servlet-name>
         <url-pattern>/crudAlumno</url-pattern>
@@ -31,6 +36,10 @@
     <servlet-mapping>
         <servlet-name>crudGrupos</servlet-name>
         <url-pattern>/crudGrupos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crudGruposMaterias</servlet-name>
+        <url-pattern>/crudGruposMaterias</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>crudMaterias</servlet-name>
@@ -50,7 +59,7 @@
     </servlet-mapping>
     <session-config>
         <session-timeout>
-            30
+            60
         </session-timeout>
     </session-config>
 </web-app>

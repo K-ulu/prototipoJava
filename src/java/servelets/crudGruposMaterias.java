@@ -11,7 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelos.GruposMateria;
+import modelos.GruposMateria1;
 
 /**
  *
@@ -39,7 +39,7 @@ public class crudGruposMaterias extends HttpServlet {
                 idMateria = Integer.parseInt(request.getParameter("variable2"));
                 idGrupo = request.getParameterValues("datos");
                 for(int i=0; i < idGrupo.length; i++){
-                    GruposMateria.guardarObjeto(1, idGrupo[i], idMateria);
+                    GruposMateria1.guardarObjeto(1, idGrupo[i], idMateria);
                 } 
             } 
             response.sendRedirect("maestro-materias.jsp");
