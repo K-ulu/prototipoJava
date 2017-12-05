@@ -277,36 +277,4 @@ public class GruposMateria {
       }
       return grupos;
     }
-    
-    public static String obtenerGrupos(int idMateria, String consulta) throws SQLException {
-        PreparedStatement pst = null;
-        ResultSet resultado;
-        String resul = "";
-        
-        try{
-            pst = Conexion.getConexion().prepareStatement(consulta);
-            //asignamos valores
-            pst.setString(1, String.valueOf(idMateria));
-            //ejecutamos la consulta y guardamos resultados
-            resultado = pst.executeQuery();
-            while (resultado.next()){
-                resul +=  resultado.getString(1) + " ";
-            }
-      }catch(SQLException ex){
-         throw new SQLException(ex);
-      }
-      return resul;
-    }
-    
-    public static void main(String[] args){
-        String consulta = "select Grupos.letra  from grupos_materia, Grupos where grupos_materia.idMateria=? AND Grupos.idGrupo = grupos_materia.idGrupo";
-        String consulta2 = "select grupos_materia.idGruposMateria from grupos_materia, Grupos where grupos_materia.idMateria=? AND Grupos.idGrupo = grupos_materia.idGrupo";
-
-        try {
-            System.out.println(obtenerGrupos(3, consulta));
-            System.out.println(obtenerGrupos(3, consulta2));
-        } catch (SQLException ex) {
-            Logger.getLogger(GruposMateria.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 }

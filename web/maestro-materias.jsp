@@ -13,6 +13,7 @@
 <%@ page import = "modelos.Materia"%> 
 <%@ page import = "modelos.Docente"%> 
 <%@ page import = "modelos.Grupos"%>
+<%@ page import ="modelos.Consulta2Tablas"%>
 
 <!DOCTYPE html>
 <html>
@@ -55,14 +56,14 @@
           <ul>              
               <li><a href="cerrarSesion">Cerrar sesión</a></li>
               <li><a class="active" href="maestro-Grupos.jsp">¡Hola
-              <%
+              <%/*
                   //recuperamos los datos de la sesion
                   HttpSession sesionStatus = request.getSession();
                   //out.println("id verificacion "+sesionStatus.getId());
                   int idU = (int)sesionStatus.getAttribute("idUsuario");
                   String tipo = (String)sesionStatus.getAttribute("tipoUsuario");
                   //out.println("Sesion obtenida id:"+id+" tipo: "+tipo);
-                  out.println(Docente.obtenerPorIdUsuario(idU).getNombreD()+"!");
+                  out.println(Docente.obtenerPorIdUsuario(idU).getNombreD()+"!");*/
               %>
                 </a></li>
           </ul>
@@ -153,22 +154,30 @@
                     </tr>
                     <%
                         int id =0, idDoc=0;
-                        String nombreMat="", nombreMateria="";
+                        String nombreMat="";
                         String grado="", idGrupMateria="";
-                        String consulta = "select Grupos.letra  from grupos_materia, Grupos where grupos_materia.idMateria=? AND Grupos.idGrupo = grupos_materia.idGrupo";
-                        String consulta2 = "select grupos_materia.idGruposMateria from grupos_materia, Grupos where grupos_materia.idMateria=? AND Grupos.idGrupo = grupos_materia.idGrupo";
+                        //String consulta = "select Grupos.letra  from grupos_materia, Grupos where grupos_materia.idMateria=? AND Grupos.idGrupo = grupos_materia.idGrupo";
+                        //String consulta2 = "select grupos_materia.idGruposMateria from grupos_materia, Grupos where grupos_materia.idMateria=? AND Grupos.idGrupo = grupos_materia.idGrupo";
                     
                     List<Materia> mat = new ArrayList<>();
                     mat = Materia.obtenerTodos();  
 
                     for (int i=0;i<mat.size();i++)
                     {
+                       String nombreMateria="";
                        id = mat.get(i).getIdMateria();
                        nombreMat = mat.get(i).getNombre();
                        grado = mat.get(i).getGrado();
                        idDoc = mat.get(i).getIdDocente();
-                       nombreMateria = GruposMateria.obtenerGrupos(id, consulta);
-                       idGrupMateria = GruposMateria.obtenerGrupos(id, consulta2);
+                       
+                       List<Consulta2Tablas> cons = new ArrayList<>();
+                       cons = Consulta2Tablas.obtenerPorId(id);
+
+                        for (int j=0;j<cons.size();j++){
+                            nombreMateria += cons.get(j).getletra() + " ";
+                        }
+                        
+                       //idGrupMateria = GruposMateria.obtenerGrupos(id, consulta2);
                        out.println("<tr>");
                             out.println("<td> "+ nombreMat +"</td>");
                             out.println("<td>"+ grado +"</td>");
@@ -180,8 +189,7 @@
                                 out.println("<input type =\"button\" class=\"boton\" onclick=\"javascript:eliminar('crudMaterias', " + id +");\" value=\"Eliminar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"/>");
                             out.println("</td></form>");
                             out.println("<td><button class=\"boton\" id=\"myBtn3\" onClick='agregar("+ id +")' name=\"agregarGrupo\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Asociar Grupo</button>");
-                            out.println("<button class=\"boton\" id=\"myBtn3\" onClick='quitar(\""+ nombreMateria + "\" , \"" + idGrupMateria + "\" )' name=\"quitarGrupo\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i> Desasociar Grupo</button></td>");
-
+                            out.println("<button class=\"boton\" id=\"myBtn3\" onClick='quitar()' name=\"quitarGrupo\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i> Desasociar Grupo</button></td>");
                         out.println("</tr>");
                     }
                 %>
@@ -275,30 +283,34 @@
                 <h4>Seleccione un elemento de la lista a quitar</h4></center>
             </div>
             <div class="modal-body">
-                <div class="modal-body">
+                <div class="modal-body2">
                     <br>
                     <%
                         out.println("<form action=\"crudGruposMaterias\" method='post' name=\"f1\"> ");
-                        out.println("<input class=\"input\" id=\'var2\' name='variable2' value= '' type=\"hidden\" />");
-
-                        grup = Grupos.obtenerTodos();  
-
-                        for (int i=0;i<grup.size();i++)
-                        {
-                            idG = grup.get(i).getIdGrupo();
-                            nombreG = grup.get(i).getLetra();
-                            out.println("<div class=\"contenedor\">");
-                            out.println("<label> Grupo "+ id +"</label>");
-                            out.println("<input type=\"checkbox\" name='datos' value="+ idG +">");
-                            out.println("<span class=\"checkmark\"></span>");
-                            out.println("</div>");
-                        }
-                        out.println("<input class=\"modal-boton active-boton\" type=\"submit\" value=\"Agregar Grupo\" name=\"agregar\"/>");
-                        out.println("<input class=\"modal-boton\" type=\"submit\" value=\"Cancelar\" name=\"cancelar\">");
-                        out.println("<input type =\"button\" class=\"boton\" onclick='limpiar()' value=\"Limpiar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"/>");
-                        out.println("<div class=\"clear\"></div><br>");
-                        out.println("</form>");
-                    %>
+                        List<Materia> mat2 = new ArrayList<>();
+                        mat2 = Materia.obtenerTodos();  
+                        int idM=0;    
+                        for (int i=0;i<mat.size();i++){
+                            idM = mat.get(i).getIdMateria();                    
+                                
+                            List<Consulta2Tablas> cons = new ArrayList<>();
+                            cons = Consulta2Tablas.obtenerPorId(id);
+                            
+                            for (int j=0;j<cons.size();j++){
+                                out.println("<div class=\"contenedor\">");
+                                out.println("<label> Grupo "+ cons.get(j).getletra() +"</label>");
+                                out.println("<input type=\"checkbox\" name='datos' value="+ cons.get(j).getidGMat() +">");
+                                out.println("<span class=\"checkmark\"></span>");
+                                out.println("</div>");
+                                //nombreMateria += cons.get(j).getletra() + " ";
+                            }
+                    }
+                    out.println("<input class=\"modal-boton active-boton\" type=\"submit\" value=\"Desasociar Grupo\" name=\"deshacer\"/>");
+                    out.println("<input class=\"modal-boton\" type=\"submit\" value=\"Cancelar\" name=\"cancelar\">");
+                    out.println("<input type =\"button\" class=\"boton\" onclick='limpiar()' value=\"Limpiar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"/>");
+                    out.println("<div class=\"clear\"></div><br>");
+                    out.println("</form>");
+                %>
                 </div>
             </div>
         </div>
