@@ -43,41 +43,11 @@ public class crudGruposMaterias extends HttpServlet {
                 } 
             } 
             else if(request.getParameter("deshacer") != null) {
-                //Integer num[] = null;
-                String idMaterias = request.getParameter("variable3");
-                //idMaterias = idMaterias.trim();
-                
-                char[] c_arr = idMaterias.toCharArray();                
-                String val ="";                
-                for (int i = 0; i < c_arr.length; i++) {
-                    if (Character.isWhitespace(c_arr[i])){
-                        int num = Integer.parseInt(val);
-                        out.println(num);
-                        val ="";
-                    }
-                    else{
-                        val += c_arr[i];
-                    }
-                }
-                /*char[] c_arr = idMaterias.toCharArray();
-                
-                char c = idMaterias.charAt(4);  // returns 'l'
-                //out.println(idMaterias.substring(0, 1));
-                int ini=0, fin=0;
-                out.println("tamanio "+idMaterias.length());
-                for (int j =0; j< idMaterias.length(); j++){
-//                    fin++;
-                    String var = idMaterias.substring(2,3);
-                    if (var == " "){
-                       out.println("Es espacio"); 
-                    }
-                    else{
-                        out.println(var + "primera"); 
-                    }
-                }*/
-                //out.println(c_arr.length);
+                idMateria = Integer.parseInt(request.getParameter("variable3"));
+                GruposMateria.eliminarObjeto(idMateria);
+                out.println(idMateria);
             }
-                            //response.sendRedirect("maestro-materias.jsp");
+            //response.sendRedirect("maestro-materias.jsp");
         }
         catch (Exception e){
             out.println("Error "+ e.getCause()+ e.getMessage());

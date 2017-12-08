@@ -54,9 +54,63 @@
         inp.value = id;
     }
     
-    function quitar(){
+    function quitar(idGM){        
         desasociar.style.display = "block";
+        var padre = document.getElementById("formulario");
+        var tabla = document.getElementById("miTabla"); //Recuperamos la tabla
+        var btn = document.getElementById("btn"); //Recuperamos la tabla
         
+        padre.removeChild(tabla);//Si existe una tabla se elimina
+        var tablaReemplazo = document.createElement("table"); //Creamos la tabla a reemplazar
+        tablaReemplazo.border = 1; //agregamos el border
+        tablaReemplazo.id = "miTabla"; //agregamos el id con el mismo id que se maneja
+        padre.appendChild(tablaReemplazo); //agregamos la tabla nueva a nuestro padre
+        
+        /*Esta seccion es para el encabezado*/
+        var fila = document.createElement("tr");
+        var valor = ("ID GRUPO");//Introducimos valor que es igual a la fila y columna
+        var columna = document.createElement("td");//creamos la columna
+        var texto = document.createTextNode(valor);//creamos elemento texto y le introducimos el valor
+        columna.appendChild(texto);//agregamos el texto a la columna
+        fila.appendChild(columna);//agregamos la columna a la fila
+
+        var valor = ("Nombre del grupo");//Introducimos valor que es igual a la fila y columna
+        var columna = document.createElement("td");//creamos la columna
+        var texto = document.createTextNode(valor);//creamos elemento texto y le introducimos el valor
+        columna.appendChild(texto);//agregamos el texto a la columna
+        fila.appendChild(columna);//agregamos la columna a la fila
+        tablaReemplazo.appendChild(fila);//agregamos la fila a la tabla de reemplazo
+        /*Termina el encabezado y comenzamos aguardar valores*/
+        
+        var dato ="";
+        var i=0;
+        while (i < idGM.length){
+            var aux = idGM[i];
+            if (aux == " "){
+                //creamos la fila
+                fila = document.createElement("tr");
+                valor = (dato);//Introducimos valor que es igual a la fila y columna
+                columna = document.createElement("td");//creamos la columna
+                texto = document.createTextNode(valor);//creamos elemento texto y le introducimos el valor
+                columna.appendChild(texto);//agregamos el texto a la columna
+                fila.appendChild(columna);//agregamos la columna a la fila
+
+                i++;
+                valor = (idGM[i]);//Introducimos valor que es igual a la fila y columna
+                columna = document.createElement("td");//creamos la columna
+                texto = document.createTextNode(valor);//creamos elemento texto y le introducimos el valor
+                columna.appendChild(texto);//agregamos el texto a la columna
+                fila.appendChild(columna);//agregamos la columna a la fila
+                tablaReemplazo.appendChild(fila);//agregamos la fila a la tabla de reemplazo
+                dato="";
+                i++;
+            }
+            else{
+                dato+=aux;
+                i++;
+            }
+        }
+        padre.insertBefore(tablaReemplazo, btn);           
     }
     
   function getAlumno(id,apPat,am,nomb,gen,fech,miCurp,grupo){

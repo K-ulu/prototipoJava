@@ -156,15 +156,14 @@
                         int id =0, idDoc=0;
                         String nombreMat="";
                         String grado="", idGrupMateria="";
-                        //String consulta = "select Grupos.letra  from grupos_materia, Grupos where grupos_materia.idMateria=? AND Grupos.idGrupo = grupos_materia.idGrupo";
-                        //String consulta2 = "select grupos_materia.idGruposMateria from grupos_materia, Grupos where grupos_materia.idMateria=? AND Grupos.idGrupo = grupos_materia.idGrupo";
-                    
+                        
                     List<Materia> mat = new ArrayList<>();
                     mat = Materia.obtenerTodos();  
 
                     for (int i=0;i<mat.size();i++)
                     {
                        String nombreMateria="";
+                       idGrupMateria="";
                        id = mat.get(i).getIdMateria();
                        nombreMat = mat.get(i).getNombre();
                        grado = mat.get(i).getGrado();
@@ -172,12 +171,11 @@
                        
                        List<Consulta2Tablas> cons = new ArrayList<>();
                        cons = Consulta2Tablas.obtenerPorId(id);
-
                         for (int j=0;j<cons.size();j++){
                             nombreMateria += cons.get(j).getletra() + " ";
-                        }
-                        
-                       //idGrupMateria = GruposMateria.obtenerGrupos(id, consulta2);
+                            idGrupMateria += cons.get(j).getidGMat() + " "; //En este arreglo se guarda tanto el id como el nombre
+                            idGrupMateria += cons.get(j).getletra();//Y este es el que se le manda al metodo quitar para que muestre en la tabla el id y nombre
+                        }   
                        out.println("<tr>");
                             out.println("<td> "+ nombreMat +"</td>");
                             out.println("<td>"+ grado +"</td>");
@@ -189,7 +187,7 @@
                                 out.println("<input type =\"button\" class=\"boton\" onclick=\"javascript:eliminar('crudMaterias', " + id +");\" value=\"Eliminar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"/>");
                             out.println("</td></form>");
                             out.println("<td><button class=\"boton\" id=\"myBtn3\" onClick='agregar("+ id +")' name=\"agregarGrupo\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Asociar Grupo</button>");
-                            out.println("<button class=\"boton\" id=\"myBtn3\" onClick='quitar()' name=\"quitarGrupo\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i> Desasociar Grupo</button></td>");
+                            out.println("<button class=\"boton\" id=\"myBtn3\" onClick='quitar(\"" +idGrupMateria+ "\")' name=\"quitarGrupo\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i> Desasociar Grupo</button></td>");
                         out.println("</tr>");
                     }
                 %>
@@ -285,32 +283,17 @@
             <div class="modal-body">
                 <div class="modal-body2">
                     <br>
-                    <%
-                        out.println("<form action=\"crudGruposMaterias\" method='post' name=\"f1\"> ");
-                        List<Materia> mat2 = new ArrayList<>();
-                        mat2 = Materia.obtenerTodos();  
-                        int idM=0;    
-                        for (int i=0;i<mat.size();i++){
-                            idM = mat.get(i).getIdMateria();                    
-                                
-                            List<Consulta2Tablas> cons = new ArrayList<>();
-                            cons = Consulta2Tablas.obtenerPorId(id);
-                            
-                            for (int j=0;j<cons.size();j++){
-                                out.println("<div class=\"contenedor\">");
-                                out.println("<label> Grupo "+ cons.get(j).getletra() +"</label>");
-                                out.println("<input type=\"checkbox\" name='datos' value="+ cons.get(j).getidGMat() +">");
-                                out.println("<span class=\"checkmark\"></span>");
-                                out.println("</div>");
-                                //nombreMateria += cons.get(j).getletra() + " ";
-                            }
-                    }
-                    out.println("<input class=\"modal-boton active-boton\" type=\"submit\" value=\"Desasociar Grupo\" name=\"deshacer\"/>");
-                    out.println("<input class=\"modal-boton\" type=\"submit\" value=\"Cancelar\" name=\"cancelar\">");
-                    out.println("<input type =\"button\" class=\"boton\" onclick='limpiar()' value=\"Limpiar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"/>");
-                    out.println("<div class=\"clear\"></div><br>");
-                    out.println("</form>");
-                %>
+                    <form action="crudGruposMaterias" method='post' name="f1" id="formulario">
+                        <table id="miTabla" border="1">
+                        </table>
+                        
+                        <label>Introduzca el id del grupo que desee eliminar</label>
+                        <input class="input" id='var3' name='variable3' value= '' type="text">  
+                        <br>
+                        <input class="modal-boton active-boton" type="submit" value="Quitar Grupo" name="deshacer" id="btn"/>
+                        <input class="modal-boton" type= "submit" value="Cancelar" name="cancelar"/>
+                        <div class="clear"></div><br>                        
+                    </form>
                 </div>
             </div>
         </div>
