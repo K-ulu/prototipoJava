@@ -196,7 +196,7 @@ public class GruposMateria {
         try {   
             //verificamos si ya existe el registro (en caso que exista lo actualizamos, de lo contrario insertamos)
             //preparacion de la consulta
-            consulta = "delete from grupos_materias where idGruposMateria = ? ";
+            consulta = "delete from grupos_materia where idGruposMateria = ? ";
             pst = Conexion.getConexion().prepareStatement(consulta);
             //asignamos valores
             pst.setString(1, String.valueOf(idGruposMateria));
@@ -221,7 +221,7 @@ public class GruposMateria {
         try {   
             //verificamos si ya existe el registro (en caso que exista lo actualizamos, de lo contrario insertamos)
             //preparacion de la consulta
-            consulta = "delete from grupos_materias where idGruposMateria = ?";
+            consulta = "delete from grupos_materia where idGruposMateria = ?";
             pst = Conexion.getConexion().prepareStatement(consulta);
             //asignamos valores
             pst.setString(1, String.valueOf(grup.getidGrupo()));
@@ -267,7 +267,7 @@ public class GruposMateria {
     public static List<GruposMateria> obtenerTodos() throws SQLException {
         List<GruposMateria> grupos = new ArrayList<>();
         try{
-         PreparedStatement consulta = Conexion.getConexion().prepareStatement("select * from grupos_materias");
+         PreparedStatement consulta = Conexion.getConexion().prepareStatement("select * from grupos_materia");
          ResultSet resultado = consulta.executeQuery();
          while(resultado.next()){
             grupos.add(new GruposMateria(resultado.getInt("idGruposMateria"), resultado.getInt("idGrupo"), resultado.getInt("idMateria")));

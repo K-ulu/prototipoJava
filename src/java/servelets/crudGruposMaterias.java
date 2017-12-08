@@ -45,13 +45,12 @@ public class crudGruposMaterias extends HttpServlet {
             else if(request.getParameter("deshacer") != null) {
                 idMateria = Integer.parseInt(request.getParameter("variable3"));
                 GruposMateria.eliminarObjeto(idMateria);
-                out.println(idMateria);
             }
-            //response.sendRedirect("maestro-materias.jsp");
+            response.sendRedirect("maestro-materias.jsp");
         }
         catch (Exception e){
             out.println("Error "+ e.getCause()+ e.getMessage());
-            //response.sendRedirect("maestro-materias.jsp");
+            response.sendRedirect("maestro-materias.jsp");
         }
     }
 
