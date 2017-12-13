@@ -34,7 +34,7 @@ public class TareaAsignada {
         this.idMateria = null;
     }
     
-    public TareaAsignada(Integer idTareaAsignada, String nombreTarea, String descripcionT, int idBloque, int idDocente, int idMateria){
+    public TareaAsignada(Integer idTareaAsignada, String nombreTarea, String descripcionT, Integer idBloque, Integer idDocente, Integer idMateria){
         this.idTareaAsignada = idTareaAsignada;
         this.nombreTarea = nombreTarea;
         this.descripcionT = descripcionT;
@@ -98,7 +98,7 @@ public class TareaAsignada {
     */
     
     //devuelve true cuando es guardado exitosamente, false cuando pasa un error
-    public static boolean guardarObjeto(String nombreTarea, String descripcionT, int idBloque, int idDocente, int idMateria) {
+    public static boolean guardarObjeto(String nombreTarea, String descripcionT, Integer idBloque, Integer idDocente, Integer idMateria) {
         //variables a usar
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -110,7 +110,12 @@ public class TareaAsignada {
             pst = Conexion.getConexion().prepareStatement(consulta);
             pst.setString(1, nombreTarea);
             pst.setString(2, descripcionT);
-            pst.setInt(3, idBloque); 
+            if (idBloque == null){
+                pst.setString(3, null);
+            }
+            else{
+                pst.setString(3, String.valueOf(String.valueOf(idBloque)));
+            }
             pst.setInt(4, idDocente);
             pst.setInt(5, idMateria);
             
@@ -324,6 +329,5 @@ public class TareaAsignada {
          throw new SQLException(ex);
       }
       return tareasAsignadas;
-    }   
-    
+    }       
 }

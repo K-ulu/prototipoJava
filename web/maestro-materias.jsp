@@ -194,8 +194,12 @@
                         <input class="input" id='MyId2' name='idMat' value= '' type="hidden" /> 
                         <label>Nombre de la materia </label>
                         <input class="input" id='nomb' name="nombre" value = ""/>
-                        <label>Grado</label>
-                        <input class="input" id='grad' name="grado" value = ""/>
+                        <label>Seleccione el grado</label>
+                        <select class="input" name="grado" id='grad'>
+                            <option value="5">5to</option>
+                            <option value="6">6to</option>
+                        </select>
+                        
                         <label>ID del Docente</label>
                         <input class="input" id='idDoc' name='idDocente' value= '' disabled/>
                         <input class="modal-boton active-boton" type="submit" value="Editar" name="editar"/>

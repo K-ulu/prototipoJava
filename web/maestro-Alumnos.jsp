@@ -266,7 +266,20 @@
                         <label class="input">Curp</label>
                         <input class="input" id='curpito' name="curp" value= ''/>
                         <label>id del Grupo</label>
-                        <input class="input" id='idGroup' name="idGrupo" value= ''/>
+                        <select name="idGrupo" class="input2" id='idGroup'>
+                        <%
+                            grupito = new ArrayList<>();
+                            grupito = Grupos.obtenerTodos();  
+
+                            for (int i=0;i<grupito.size();i++)
+                            {
+                               idG = grupito.get(i).getIdGrupo();
+                               nombrG = grupito.get(i).getLetra();
+
+                               out.println("<option value="+ idG +"> Grupo "+ nombrG +"</option>");
+                            }            
+                        %>
+                        </select>
 
                         <input class="modal-boton active-boton" type="submit" value="Editar" name="editar">
                         <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">

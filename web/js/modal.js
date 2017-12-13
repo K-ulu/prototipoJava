@@ -50,7 +50,7 @@
   
     function agregar(id){
         Agregargrupo.style.display = "block";
-        var inp = document.getElementById("var2");//Si se selecciona que se desea eliminar
+        var inp = document.getElementById("var2");
         inp.value = id;
     }
     
@@ -144,9 +144,13 @@
       
       var curp = document.getElementById("curpito");
       curp.value = miCurp;
-      
+            
       var miGrup = document.getElementById("idGroup");
-      miGrup.value = grupo;
+      for(var j=0; j<miGrup.length; j++){    
+          if(miGrup[j].value==grupo){
+             miGrup[j].selected = true;  
+          }
+      }
   }
   
   function getGrupo(id,idDoc,grado,letra,turno){
@@ -180,9 +184,13 @@
       
       var nomb = document.getElementById("nomb");
       nomb.value = nombre;
-      
+           
       var grad = document.getElementById("grad");
-      grad.value = grado+"to";
+      for(var j=0; j<grad.length; j++){    
+          if(grad[j].value==grado){
+             grad[j].selected = true;  
+          }
+      }
       
       var idD = document.getElementById("idDoc");
       idD.value = idDoc;
@@ -203,3 +211,36 @@
       var grad = document.getElementById("unidad");
       grad.value = "Unidad "+ unidad;
     }
+    
+    function getTareas_asignadas(idTa, nombreTarea,descripcion,idMat,idBloque,idSesionD){
+      edit.style.display = "block";
+      
+      var idT = document.getElementById("MyId");
+      idT.value = idTa;
+      
+      var idT2 = document.getElementById("MyId2");
+      idT2.value = idTa;
+
+      var nomb = document.getElementById("nomb");
+      nomb.value = nombreTarea;
+            
+      var desc = document.getElementById("descripcion");
+      desc.value = descripcion;
+                
+      var idM2 = document.getElementById("materia2");
+      for(var j=0; j<idM2.length; j++){    
+          if(idM2[j].value==idMat){
+             idM2[j].selected = true;  
+          }
+      }
+           
+      var idB = document.getElementById("IDbloque");
+      for(var j=0; j<idM2.length; j++){   
+          if(idB[j].value==idBloque){
+             idB[j].selected = true;  
+          }
+      }
+      
+      var idSD = document.getElementById("docentID");
+      idSD.value = idSesionD;
+}

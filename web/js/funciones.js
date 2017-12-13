@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+var resultado=0;
+
 function eliminar(nombreServ, tot){/*Esta funcion se creo para que cuando se seleccione eliminar...*/
     var mensaje = confirm('¿Realmente desea eliminar?');
     var inp = document.getElementById("var");//Si se selecciona que se desea eliminar
@@ -15,7 +17,14 @@ function eliminar(nombreServ, tot){/*Esta funcion se creo para que cuando se sel
 
 function limpiar(){
    for (i=0;i<document.f1.elements.length;i++) 
-      if(document.f1.elements[i].type == "checkbox")	
-        document.f1.elements[i].checked=0; 
+        if(document.f1.elements[i].type == "checkbox")	
+            document.f1.elements[i].checked=0; 
 }
+
+
+
+
+
+
+
 
