@@ -4,7 +4,6 @@
     Author     : Norma
 --%>
 
-<%@page import="modelos.Docente"%>
 <%@page session="true" %>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -12,6 +11,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import = "modelos.Alumno"%> 
 <%@ page import = "modelos.Grupos"%> 
+<%@page import="modelos.Docente"%>
 
 <!DOCTYPE html>
 <html>
@@ -72,7 +72,7 @@
             <li><a href="maestro-Grupos.jsp">Mis grupos</a></li>
             <li><a href="maestro-Alumnos.jsp">Mis alumnos</a></li>
             <li><a href="maestro-materias.jsp">Mis materias</a></li>
-            <li><a href="maestro-tareas.html">Admin tareas</a></li>
+            <li><a href="tareas_asignadas.jsp">Admin tareas</a></li>
             <li><a href="maestro-mis-documentos.html">Mis documentos</a></li>
             <li><a href="maestro-contenido-multimedia.html">Admin contenido Mult.</a></li>
         </ul>
@@ -112,8 +112,8 @@
                     String fech="";
                     String miCurp="";
                     int grupo=0;
-                List<Alumno> alumnito = new ArrayList<>();
-                alumnito = Alumno.obtenerTodos();  
+                    List<Alumno> alumnito = new ArrayList<>();
+                    alumnito = Alumno.obtenerTodos();  
                 
                     for (int i=0;i<alumnito.size();i++)
                     {
@@ -126,12 +126,14 @@
                        miCurp = alumnito.get(i).getCURP();
                        grupo = alumnito.get(i).getIdGrupo();
                        
+                       String nombreG = Grupos.obtenerPorId(grupo).getLetra();
+                       
                         out.println("<tr>");
                         out.println("<td>"+nombr+"</td>");
                         out.println("<td>"+ ap +"</td>");
                         out.println("<td>"+gen+"</td>");
                         out.println("<td>"+miCurp+"</td>");
-                        out.println("<td>"+grupo+"</td>");
+                        out.println("<td>"+nombreG+"</td>");
                         out.println("<td><button class='boton' id='myBtn2' onClick='getAlumno("+ id + ",\"" + ap +"\", \""+ am +"\", \""+ nombr +"\", \""+ gen + "\", \""+ fech + "\", \""+ miCurp + "\", \""+ grupo + "\")' name='editar'><i class='fa fa-pencil' aria-hidden='true'></i>Editar </button></td>");
                         out.println("<form name=\"formulario"+i+"\" action=\"servletDondeIr\" method=\"Post\">");
                         out.println("<td><input type=\"text\" name=\"variable1\" placeholder=\"numero3\" hidden= \"\" id=\"var\"/>"); 

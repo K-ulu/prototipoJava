@@ -230,7 +230,7 @@ public class Grupos {
             }     
             return false; //no se encontró ningun registro para actualizar con esos datos
         } catch (SQLException ex) {
-            Logger.getLogger(Docente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Grupos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }

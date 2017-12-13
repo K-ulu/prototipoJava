@@ -6,8 +6,8 @@
 function eliminar(nombreServ, tot){/*Esta funcion se creo para que cuando se seleccione eliminar...*/
     var mensaje = confirm('¿Realmente desea eliminar?');
     var inp = document.getElementById("var");//Si se selecciona que se desea eliminar
-    inp.value = tot;
-    if (mensaje) { //manda a llamar al servlet ya sea el de alumno o grupo
+    inp.value = tot;//mandamos el id del bloque
+    if (mensaje) { //manda a llamar al servlet 
         document.formulario0.action=nombreServ;
         document.formulario0.submit();
     }

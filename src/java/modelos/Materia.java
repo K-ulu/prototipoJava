@@ -296,5 +296,5 @@ public class Materia {
          throw new SQLException(ex);
       }
       return materias;
-    }    
+    }  
 }

@@ -74,7 +74,7 @@ public class Consulta2Tablas {
       return cons;
     }
           
-    public static void main(String[] args){
+    /*public static void main(String[] args){
         
         try {
             List<Consulta2Tablas> cons = new ArrayList<>();
@@ -90,5 +90,5 @@ public class Consulta2Tablas {
         } catch (SQLException ex) {
             Logger.getLogger(GruposMateria.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }*/
 }

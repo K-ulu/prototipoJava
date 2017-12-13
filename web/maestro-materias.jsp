@@ -4,7 +4,6 @@
     Author     : Norma
 --%>
 
-<%@page import="modelos.GruposMateria"%>
 <%@page session="true" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
@@ -14,6 +13,7 @@
 <%@ page import = "modelos.Docente"%> 
 <%@ page import = "modelos.Grupos"%>
 <%@ page import ="modelos.Consulta2Tablas"%>
+<%@ page import= "modelos.GruposMateria"%>
 
 <!DOCTYPE html>
 <html>
@@ -56,14 +56,17 @@
           <ul>              
               <li><a href="cerrarSesion">Cerrar sesión</a></li>
               <li><a class="active" href="maestro-Grupos.jsp">¡Hola
-              <%/*
+              <%
                   //recuperamos los datos de la sesion
                   HttpSession sesionStatus = request.getSession();
                   //out.println("id verificacion "+sesionStatus.getId());
                   int idU = (int)sesionStatus.getAttribute("idUsuario");
                   String tipo = (String)sesionStatus.getAttribute("tipoUsuario");
                   //out.println("Sesion obtenida id:"+id+" tipo: "+tipo);
-                  out.println(Docente.obtenerPorIdUsuario(idU).getNombreD()+"!");*/
+                  String nombreDoc = Docente.obtenerPorIdUsuario(idU).getNombreD();
+                  String ApPaterno = Docente.obtenerPorIdUsuario(idU).getApPaternoD(); 
+                  int idDocente = Docente.obtenerPorIdUsuario(idU).getIdDocente();
+                  out.println(nombreDoc +"!");
               %>
                 </a></li>
           </ul>
@@ -87,26 +90,9 @@
                             <option value="5">5to</option>
                             <option value="6">6to</option>
                         </select>
-                        <label>Seleccione el Docente</label>
-                        <!--input class="input" type="text" name="idGrupo" placeholder="Grupo" /-->
-                        <select name="idDocente" class="input2">
-                        <%
-                            int idD =0;
-                            String nombrD="";
-                            String apD = "";
-                            String nombreCom="";
-                        List<Docente> doc = new ArrayList<>();
-                        doc = Docente.obtenerTodos();  
-
-                    for (int i=0;i<doc.size();i++)
-                    {
-                       idD = doc.get(i).getIdDocente();
-                       nombrD = doc.get(i).getApPaternoD();
-                       apD = doc.get(i).getNombreD();
-                       nombreCom = nombrD + " " + apD;
-                       out.println("<option value="+ idD +"> "+ nombreCom +"</option>");
-                    }            
-                %>
+                        <label>Docente:</label>
+                        <input class="input" type="text" name="nombre" value="<%=nombreDoc + ApPaterno%>" disabled="">
+                        <input class="input" type="text" name="idDocente" value="<%=idDocente%>" style="display:none">
                         <input class="modal-boton active-boton" type="submit" value="Agregar" name="agregar"/>
                         <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
                         <div class="clear"></div>
@@ -122,7 +108,7 @@
       <li><a href="maestro-Grupos.jsp">Mis grupos</a></li>
       <li><a href="maestro-Alumnos.jsp">Mis alumnos</a></li>
       <li><a href="maestro-materias.jsp">Mis materias</a></li>
-      <li><a href="maestro-tareas.html">Admin tareas</a></li>
+      <li><a href="tareas_asignadas.jsp">Admin tareas</a></li>
       <li><a href="maestro-mis-documentos.html">Mis documentos</a></li>
       <li><a href="maestro-contenido-multimedia.html">Admin contenido Mult.</a></li>
     </ul>
@@ -153,7 +139,7 @@
                         <th colspan="3">Acciones</th>
                     </tr>
                     <%
-                        int id =0, idDoc=0;
+                        int id =0;
                         String nombreMat="";
                         String grado="", idGrupMateria="";
                         
@@ -167,7 +153,6 @@
                        id = mat.get(i).getIdMateria();
                        nombreMat = mat.get(i).getNombre();
                        grado = mat.get(i).getGrado();
-                       idDoc = mat.get(i).getIdDocente();
                        
                        List<Consulta2Tablas> cons = new ArrayList<>();
                        cons = Consulta2Tablas.obtenerPorId(id);
@@ -177,10 +162,10 @@
                             idGrupMateria += cons.get(j).getletra();//Y este es el que se le manda al metodo quitar para que muestre en la tabla el id y nombre
                         }   
                        out.println("<tr>");
-                            out.println("<td> "+ nombreMat +"</td>");
+                            out.println("<td><a href=\"maestro-materias-bloques.jsp?variable="+id+"\"> "+ nombreMat +"</a></td>");
                             out.println("<td>"+ grado +"</td>");
                             out.println("<td> "+ nombreMateria +" </td>");
-                            out.println("<td><button class='boton' id='myBtn2' onClick='getMateria("+ id + ", \""+ nombreMat  + "\",\"" + grado +"\", "+ idDoc +")' name='editar'><i class='fa fa-pencil' aria-hidden='true'></i>Editar </button></td>");
+                            out.println("<td><button class='boton' id='myBtn2' onClick='getMateria("+ id + ", \""+ nombreMat  + "\",\"" + grado +"\", "+ idDocente +")' name='editar'><i class='fa fa-pencil' aria-hidden='true'></i>Editar </button></td>");
                             
                             out.println("<form name=\"formulario"+i+"\" action=\"servletDondeIr\" method=\"Post\">");
                                 out.println("<td><input type=\"text\" name=\"variable1\" placeholder=\"numero3\" hidden= \"\" id=\"var\"/>"); 
