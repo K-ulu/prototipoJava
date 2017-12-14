@@ -335,10 +335,10 @@ public class Grupos {
         }
     }
         
-    public static void main(String[] args){
+   // public static void main(String[] args){
 //        Grupos g = new Grupos(1, 2, "3", "Z", "Vesp", 300);
 //        System.out.println(Grupos.actualizarObjeto(g));
-    System.out.println(Grupos.actualizarObjeto(8, "9", "A", "Nocturno", 12));
+    //System.out.println(Grupos.actualizarObjeto(8, "9", "A", "Nocturno", 12));
     
 //    Grupos h = new Grupos(1, 1, "5", "X", "Matu", 200);
 //    System.out.println(Grupos.guardarObjeto(h));
@@ -351,5 +351,5 @@ public class Grupos {
 //    System.out.println(Grupos.eliminarObjeto(5));
     
 
-    }
+  //  }
 }

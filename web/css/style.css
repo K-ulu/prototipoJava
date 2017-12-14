@@ -86,7 +86,6 @@ li.dropDown {
 }
 
 .navbar li a:hover:not(.active) {
-    //background-color: #111;
     color: #147ce5;
 }
 
