@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>K'ulu' &bull; Iniciar sesión</title>
+        <title>K'ulu' - Iniciar sesión</title>
         <meta charset="UTF-8">
         <link rel="icon" href="img/icon.png">
         <link rel="stylesheet" type="text/css" href="css/style2.css">
@@ -23,10 +23,10 @@
             <div class="nav-menu">
                 <li class="dropDown"><a href="javascript:void(0)" class="dropButton"><i class="fa fa-bars"></i> Menu</a>
                     <div class="dropDown-content">
-                        <a href="">¿Quienes Somos?</a>
-                        <a href="">Kulu for bussines</a>
-                        <a href="">Contacto</a>
-                        <a href="">Soporte</a>
+                        <a href="quienes_somos.jsp">¿Quiénes somos?</a>
+                        <a href="kulu_business.jsp">K'ulu' for business</a>
+                        <a href="contacto.jsp">Contacto</a>
+                        <a href="soporte.jsp">Soporte</a>
                     </div>
                 </li>
             </div>
