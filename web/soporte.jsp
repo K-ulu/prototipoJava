@@ -1,7 +1,7 @@
 <%-- 
-    Document   : index
-    Created on : 2/12/2017, 03:18:56 PM
-    Author     : gerar
+    Document   : soporte
+    Created on : Dec 15, 2017, 1:25:48 PM
+    Author     : Christopher Paredes
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,7 +19,7 @@
         <link href="css/mycss.css" rel="stylesheet" type="text/css" />
         <script src="js/jquery-3.1.0.min.js"></script>
         <script src="js/main.js"></script>
-        <title>K'ulu' - Bienvenidos</title>
+        <title>K'ulu' - Soporte</title>
     </head>
     <body>
         <div class="navbar">
@@ -54,28 +54,14 @@
             <div class="slideshow">
                 <ul class="slider">
                     <li>
-                        <img src="img/news8.jpg" alt="">
+                        <img src="img/soporte.jpg" alt="">
                         <section class="caption">
-                            <h1>Aprende y diviértete</h1>
-                            <p>No hay mejor forma de aprender que jugando
-                                <br> ¡Te esperamos!</p>
+                            <h1>Soporte</h1>
+                            <p>¿Cómo te podemos ayudar?</p>
                         </section>
                     </li>
-                    <li>
-                        <img src="img/ninia.jpg" alt="">
-                        <section class="caption">
-                            <h1>Bienvenido a 'Kulu'!</h1>
-                            <p>La forma más entretenida de aprender juntos.</p>
-                        </section>
-                    </li>
-                    <li>
-                        <img src="img/aplicaciones-ortografia.jpg" alt="">
-                        <section class="caption">
-                            <h1>Únete a k'ulu'!</h1>
-                            <p>Crea una cuenta y empieza a disfrutar de las sorpresas
-                                <br> que tenemos para ti.</p>
-                        </section>
-                    </li>
+                    
+                    
                 </ul>
                 <ol class="pagination">
                 </ol>
@@ -89,22 +75,22 @@
         </div>
         <div id="contenido">
             <div class="temas">
-                <div class="item">
-                    <img src="img/crayons-1445053_1920.jpg" alt="colores">
-                    <h2>Lorem ipsum</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi consectetur fringilla urna sit amet aliquet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                <div class="">
+                    
+                    <h2>¿Necesitas ayuda?</h2>
+                   <br><p>Visita nuestro <a href='#'>centro de ayuda</a> para consultar tutoriales o <a href='#'>preguntas frecuentes</a>
+<br><br><h2>Temas populares:</h2>
+<br><ul>
+    
+        <li><a href='#'>Dispositivos recomendados</a></li>
+        <li> <a href='#'>Configuracion de cuenta</a></li>
+         <li><a href='#'>Descarga de videos</a></li>
+         <li><a href='#'>Puntuaciones</a></li>
+    
+</ul>
+</p>
                 </div>
-                <div class="item">
-                    <!--<img src="img/aplicaciones-ortografia.jpg" alt="orto">-->
-                    <iframe allowfullscreen="" frameborder="0" height="265" src="https://www.youtube.com/embed/GCW1LzzdFsU" width="480"></iframe>
-                    <h2>Lorem ipsum</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi consectetur fringilla urna sit amet aliquet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-                </div>
-                <div class="item">
-                    <img src="img/timothy-muza-572.jpg" alt="Our work">
-                    <h2>Lorem ipsum</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi consectetur fringilla urna sit amet aliquet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-                </div>
+                
             </div>
         </div>
         <footer>

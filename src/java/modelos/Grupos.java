@@ -334,6 +334,24 @@ public class Grupos {
             Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+        
+   // public static void main(String[] args){
+//        Grupos g = new Grupos(1, 2, "3", "Z", "Vesp", 300);
+//        System.out.println(Grupos.actualizarObjeto(g));
+    //System.out.println(Grupos.actualizarObjeto(8, "9", "A", "Nocturno", 12));
+    
+//    Grupos h = new Grupos(1, 1, "5", "X", "Matu", 200);
+//    System.out.println(Grupos.guardarObjeto(h));
+//        System.out.println(Grupos.guardarObjeto(1, 1, "6", "a", "xxx", 0));
+
+//    Grupos i = new Grupos(7, 5, "6", "d", "asd", 99);
+//    System.out.println(Grupos.eliminarObjeto(i));
+
+
+//    System.out.println(Grupos.eliminarObjeto(5));
+    
+
+  //  }
     
     public static String totAlum(int idG){
         PreparedStatement pst = null;

@@ -1,7 +1,7 @@
 <%-- 
-    Document   : index
-    Created on : 2/12/2017, 03:18:56 PM
-    Author     : gerar
+    Document   : kulu_business
+    Created on : Dec 15, 2017, 1:16:39 PM
+    Author     : Christopher Paredes
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,7 +19,7 @@
         <link href="css/mycss.css" rel="stylesheet" type="text/css" />
         <script src="js/jquery-3.1.0.min.js"></script>
         <script src="js/main.js"></script>
-        <title>K'ulu' - Bienvenidos</title>
+        <title>K'ulu' - K'ulu for business</title>
     </head>
     <body>
         <div class="navbar">
@@ -54,28 +54,14 @@
             <div class="slideshow">
                 <ul class="slider">
                     <li>
-                        <img src="img/news8.jpg" alt="">
+                        <img src="img/kulu_business.jpg" alt="">
                         <section class="caption">
-                            <h1>Aprende y diviértete</h1>
-                            <p>No hay mejor forma de aprender que jugando
-                                <br> ¡Te esperamos!</p>
+                            <h1>K'ulu' for business</h1>
+                            <p>Incrementa tu productividad...</p>
                         </section>
                     </li>
-                    <li>
-                        <img src="img/ninia.jpg" alt="">
-                        <section class="caption">
-                            <h1>Bienvenido a 'Kulu'!</h1>
-                            <p>La forma más entretenida de aprender juntos.</p>
-                        </section>
-                    </li>
-                    <li>
-                        <img src="img/aplicaciones-ortografia.jpg" alt="">
-                        <section class="caption">
-                            <h1>Únete a k'ulu'!</h1>
-                            <p>Crea una cuenta y empieza a disfrutar de las sorpresas
-                                <br> que tenemos para ti.</p>
-                        </section>
-                    </li>
+                    
+                    
                 </ul>
                 <ol class="pagination">
                 </ol>
@@ -89,22 +75,18 @@
         </div>
         <div id="contenido">
             <div class="temas">
-                <div class="item">
-                    <img src="img/crayons-1445053_1920.jpg" alt="colores">
-                    <h2>Lorem ipsum</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi consectetur fringilla urna sit amet aliquet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                <div class="">
+                    
+                    <h2>Organiza tu flujo de trabajo</h2>
+                   <br><p>Per ne nibh iudicabit, per at illum platonem forensibus. Mucius voluptua appareat eu sed. Latine voluptaria interpretaris at sed, eam cu vitae ridens aperiam. Duo eu facete alienum, minim propriae et nam. Alia fugit in has, inani oratio impedit sed ei.
+
+                    <br><br><h2>Aprende a usar la plataforma</h2>
+                    <br>Lorem ipsum dolor sit amet, illum nostrum praesent ut sit, nisl dolore verterem mel cu. Aliquam definitionem in est, alia aperiam mea in. Pri ex brute partem verear, mea ad habemus pericula. Wisi graece pro te, cu pro meis persius iracundia. Tritani voluptatum ius ex. Est et iisque eleifend elaboraret, tale vocibus no usu.
+                    <br><br><h2>Resultados notables</h2>
+                    <br>Ad eos fastidii volutpat tractatos. Duo vidisse instructior in, mel eu tantas tibique, ea viris dolor vituperata qui. Ne possim convenire temporibus mel, ut alia molestiae eum. Vero modus soluta no cum, nostrud verterem liberavisse an sit. Id augue fabellas theophrastus per.
+                        </p>
                 </div>
-                <div class="item">
-                    <!--<img src="img/aplicaciones-ortografia.jpg" alt="orto">-->
-                    <iframe allowfullscreen="" frameborder="0" height="265" src="https://www.youtube.com/embed/GCW1LzzdFsU" width="480"></iframe>
-                    <h2>Lorem ipsum</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi consectetur fringilla urna sit amet aliquet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-                </div>
-                <div class="item">
-                    <img src="img/timothy-muza-572.jpg" alt="Our work">
-                    <h2>Lorem ipsum</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi consectetur fringilla urna sit amet aliquet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-                </div>
+                
             </div>
         </div>
         <footer>

@@ -1,3 +1,7 @@
 /build/
+<<<<<<< HEAD
 nbproject/private/private.xml
 nbproject/private/private.xml
+=======
+/dist/
+>>>>>>> origin/chris2
