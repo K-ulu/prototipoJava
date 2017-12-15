@@ -77,10 +77,14 @@
             <div class="temas">
                 <div class="">
                     
-                    <h2>K'ulu' - Plataforma educativa</h2>
-                   <br><p>El proyecto K’ulu’ nace en el Instituto Tecnológico de Chetumal en el año 2016, siendo sus miembros fundadores Norma Javier, Christopher Paredes y Gerardo Vázquez. El nombre del proyecto es tomado del idioma Maya y significa “mapache”; la idea detrás de esta decisión es la representación de la cultura de la región y al mismo tiempo honramos al Instituto que es nuestra casa.
-<br><br>Deseamos ser una herramienta que integre las tecnologías actuales en favor de la educación, para así poder proveer a los estudiantes una nueva forma de complementar su aprendizaje; y así mismo promover la colaboración dentro y fuera del aula.
-</p>
+                    <h2>Organiza tu flujo de trabajo</h2>
+                   <br><p>Per ne nibh iudicabit, per at illum platonem forensibus. Mucius voluptua appareat eu sed. Latine voluptaria interpretaris at sed, eam cu vitae ridens aperiam. Duo eu facete alienum, minim propriae et nam. Alia fugit in has, inani oratio impedit sed ei.
+
+                    <br><br><h2>Aprende a usar la plataforma</h2>
+                    <br>Lorem ipsum dolor sit amet, illum nostrum praesent ut sit, nisl dolore verterem mel cu. Aliquam definitionem in est, alia aperiam mea in. Pri ex brute partem verear, mea ad habemus pericula. Wisi graece pro te, cu pro meis persius iracundia. Tritani voluptatum ius ex. Est et iisque eleifend elaboraret, tale vocibus no usu.
+                    <br><br><h2>Resultados notables</h2>
+                    <br>Ad eos fastidii volutpat tractatos. Duo vidisse instructior in, mel eu tantas tibique, ea viris dolor vituperata qui. Ne possim convenire temporibus mel, ut alia molestiae eum. Vero modus soluta no cum, nostrud verterem liberavisse an sit. Id augue fabellas theophrastus per.
+                        </p>
                 </div>
                 
             </div>
