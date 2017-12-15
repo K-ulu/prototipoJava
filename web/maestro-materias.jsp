@@ -21,7 +21,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Maestro Materias</title>
+    <title>K'ulu' - Materias Maestro</title>
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <!--Css para la pagina (El cuerpo y footer)-->
     <link rel="stylesheet" href="css/maestro-mis-documentos.css">
@@ -39,10 +39,10 @@
       <div class="nav-menu">
           <li class="dropDown"><a href="javascript:void(0)" class="dropButton"><i class="fa fa-bars"></i> Menu</a>
               <div class="dropDown-content">
-                  <a href="#">Noticias</a>
-                  <a href="#">Recursos Pedagógicos</a>
-                  <a href="#">null</a>
-                  <a href="#">null</a>
+                  <a href="quienes_somos.jsp">¿Quiénes somos?</a>
+                  <a href="kulu_business.jsp">K'ulu' for business</a>
+                  <a href="contacto.jsp">Contacto</a>
+                  <a href="soporte.jsp">Soporte</a>
               </div>
           </li>
       </div>
@@ -214,10 +214,10 @@
     <div class="foot">
       <nav class="nav-extras nav-extras-fondo">
         <ul>
-          <li class="active"><a href="">¿Quienes Somos?</a></li>
-          <li><a href="">Kulu for bussines</a></li>
-          <li><a href="">Contacto</a></li>
-          <li><a href="">Soporte</a></li>
+          <li class="active"><a href="quienes_somos.jsp">¿Quiénes somos? </a></li>
+          <li><a href="kulu_business.jsp">K'ulu' for business</a></li>
+          <li><a href="contacto.jsp">Contacto</a></li>
+          <li><a href="soporte.jsp">Soporte</a></li>
         </ul>
       </nav>
     </div>
