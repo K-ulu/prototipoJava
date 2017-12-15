@@ -230,7 +230,7 @@ public class Grupos {
             }     
             return false; //no se encontró ningun registro para actualizar con esos datos
         } catch (SQLException ex) {
-            Logger.getLogger(Docente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Grupos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -334,6 +334,7 @@ public class Grupos {
             Logger.getLogger(Cuenta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+<<<<<<< HEAD
         
    // public static void main(String[] args){
 //        Grupos g = new Grupos(1, 2, "3", "Z", "Vesp", 300);
@@ -352,4 +353,28 @@ public class Grupos {
     
 
   //  }
+=======
+    
+    public static String totAlum(int idG){
+        PreparedStatement pst = null;
+        ResultSet resultado;
+        String consulta;
+        String total = "";
+        try {
+            consulta = "select COUNT(alumnos.idAlumno) from alumnos where alumnos.idGrupo = ?";
+            pst = Conexion.getConexion().prepareStatement(consulta);
+            //asignamos valores
+            pst.setString(1, String.valueOf(idG));
+            //ejecutamos la consulta y guardamos resultados
+            resultado = pst.executeQuery();
+            
+            while(resultado.next()){
+                total = resultado.getString(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Grupos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      return total;
+    }
+>>>>>>> development
 }

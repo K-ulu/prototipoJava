@@ -3,14 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-function eliminar(variable, tot){
+var resultado=0;
+
+function eliminar(nombreServ, tot){/*Esta funcion se creo para que cuando se seleccione eliminar...*/
     var mensaje = confirm('¿Realmente desea eliminar?');
-    var inp = document.getElementById("var");
-    inp.value = tot;
-    var dato2 =document.getElementById("var").value;
-    if (mensaje) { 
-        document.formulario0.action=variable;
+    var inp = document.getElementById("var");//Si se selecciona que se desea eliminar
+    inp.value = tot;//mandamos el id del bloque
+    if (mensaje) { //manda a llamar al servlet 
+        document.formulario0.action=nombreServ;
         document.formulario0.submit();
     }
 }
+
+function limpiar(){
+   for (i=0;i<document.f1.elements.length;i++) 
+        if(document.f1.elements[i].type == "checkbox")	
+            document.f1.elements[i].checked=0; 
+}
+
+
+
+
+
+
+
 

@@ -329,6 +329,32 @@ public class Docente {
         return docente;
     }
     
+    public static Docente obtenerPorIdUsuario(int idUsuario){
+        //variables a usar
+        PreparedStatement pst = null;
+        ResultSet resultado;
+        String consulta;
+        Docente docente = null;
+            
+        try {   
+            //verificamos si ya existe el registro (en caso que exista lo actualizamos, de lo contrario insertamos)
+            //preparacion de la consulta
+            consulta = "select * from docente where idUsuario = ? ";
+            pst = Conexion.getConexion().prepareStatement(consulta);
+            //asignamos valores
+            pst.setInt(1, idUsuario);
+            //ejecutamos la consulta y guardamos resultados
+            resultado = pst.executeQuery();
+            while(resultado.next()){
+                docente = new Docente(resultado.getInt("idDocente"), resultado.getString("nombreD"), resultado.getString("apPaternoD"), resultado.getString("apMaternoD"), resultado.getString("generoD"), resultado.getString("fechaNacimientoD"), resultado.getInt("idUsuario"));
+             }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Docente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return docente;
+    }
+    
     //nos devuelve una lista con todos los objetos de la tabla
     public static List<Docente> obtenerTodos() throws SQLException {
         List<Docente> docentes = new ArrayList<>();
