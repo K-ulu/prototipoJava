@@ -25,6 +25,7 @@ public class TareaAsignada {
     private Integer idBloque;
     private Integer idDocente;
     private Integer idMateria;
+    private String fechaEntrega;
     
     public TareaAsignada(){
         this.idTareaAsignada = null;
@@ -32,15 +33,25 @@ public class TareaAsignada {
         this.descripcionT = null;
         this.idBloque = null;
         this.idMateria = null;
+        this.fechaEntrega = null;
     }
     
-    public TareaAsignada(Integer idTareaAsignada, String nombreTarea, String descripcionT, Integer idBloque, Integer idDocente, Integer idMateria){
+    public TareaAsignada(Integer idTareaAsignada, String nombreTarea, String descripcionT, Integer idBloque, Integer idDocente, Integer idMateria, String fechaEntrega){
         this.idTareaAsignada = idTareaAsignada;
         this.nombreTarea = nombreTarea;
         this.descripcionT = descripcionT;
         this.idBloque = idBloque;
         this.idDocente = idDocente;
         this.idMateria = idMateria;
+        this.fechaEntrega = fechaEntrega;
+    }
+
+    public String getFechaEntrega() {
+        return fechaEntrega;
+    }
+
+    public void setFechaEntrega(String fechaEntrega) {
+        this.fechaEntrega = fechaEntrega;
     }
 
     public Integer getIdTareaAsignada() {
@@ -98,7 +109,7 @@ public class TareaAsignada {
     */
     
     //devuelve true cuando es guardado exitosamente, false cuando pasa un error
-    public static boolean guardarObjeto(String nombreTarea, String descripcionT, Integer idBloque, Integer idDocente, Integer idMateria) {
+    public static boolean guardarObjeto(String nombreTarea, String descripcionT, Integer idBloque, Integer idDocente, Integer idMateria, String fechaEntrega) {
         //variables a usar
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -106,7 +117,7 @@ public class TareaAsignada {
             
         try {           
             //caso cuando no existe el docente, se iserta uno  
-            consulta = "insert into tareas_asignadas (idTareaAsignada, nombreTarea, descripcionT, idBloque, idDocente, idMateria) values(null,?,?,?,?,?)";
+            consulta = "insert into tareas_asignadas (idTareaAsignada, nombreTarea, descripcionT, idBloque, idDocente, idMateria, fechaEntrega) values(null,?,?,?,?,?,?)";
             pst = Conexion.getConexion().prepareStatement(consulta);
             pst.setString(1, nombreTarea);
             pst.setString(2, descripcionT);
@@ -118,6 +129,7 @@ public class TareaAsignada {
             }
             pst.setInt(4, idDocente);
             pst.setInt(5, idMateria);
+            pst.setString(6, fechaEntrega);
             
             //si afecto a algun registro (se inserto correctamente)
             if(pst.executeUpdate() == 1){
@@ -140,13 +152,14 @@ public class TareaAsignada {
             
         try {           
             //caso cuando no existe el docente, se iserta uno  
-            consulta = "insert into tareas_asignadas (idTareaAsignada, nombreTarea, descripcionT, idBloque, idDocente, idMateria) values(null,?,?,?,?,?)";
+            consulta = "insert into tareas_asignadas (idTareaAsignada, nombreTarea, descripcionT, idBloque, idDocente, idMateria, fechaEntrega) values(null,?,?,?,?,?,?)";
             pst = Conexion.getConexion().prepareStatement(consulta);
             pst.setString(1, tareaAsignada.getNombreTarea());
             pst.setString(2, tareaAsignada.getDescripcionT());
             pst.setInt(3, tareaAsignada.getIdBloque()); 
             pst.setInt(4, tareaAsignada.getIdDocente());
             pst.setInt(5, tareaAsignada.getIdMateria());
+            pst.setString(6, tareaAsignada.getFechaEntrega());
             
             //si afecto a algun registro (se inserto correctamente)
             if(pst.executeUpdate() == 1){
@@ -161,7 +174,7 @@ public class TareaAsignada {
     }
     
     //devuelve true si es actualizado correctamente, false cuando pasa un error al actualizar    
-    public static boolean actualizarObjeto(int idTareaAsignada, String nombreTarea, String descripcionT, int idBloque, int idMateria) {
+    public static boolean actualizarObjeto(int idTareaAsignada, String nombreTarea, String descripcionT, int idBloque, int idMateria, String fechaEntrega) {
         //variables a usar
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -180,13 +193,14 @@ public class TareaAsignada {
             //verificamos los resultados, si existe alguno lo actualizamos con los datos
             if(rs.absolute(1)){
                 //caso cuando no existe el docente, se iserta uno  
-                consulta = "update tareas_asignadas set nombreTarea = ?, descripcionT = ?, idBloque = ?, idMateria = ? where idTareaAsignada = ?";
+                consulta = "update tareas_asignadas set nombreTarea = ?, descripcionT = ?, idBloque = ?, idMateria = ?, fechaEntrega = ? where idTareaAsignada = ?";
                 pst = Conexion.getConexion().prepareStatement(consulta);
                 pst.setString(1, nombreTarea);
                 pst.setString(2, descripcionT);
                 pst.setInt(3, idBloque);
                 pst.setInt(4, idMateria);
                 pst.setInt(5, idTareaAsignada);
+                pst.setString(6, fechaEntrega);
                 
                 //si afecto a algun registro (se actualizo correctamente)
                 if(pst.executeUpdate() == 1){
@@ -220,14 +234,14 @@ public class TareaAsignada {
             //verificamos los resultados, si existe alguno lo actualizamos con los datos
             if(rs.absolute(1)){
                 //caso cuando no existe el docente, se iserta uno  
-                consulta = "update tareas_asignadas set nombreTarea = ?, descripcionT = ?, idBloque = ?, idMateria = ? where idTareaAsignada = ?";
+                consulta = "update tareas_asignadas set nombreTarea = ?, descripcionT = ?, idBloque = ?, idMateria = ?, fechaEntrega = ? where idTareaAsignada = ?";
                 pst = Conexion.getConexion().prepareStatement(consulta);
                 pst.setString(1, tareaAsignada.getNombreTarea());
                 pst.setString(2, tareaAsignada.getDescripcionT());
                 pst.setInt(3, tareaAsignada.getIdBloque());
                 pst.setInt(4, tareaAsignada.getIdMateria());
                 pst.setInt(5, tareaAsignada.getIdTareaAsignada());
-                
+                pst.setString(6, tareaAsignada.getFechaEntrega());                
                 //si afecto a algun registro (se actualizo correctamente)
                 if(pst.executeUpdate() == 1){
                     return true;
@@ -307,7 +321,7 @@ public class TareaAsignada {
             //ejecutamos la consulta y guardamos resultados
             resultado = pst.executeQuery();
             while(resultado.next()){
-                tareaAsignada = new TareaAsignada(resultado.getInt("idTareaAsignada"), resultado.getString("nombreTarea"), resultado.getString("descripcionT"), resultado.getInt("idBloque"), resultado.getInt("idDocente"), resultado.getInt("idMateria"));
+                tareaAsignada = new TareaAsignada(resultado.getInt("idTareaAsignada"), resultado.getString("nombreTarea"), resultado.getString("descripcionT"), resultado.getInt("idBloque"), resultado.getInt("idDocente"), resultado.getInt("idMateria"), resultado.getString("fechaEntrega"));
              }
             
         } catch (SQLException ex) {
@@ -323,7 +337,7 @@ public class TareaAsignada {
          PreparedStatement consulta = Conexion.getConexion().prepareStatement("select * from tareas_asignadas");
          ResultSet resultado = consulta.executeQuery();
          while(resultado.next()){
-            tareasAsignadas.add(new TareaAsignada(resultado.getInt("idTareaAsignada"), resultado.getString("nombreTarea"), resultado.getString("descripcionT"), resultado.getInt("idBloque"), resultado.getInt("idDocente"), resultado.getInt("idMateria")));
+            tareasAsignadas.add(new TareaAsignada(resultado.getInt("idTareaAsignada"), resultado.getString("nombreTarea"), resultado.getString("descripcionT"), resultado.getInt("idBloque"), resultado.getInt("idDocente"), resultado.getInt("idMateria"), resultado.getString("fechaEntrega")));
          }
       }catch(SQLException ex){
          throw new SQLException(ex);
@@ -349,7 +363,7 @@ public class TareaAsignada {
             //ejecutamos la consulta y guardamos resultados
             resultado = pst.executeQuery();
             while(resultado.next()){
-                tareasAsignadas.add(new TareaAsignada(resultado.getInt("idTareaAsignada"), resultado.getString("nombreTarea"), resultado.getString("descripcionT"), resultado.getInt("idBloque"), resultado.getInt("idDocente"), resultado.getInt("idMateria")));
+                tareasAsignadas.add(new TareaAsignada(resultado.getInt("idTareaAsignada"), resultado.getString("nombreTarea"), resultado.getString("descripcionT"), resultado.getInt("idBloque"), resultado.getInt("idDocente"), resultado.getInt("idMateria"), resultado.getString("fechaEntrega")));
              }
         }catch(SQLException ex){
            throw new SQLException(ex);

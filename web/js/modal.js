@@ -212,7 +212,7 @@
       grad.value = "Unidad "+ unidad;
     }
     
-    function getTareas_asignadas(idTa, nombreTarea,descripcion,idMat,idBloque,idSesionD){
+    function getTareas_asignadas(idTa, nombreTarea,descripcion,idMat,idBloque,idSesionD, fech){
       edit.style.display = "block";
       
       var idT = document.getElementById("MyId");
@@ -243,4 +243,7 @@
       
       var idSD = document.getElementById("docentID");
       idSD.value = idSesionD;
+      
+      var fechita = document.getElementById("fecha");
+      fechita.value = fech;
 }
