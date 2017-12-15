@@ -152,8 +152,8 @@
       <li><a href="maestro-Alumnos.jsp">Mis alumnos</a></li>
       <li><a href="maestro-materias.jsp">Mis materias</a></li>
       <li><a href="tareas_asignadas.jsp">Admin tareas</a></li>
-      <li><a href="maestro-mis-documentos.html">Mis documentos</a></li>
-      <li><a href="maestro-contenido-multimedia.html">Admin contenido Mult.</a></li>
+      <li><a href="maestro-mis-documentos.jsp">Mis documentos</a></li>
+      <li><a href="maestro-contenido-multimedia.jsp">Admin contenido Mult.</a></li>
     </ul>
   </nav>
   <hr class="style13">
@@ -162,13 +162,13 @@
       <center><h2 class="titulo">TAREAS ASIGNADAS</h2></center>
     <div class="herramientas">
       <div class="add"><button class="boton" id="myBtn"><i class="fa fa-plus" aria-hidden="true"></i> Agregar</button></div>
-      <div class="form">
-        <form action="">
-          <input class="busqueda" type="search" name="buscar" placeholder="Buscar...">
-          <button class="boton">Buscar</button>
-          <button class="boton">Limpiar</button>
-        </form>
-      </div>
+      <!--div class="form">
+                <form action="">
+                    <input class="busqueda" type="search" name="buscar" placeholder="Buscar...">
+                    <button class="boton">Buscar</button>
+                    <button class="boton">Limpiar</button>
+                </form>
+            </div-->
     </div>
         <div class="tabla">
             <table>

@@ -89,8 +89,8 @@
       <li><a href="maestro-Alumnos.jsp">Mis alumnos</a></li>
       <li><a href="maestro-materias.jsp">Mis materias</a></li>
       <li><a href="tareas_asignadas.jsp">Admin tareas</a></li>
-      <li><a href="maestro-mis-documentos.html">Mis documentos</a></li>
-      <li><a href="maestro-contenido-multimedia.html">Admin contenido Mult.</a></li>
+      <li><a href="maestro-mis-documentos.jsp">Mis documentos</a></li>
+      <li><a href="maestro-contenido-multimedia.jsp">Admin contenido Mult.</a></li>
     </ul>
   </nav>
   <hr class="style13">
