@@ -3,8 +3,13 @@
     Created on : 3/12/2017, 01:47:05 AM
     Author     : gerar
 --%>
+<%@page import="modelos.consultaAlumnosMateria"%>
+<%@page import="modelos.alumnos_materia"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@page session="true" %>
 <%@page import="modelos.Alumno"%>
+<%@page import="modelos.Materia"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -53,6 +58,7 @@
                       String tipo = (String)sesionStatus.getAttribute("tipoUsuario");
                       //out.println("Sesion obtenida id:"+id+" tipo: "+tipo);
                       out.println(Alumno.obtenerPorIdUsuario(id).getNombreA()+"!");
+                      int alumno = Alumno.obtenerPorIdUsuario(id).getIdAlumno();
                     %>                        
                     </a></li>
                 </ul>
@@ -61,9 +67,9 @@
         <hr class="style13">
         <nav class="nav-extras">
             <ul>
-                <li><a href="alumno-dashboard.html">Dashboard</a></li>
-                <li><a href="alumno-materia-bloques.html">Bloques</a></li>
-                <li><a href="alumno-materia-bloques-tarea.html">Tarea</a></li>
+                <li><a href="alumno-dashboard.jsp">Dashboard</a></li>
+                <li><a href="alumno-materias-bloques.jsp">Bloques</a></li>
+                <li><a href="alumno-materia-bloques-tarea.jsp">Tarea</a></li>
             </ul>
         </nav>
         <hr class="style13">
@@ -73,18 +79,21 @@
         <!--Empieza a escrbir aquí -->
         <div class="materias">
             <h1>Mis Materias</h1>
-            <div class="materia">
-                <h2><a href="alumno-materia-bloques.html">Matematicas</a></h2>
-                <h3>Profesor: Ulises Javier</h3>
-            </div>
-            <div class="materia">
-                <h2><a href="alumno-materia-bloques.html">Ciencias Naturales</a></h2>
-                <h3>Profesor: Martha Sanchez</h3>
-            </div>
-            <div class="materia">
-                <h2><a href="alumno-materia-bloques.html">Geografía</a></h2>
-                <h3>Profesor: Rosaura Gomez</h3>
-            </div>
+            <%
+                int idMateria =0;
+                String nombreMateria="";
+
+                List<consultaAlumnosMateria> aluMateria = new ArrayList<>();
+                aluMateria = consultaAlumnosMateria.obtenerPorId(alumno);  
+
+                for (int i=0;i<aluMateria.size();i++) {
+                    idMateria = aluMateria.get(i).getMateriaidMateria();
+                    nombreMateria = aluMateria.get(i).getNombre();
+                    out.println("<div class=\"materia\">");
+                    out.println("<h2><a href=\"alumno-materias-bloques.jsp?variable="+idMateria+"\">"+ nombreMateria +"</a></h2>");
+                    out.println("</div>");                               
+                }      
+            %>
         </div>
         <footer>
             <div class="foot">
