@@ -191,18 +191,6 @@
                 </div>
                 <div class="modal-body">
                     <form action="cargarArchivo" enctype="multipart/form-data" method="POST">
-                        <!--<label for="">Nombre:</label>
-                        <input class="input" type="text" name="nombre">
-                        <label for="">Descripción:</label>
-                        <input class="input" type="text" name="descripcion">
-                        <label for="">Materia:</label>
-                        <select class="input" class="" name="materia">
-                            <option value="seleccione">Seleccione</option>
-                            <option value="espaniol">Español</option>
-                            <option value="matematicas">Matemáticas</option>
-                            <option value="historia">Historia</option>
-                            <option value="geografia">Geografía</option>
-                        </select> -->
                         <label for="">Seleccione archivo:</label>
                         <input class="input" type="file" name="archivo">
                         <input class="modal-boton active-boton" type="submit" value="Agregar" name="agregar">

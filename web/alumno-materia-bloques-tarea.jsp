@@ -90,9 +90,12 @@
                 out.println("<h2>"+nombreTarea+"</h2>");
                 out.println("<h3> Fecha de Entrega: "+fechaEntrega+"</h3>");
                 out.println("<p>"+descripcion+"</p>");
-                out.println("<form action=\"\">");
-                    out.println("<input class=\"file\" type=\"file\">");
-                    out.println("<input class=\"boton active-boton\" type=\"submit\" value=\"Enviar\" name=\"enviar\">");
+                out.println("<form action=\"cargarTarea\" enctype=\"multipart/form-data\" method=\"POST\">");
+                out.println("<input type=\"text\" name=\"idTarea\" value=\""+ idTareaAsignada+ "\" style=\"display:none\">");                                 
+                out.println("<label for=\"\">Seleccione archivo:</label>");
+                out.println("<input class=\"input\" type=\"file\" name=\"archivo\">");
+                out.println("<input class=\"boton\" type=\"submit\" value=\"Agregar\" name=\"agregar\">");
+                out.println("<div class=\"clear\"></div>");
                 out.println("</form>");
                 out.println("<button class=\"boton\">Volver</button>");
             }
