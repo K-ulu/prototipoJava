@@ -100,7 +100,7 @@
                         <li class="active"><a href="quienes_somos.jsp">¿Quiénes somos? </a></li>
                         <li><a href="kulu_business.jsp">K'ulu' for business</a></li>
                         <li><a href="contacto.jsp">Contacto</a></li>
-                        <li><a href="soporte">Soporte</a></li>
+                        <li><a href="soporte.jsp">Soporte</a></li>
                     </ul>
                 </nav>
             </div>
