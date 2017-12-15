@@ -203,6 +203,7 @@
                             <option value="historia">Historia</option>
                             <option value="geografia">Geografía</option>
                         </select> -->
+                        <input type="hidden" name="id"  value="<%out.println(Docente.obtenerPorIdUsuario(idU).getIdDocente());%>"> 
                         <label for="">Seleccione archivo:</label>
                         <input class="input" type="file" name="archivo">
                         <input class="modal-boton active-boton" type="submit" value="Agregar" name="agregar">
