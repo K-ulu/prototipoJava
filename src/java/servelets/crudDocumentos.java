@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelos.Documento;
 
 /**
  *
@@ -38,11 +39,11 @@ public class crudDocumentos extends HttpServlet {
             response.sendRedirect("maestro-mis-documentos.jsp");
         }
         else{
-            int idGrupo = Integer.parseInt(request.getParameter("variable1"));
-            out.println("El numero es: "+idGrupo);
-            //Grupos.eliminarObjeto(idGrupo);
-
+            int idDocumento = Integer.parseInt(request.getParameter("variable1"));
+            out.println("El numero es: "+idDocumento);
+            Documento.eliminarObjeto(idDocumento);
         }
+        response.sendRedirect("maestro-mis-documentos.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

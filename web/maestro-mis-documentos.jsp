@@ -4,6 +4,7 @@
     Author     : gerar
 --%>
 
+<%@page import="modelos.Docente"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.sql.Blob"%>
 <%@page import="java.sql.SQLException"%>
@@ -51,8 +52,18 @@
             </div>
             <div class="nav-enlaces">
                 <ul>
-                    <li><a href="">Inicia sesión</a></li>
-                    <li><a class="active" href="registro.html">Regístrate</a></li>
+                    <li><a href="cerrarSesion">Cerrar sesión</a></li>
+                    <li><a class="active" href="maestro-Grupos.jsp">¡Hola
+                    <%
+                        //recuperamos los datos de la sesion
+                        HttpSession sesionStatus = request.getSession();
+                        //out.println("id verificacion "+sesionStatus.getId());
+                        int idU = (int)sesionStatus.getAttribute("idUsuario");
+                        String tipo = (String)sesionStatus.getAttribute("tipoUsuario");
+                        //out.println("Sesion obtenida id:"+id+" tipo: "+tipo);
+                        out.println(Docente.obtenerPorIdUsuario(idU).getNombreD()+"!");                        
+                    %>
+                    </a></li>
                 </ul>
             </div>
         </div>
@@ -122,9 +133,12 @@
                             //out.println("<input type =\"button\" class=\"boton\" onclick=\"javascript:eliminar('crudDocumentos', " + idDocumento +");\" value=\"Eliminar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"/>");
                             //out.println("<td><a href='test.jsp?id="+idDocumento+"'>Descargar</a></td>");
                             out.println("<td><button class=\"boton\" onclick=\"location.href = 'descargarArchivo.jsp?id="+idDocumento+"'\" value=\"Descargar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"><i class=\"fa fa-download\" aria-hidden=\"true\"></i> Descargar </button></td>");
-                            out.println("<form name=\"formulario"+i+"\" action=\"servletDondeIr\" method=\"Post\">");
+                            
+                            out.println("<form name=\"formulario"+i+"\" action=\"crudDocumentos\" method=\"Post\">");
                             out.println("<td><input type=\"text\" name=\"variable1\" placeholder=\"numero3\" hidden= \"\" id=\"var\"/>"); 
-                            out.println("<button class=\"boton\" onclick=\"javascript:eliminar('crudDocumentos', " + idDocumento +");\" value=\"Eliminar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i> Eliminar</button>");                            
+                            //out.println("<button class=\"boton\" onclick=\"javascript:eliminar('crudDocumentos', " + idDocumento +");\" value=\"Eliminar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i> Eliminar</button>");                            
+                            out.println("<input type =\"button\" class=\"boton\" onclick=\"javascript:eliminar('crudDocumentos', " + idDocumento +");\" value=\"Eliminar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"/>");
+
                             out.println("</td></form>");
                             //out.println("<td><input type=\"button\" class=\"boton\" id=\"myBtn4\" onClick='descargar("+idDocumento+")' name=\"descargar\"><i class=\"fa fa-download\" aria-hidden=\"true\"></i>Descargar </button></td>");                            
                             out.println("</tr>");
@@ -192,7 +206,7 @@
                         <label for="">Seleccione archivo:</label>
                         <input class="input" type="file" name="archivo">
                         <input class="modal-boton active-boton" type="submit" value="Agregar" name="agregar">
-                        <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
+                        <input class="modal-boton" type="reset" value="Cancelar" name="cancelar">
                         <div class="clear"></div>
                     </form>
                 </div>

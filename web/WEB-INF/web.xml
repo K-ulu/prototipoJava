@@ -24,6 +24,14 @@
         <servlet-name>registroMaestro</servlet-name>
         <servlet-class>servelets.registroMaestro</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>crudDocumentos</servlet-name>
+        <servlet-class>servelets.crudDocumentos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cargarArchivo</servlet-name>
+        <servlet-class>servelets.cargarArchivo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>crudAlumno</servlet-name>
         <url-pattern>/crudAlumno</url-pattern>
@@ -47,6 +55,14 @@
     <servlet-mapping>
         <servlet-name>registroMaestro</servlet-name>
         <url-pattern>/registroMaestro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crudDocumentos</servlet-name>
+        <url-pattern>/crudDocumentos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cargarArchivo</servlet-name>
+        <url-pattern>/cargarArchivo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
