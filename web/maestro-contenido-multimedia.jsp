@@ -4,6 +4,7 @@
     Author     : gerar
 --%>
 
+<%@page import="modelos.ContenidoMultimedia"%>
 <%@page import="modelos.Docente"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.sql.Blob"%>
@@ -75,24 +76,24 @@
                 <li><a href="maestro-materias.jsp">Mis materias</a></li>
                 <li><a href="maestro-tareas.html">Admin tareas</a></li>
                 <li><a href="maestro-mis-documentos.jsp">Mis documentos</a></li>
-                <li><a href="maestro-contenido-multimedia.jsp">Admin contenido Mult.</a></li>
+                <li><a href="maestro-contenido-multimedia.html">Admin contenido Mult.</a></li>
             </ul>
         </nav>
         <hr class="style13">
         <!--Empieza a escrbir aquí -->
         <div class="container">
-            <h2 class="titulo">Mis Documentos</h2>
+            <h2 class="titulo">Contenido Multimedia</h2>
             <div class="herramientas">
                 <div class="add">
                     <button class="boton" id="myBtn"><i class="fa fa-plus" aria-hidden="true"></i> Agregar</button>
                 </div>
-                <div class="form">
+                <!--<div class="form">
                     <form action="">
                         <input class="busqueda" type="search" name="buscar" placeholder="Buscar...">
                         <button class="boton">Buscar</button>
                         <button class="boton">Limpiar</button>
                     </form>
-                </div>
+                </div>-->
             </div>
             <div class="tabla">
                 <table>
@@ -100,71 +101,49 @@
                         <th>Nombre</th>
                         <th>Tipo</th>
                         <th>Tamaño</th>
+                        <th>Fecha de creación</th>
                         <th colspan="3">Acciones</th>
                     </tr>
                     <%
                         
-                        List<Documento> documentos = new ArrayList<>();
-                        documentos = Documento.obtenerTodos();
-                        int idDocumento, idDocente;
-                        String nombreDocumento, tipoDocumento;
-                        Blob documento;
+                        List<ContenidoMultimedia> contenidos = new ArrayList<>();
+                        contenidos = ContenidoMultimedia.obtenerTodos();
+                        Integer idContenido, idDocente;
+                        String nombreContenido, tipoContenido, fechaCreacionContenido;
+                        Blob contenidoMultimedia;
                         
                         //formateador
                         DecimalFormat formatter = new DecimalFormat("#.##");
                     
-                        for (int i=0;i<documentos.size();i++){
-                            idDocumento = documentos.get(i).getIdDocumento();
-                            nombreDocumento = documentos.get(i).getNombreDocumento();
-                            tipoDocumento = documentos.get(i).getTipoDocumento();
-                            documento = documentos.get(i).getDocumento();
-                            idDocente = documentos.get(i).getIdDocente();
+                        for (int i=0;i<contenidos.size();i++){
+                            idContenido = contenidos.get(i).getIdContenido();
+                            nombreContenido = contenidos.get(i).getNombreContenido();
+                            tipoContenido = contenidos.get(i).getTipoContenido();
+                            fechaCreacionContenido = contenidos.get(i).getFechaCreacionContenido();
+                            contenidoMultimedia = contenidos.get(i).getContenidoMultimedia();
+                            idDocente = contenidos.get(i).getIdDocente();
                             
                             out.println("<tr>");
-                            out.println("<td>"+nombreDocumento+"</td>");
-                            if(tipoDocumento.length() > 15)
-                                out.println("<td>"+tipoDocumento.substring(0, 15)+".. </td>");
+                            out.println("<td>"+nombreContenido+"</td>");
+                            if(tipoContenido.length() > 15)
+                                out.println("<td>"+tipoContenido.substring(0, 15)+".. </td>");
                             else 
-                                out.println("<td>"+tipoDocumento+"</td>");
+                                out.println("<td>"+tipoContenido+"</td>");
                                                        
-                            out.println("<td>"+formatter.format(((documento.length() / 1024.0)/1024.0))+" Mb </td>");
-                            //out.println("<td><a href=''><i class='fa fa-download' aria-hidden='true'></i></a></td>");
-                            //out.println("<td><a href=''><i class='fa fa-pencil' aria-hidden='true'></i></a></td>");
-                            //out.println("<input type =\"button\" class=\"boton\" onclick=\"javascript:eliminar('crudDocumentos', " + idDocumento +");\" value=\"Eliminar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"/>");
-                            //out.println("<td><a href='test.jsp?id="+idDocumento+"'>Descargar</a></td>");
-                            out.println("<td><button class=\"boton\" onclick=\"location.href = 'descargarArchivo.jsp?id="+idDocumento+"'\" value=\"Descargar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"><i class=\"fa fa-download\" aria-hidden=\"true\"></i> Descargar </button></td>");
+                            out.println("<td>"+formatter.format(((contenidoMultimedia.length() / 1024.0)/1024.0))+" Mb </td>");
+                            out.println("<td>"+fechaCreacionContenido+"</td>");
+                            out.println("<td><button class=\"boton\" onclick=\"location.href = 'descargarContenido.jsp?id="+idContenido+"'\" value=\"Descargar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"><i class=\"fa fa-download\" aria-hidden=\"true\"></i> Descargar </button></td>");
                             
-                            out.println("<form name=\"formulario"+i+"\" action=\"crudDocumentos\" method=\"Post\">");
+                            out.println("<form name=\"formulario"+i+"\" action=\"crudContenidos\" method=\"Post\">");
                             out.println("<td><input type=\"text\" name=\"variable1\" placeholder=\"numero3\" hidden= \"\" id=\"var\"/>"); 
                             //out.println("<button class=\"boton\" onclick=\"javascript:eliminar('crudDocumentos', " + idDocumento +");\" value=\"Eliminar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i> Eliminar</button>");                            
-                            out.println("<input type =\"button\" class=\"boton\" onclick=\"javascript:eliminar('crudDocumentos', " + idDocumento +");\" value=\"Eliminar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"/>");
+                            out.println("<input type =\"button\" class=\"boton\" onclick=\"javascript:eliminar('crudContenidos', " + idContenido +");\" value=\"Eliminar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"/>");
 
-                            out.println("</td></form>");
-                            //out.println("<td><input type=\"button\" class=\"boton\" id=\"myBtn4\" onClick='descargar("+idDocumento+")' name=\"descargar\"><i class=\"fa fa-download\" aria-hidden=\"true\"></i>Descargar </button></td>");                            
+                            out.println("</td></form>");                            
                             out.println("</tr>");
                             
                         }
                            
-                            /*out.println("<tr>");
-                                out.println("<td> Grupo "+letraG+"</td>");
-                                out.println("<td>"+total+"</td>");
-                                out.println("<td>"+turno +"</td>");
-                                out.println("<td><button class='boton' id='myBtn2' onClick='getGrupo("+ id + ","+ idDoc  + ",\"" + grado +"\", \""+ letraG +"\", \""+ turno +"\")' name='editar'><i class='fa fa-pencil' aria-hidden='true'></i>Editar </button></td>");*/
-                                /*
-                                out.println("<form action=\"crudGrupos\" method='post'>");
-                                    out.println("<input class=\"input\" type=\"hidden\" name=\"idGrupo\" id='"+i+"'value=\""+id+"\"/>");
-                                    out.println("<td><button class=\"boton\" id=\"myBtn3\" name=\"eliminar\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i> Eliminar </button></td>");
-                                    out.println("<td><button class=\"boton\" id=\"myBtn4\" name=\"compartir\"><i class=\"fa fa-share-alt\" aria-hidden=\"true\"></i>Compartir </button></td>");
-                                out.println("</form>");
-                            out.println("</tr>");*/
-
-                                /*out.println("<form name=\"formulario"+i+"\" action=\"servletDondeIr\" method=\"Post\">");
-                                    out.println("<td><input type=\"text\" name=\"variable1\" placeholder=\"numero3\" hidden= \"\" id=\"var\"/>"); 
-                                    out.println("<input type =\"button\" class=\"boton\" onclick=\"javascript:eliminar('crudGrupos', " + id +");\" value=\"Eliminar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"/>");
-                                out.println("</td></form>");
-                                out.println("<td><button class=\"boton\" id=\"myBtn4\" name=\"compartir\"><i class=\"fa fa-share-alt\" aria-hidden=\"true\"></i>Compartir </button></td>");
-                            out.println("</tr>");
-                        }*/
                     %>                
                 </table>
             </div>
@@ -190,7 +169,7 @@
                     <h2>Nuevo Documento</h2>
                 </div>
                 <div class="modal-body">
-                    <form action="cargarArchivo" enctype="multipart/form-data" method="POST">
+                    <form action="cargarContenido" enctype="multipart/form-data" method="POST">
                         <!--<label for="">Nombre:</label>
                         <input class="input" type="text" name="nombre">
                         <label for="">Descripción:</label>

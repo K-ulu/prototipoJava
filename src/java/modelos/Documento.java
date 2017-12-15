@@ -84,7 +84,7 @@ public class Documento {
     }
     
     //devuelve true cuando es guardado exitosamente, false cuando paso un 
-    public static boolean guardarObjeto(Integer idDocumento, String nombreDocumento, String tipoDocumento, InputStream documento, int tamano, int idDocente) {
+    public static boolean guardarObjeto(Integer idDocumento, String nombreDocumento, String tipoDocumento, InputStream documento, int tamano, Integer idDocente) {
         //variables a usar
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -92,12 +92,15 @@ public class Documento {
             
         try {           
             //caso cuando no existe el grupo, se iserta uno  
-            consulta = "insert into documentos (idDocumento, nombreDocumento, tipoDocumento, documento, idDocente) values(null,?,?,?,?)";
+            consulta = "insert into documentos (idDocumento, nombreDocumento, tipoDocumento, documento, idDocente) values(null,?,?,?,null)";
             pst = Conexion.getConexion().prepareStatement(consulta);
             pst.setString(1, nombreDocumento);
             pst.setString(2, tipoDocumento);
             pst.setBlob(3, documento, tamano);
-            pst.setInt(4, idDocente);                       
+            /*if(idDocente == null)
+                pst.setString(4, "null"); 
+            else 
+                pst.setInt(4, idDocente);*/ 
             
             //si afecto a algun registro (se inserto correctamente)
             if(pst.executeUpdate() == 1){

@@ -5,6 +5,7 @@
  */
 package servelets;
 
+import db.Util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -15,7 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelos.Documento;
+import modelos.ContenidoMultimedia;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
@@ -26,7 +27,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  *
  * @author gerar
  */
-public class cargarArchivo extends HttpServlet {
+public class cargarContenido extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,7 +39,7 @@ public class cargarArchivo extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, org.apache.commons.fileupload.FileUploadException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {     
@@ -67,7 +68,7 @@ public class cargarArchivo extends HttpServlet {
                     int tamano = (int) uploaded.getSize();
                     out.println(tipo.length());
                     
-                    if(Documento.guardarObjeto(null, nombre, tipo, archivo, tamano, null)){
+                    if(ContenidoMultimedia.guardarObjeto(null, nombre, tipo, Util.getFecha(), archivo, tamano, null)){
                         //response.sendRedirect("maestro-mis-documentos.jsp");
                     } 
                 } else {
@@ -78,8 +79,8 @@ public class cargarArchivo extends HttpServlet {
                 }
             }            
             //redireccionamos a la pagina de maestro-mis-documentos
-            response.sendRedirect("maestro-mis-documentos.jsp");
-        } catch (FileUploadException ex) {
+            response.sendRedirect("maestro-contenido-multimedia.jsp");
+        } catch (org.apache.commons.fileupload.FileUploadException ex) {
             Logger.getLogger(cargarArchivo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -96,7 +97,11 @@ public class cargarArchivo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (FileUploadException ex) {
+            Logger.getLogger(cargarContenido.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -110,7 +115,11 @@ public class cargarArchivo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (FileUploadException ex) {
+            Logger.getLogger(cargarContenido.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
