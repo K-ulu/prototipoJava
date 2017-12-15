@@ -44,13 +44,7 @@ public class cargarArchivo extends HttpServlet {
         try {     
             //out.println("Agregar");
             FileItemFactory factory = new DiskFileItemFactory();
-            ServletFileUpload upload = new ServletFileUpload(factory);   
-            
-            String nombre = null;
-            String tipo = null;
-            InputStream archivo = null;
-            Integer tamano = null;
-            Integer id = null;
+            ServletFileUpload upload = new ServletFileUpload(factory);            
             
             // req es la HttpServletRequest que recibimos del formulario.
             // Los items obtenidos serán cada uno de los campos del formulario,
@@ -67,28 +61,24 @@ public class cargarArchivo extends HttpServlet {
                     // No es campo de formulario, guardamos el fichero en algún sitio
                     //File fichero = new File("/tmp", uploaded.getName());
                     //uploaded.write(fichero);
-                    nombre = uploaded.getName();
-                    tipo = uploaded.getContentType();
-                    archivo = uploaded.getInputStream();
-                    tamano = (int) uploaded.getSize();
+                    String nombre = uploaded.getName();
+                    String tipo = uploaded.getContentType();
+                    InputStream archivo = uploaded.getInputStream();
+                    int tamano = (int) uploaded.getSize();
                     out.println(tipo.length());
                     
+                    if(Documento.guardarObjeto(null, nombre, tipo, archivo, tamano, 8)){
+                        //response.sendRedirect("maestro-mis-documentos.jsp");
+                    } 
                 } else {
                     // es un campo de formulario, podemos obtener clave y valor
                     String key = uploaded.getFieldName();
                     String valor = uploaded.getString();
                     out.println(key + " "+ valor);
-                    if(key.equals("id"))
-                        id = Integer.parseInt(valor);
                 }
-                
-                
-                if(Documento.guardarObjeto(null, nombre, tipo, archivo, tamano, id)){
-                        //response.sendRedirect("maestro-mis-documentos.jsp");
-                } 
             }            
             //redireccionamos a la pagina de maestro-mis-documentos
-            //response.sendRedirect("maestro-mis-documentos.jsp");
+            response.sendRedirect("maestro-mis-documentos.jsp");
         } catch (FileUploadException ex) {
             Logger.getLogger(cargarArchivo.class.getName()).log(Level.SEVERE, null, ex);
         }
