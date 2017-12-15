@@ -43,7 +43,11 @@ public class crudTareas_asignadas extends HttpServlet {
                 docenteID = docenteID.trim();
                 int doc = Integer.parseInt(docenteID); 
                 int idBloq =Integer.parseInt(request.getParameter("bloque"));
-                TareaAsignada.guardarObjeto(nombre, descripcion, idBloq, doc, materia);
+                String anio= request.getParameter("anio");
+                String mes= request.getParameter("mes");
+                String dia= request.getParameter("dia");
+                String fechaEntrega= anio + "-" + mes + "-"+dia;
+                TareaAsignada.guardarObjeto(nombre, descripcion, idBloq, doc, materia,fechaEntrega);
             }
 
             else if (request.getParameter("editar") != null) {
@@ -53,7 +57,8 @@ public class crudTareas_asignadas extends HttpServlet {
                 String descripcion = request.getParameter("descripcion");
                 int materia =Integer.parseInt(request.getParameter("materia"));
                 int idBloc = Integer.parseInt(request.getParameter("IDbloque"));
-                TareaAsignada.actualizarObjeto(idTarea, nombre, descripcion, idBloc, materia);
+                String fecha = request.getParameter("fechaE");
+                TareaAsignada.actualizarObjeto(idTarea, nombre, descripcion, idBloc, materia, fecha);
             }
             else if(request.getParameter("cancelar") != null){                
                 response.sendRedirect("tareas_asignadas.jsp");

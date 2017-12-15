@@ -115,7 +115,28 @@
                         <label>Docente</label> 
                         <input class="input" type="text" name="docente" value=" <%= NombreDocente %> " disabled/>
                         <input class="input" type="text" name="docenteID" value=" <%= idSesionD %> " style="display:none"/>
+                        
+                        <label>Fecha de entrega</label>
+                        <div class="input">
+                            <input class="input2" type="text" name="anio" placeholder="año" size="5"/>                        
+                            <select name="mes" class="input2">
+                                <option value="01">Enero</option>
+                                <option value="02">Febrero</option>
+                                <option value="03">Marzo</option>
+                                <option value="04">Abril</option>
+                                <option value="05">Mayo</option>
+                                <option value="06">Junio</option>
+                                <option value="07">Julio</option>
+                                <option value="08">Agosto</option>
+                                <option value="09">Septiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>                        
+                            </select>
 
+                            <input class="input2" type="text" name="dia" placeholder="dia" size="5"/>                        
+                        </div>
+                        
                         <input class="modal-boton active-boton" type="submit" value="Agregar" name="agregar"/>
                         <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
                         <div class="clear"></div>
@@ -157,12 +178,13 @@
                       <th>Nombre Tarea</th>
                       <th>Descripción</th>
                       <th>Bloque</th>
+                      <th>Fecha Entrega</th>
                       <th colspan="3">Acciones</th>
                     </tr>
                     <tr>
                       <%
                         int id =0, idBloque=0, idMat=0;
-                        String nombreTarea="";
+                        String nombreTarea="", fech="";
                         String descripcionT="";
                         String nombreM="", nombreB="";
                         List<TareaAsignada> tarea = new ArrayList<>();
@@ -173,6 +195,7 @@
                             nombreTarea = tarea.get(i).getNombreTarea();
                             descripcionT = tarea.get(i).getDescripcionT();
                             idBloque = tarea.get(i).getIdBloque();
+                            fech = tarea.get(i).getFechaEntrega();
                             if (idBloque!=0)
                                 nombreB = Bloque.obtenerPorId(idBloque).getNombreBloque();
                            idMat = tarea.get(i).getIdMateria();
@@ -186,7 +209,8 @@
                                 out.println("<td>"+nombreB+"</td>");
                             else
                                out.println("<td></td>"); 
-                            out.println("<td><button class='boton' id='myBtn2' onClick='getTareas_asignadas("+ id + ",\"" + nombreTarea +"\", \""+ descripcionT +"\", "+ idMat +", "+ idBloque + ", " +idSesionD+")' name='editar'><i class='fa fa-pencil' aria-hidden='true'></i>Editar </button></td>");
+                            out.println("<td>"+fech+"</td>");
+                            out.println("<td><button class='boton' id='myBtn2' onClick='getTareas_asignadas("+ id + ",\"" + nombreTarea +"\", \""+ descripcionT +"\", "+ idMat +", "+ idBloque + ", " +idSesionD+", \""+fech+"\")' name='editar'><i class='fa fa-pencil' aria-hidden='true'></i>Editar </button></td>");
                             out.println("<form name=\"formulario"+i+"\" action=\"servletDondeIr\" method=\"Post\">");
                             out.println("<td><input type=\"text\" name=\"variable1\" placeholder=\"numero3\" hidden= \"\" id=\"var\"/>"); 
                             out.println("<input type =\"button\" onclick=\"javascript:eliminar('crudTareas_asignadas', " + id +");\" value=\"Eliminar\" style=\"border-radius: 5px; font-size: 15px; padding: 10px;margin: 5px;\"/>");
@@ -248,6 +272,9 @@
                         <label>Docente</label> 
                         <input class="input" type="text" name="docente" value=" <%= NombreDocente %> " disabled/>
                         <input class="input" type="text" name="docenteID" value="" id="docentID" style="display:none"/>
+                        
+                        <label>Fecha de entrega</label>
+                        <input class="input" id='fecha' name="fechaE" value= ''/>
                         
                         <input class="modal-boton active-boton" type="submit" value="Editar" name="editar"/>
                         <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">

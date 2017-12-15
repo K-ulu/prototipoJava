@@ -58,7 +58,7 @@
                       out.println(Alumno.obtenerPorIdUsuario(id).getNombreA()+"!");
                       int alumno = Alumno.obtenerPorIdUsuario(id).getIdAlumno();
                       int idTareaAsignada = -1, idMateria = -1;  
-                        String nombreTarea="", descripcion="";
+                        String nombreTarea="", descripcion="", fechaEntrega="";
                     try{
                         idTareaAsignada = Integer.parseInt(request.getParameter("variable")); 
                         TareaAsignada tarea = null;
@@ -66,6 +66,7 @@
                         idMateria = tarea.getIdMateria();
                         nombreTarea = tarea.getNombreTarea();
                         descripcion = tarea.getDescripcionT();
+                        fechaEntrega = tarea.getFechaEntrega();
                     }catch (Exception e){
                         idMateria = 0;
                     }
@@ -87,6 +88,7 @@
         <%
             if (idTareaAsignada != -1){
                 out.println("<h2>"+nombreTarea+"</h2>");
+                out.println("<h3> Fecha de Entrega: "+fechaEntrega+"</h3>");
                 out.println("<p>"+descripcion+"</p>");
                 out.println("<form action=\"\">");
                     out.println("<input class=\"file\" type=\"file\">");
