@@ -32,7 +32,26 @@
         <servlet-name>crudBloques</servlet-name>
         <servlet-class>servelets.crudBloques</servlet-class>
     </servlet>
-    
+    <servlet>
+        <servlet-name>crudDocumentos</servlet-name>
+        <servlet-class>servelets.crudDocumentos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cargarArchivo</servlet-name>
+        <servlet-class>servelets.cargarArchivo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>crudContenidos</servlet-name>
+        <servlet-class>servelets.crudContenidos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>crudTareas_asignadas</servlet-name>
+        <servlet-class>servelets.crudTareas_asignadas</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cargarContenido</servlet-name>
+        <servlet-class>servelets.cargarContenido</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>crudAlumno</servlet-name>
         <url-pattern>/crudAlumno</url-pattern>
@@ -64,6 +83,26 @@
     <servlet-mapping>
         <servlet-name>crudBloques</servlet-name>
         <url-pattern>/crudBloques</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crudDocumentos</servlet-name>
+        <url-pattern>/crudDocumentos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cargarArchivo</servlet-name>
+        <url-pattern>/cargarArchivo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cargarContenido</servlet-name>
+        <url-pattern>/cargarContenido</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crudContenidos</servlet-name>
+        <url-pattern>/crudContenidos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crudTareas_asignadas</servlet-name>
+        <url-pattern>/crudTareas_asignadas</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

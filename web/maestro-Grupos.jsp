@@ -23,9 +23,10 @@
         <link rel="stylesheet" href="css/maestro-mis-documentos.css">
         <!-- <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet"> -->
         <link rel="stylesheet" href="css/nav-christ.css">
+        <script src="js/sesion.js"></script>
     </head>
 
-    <body>
+    <body onMouseOver="hayActividad()">
         <div class="navbar">
             <div class="nav-logo">
                 <a href="index.jsp"><img src="img/kulu_logo_160.png"></a>
@@ -57,7 +58,7 @@
                         int idU = (int)sesionStatus.getAttribute("idUsuario");
                         String tipo = (String)sesionStatus.getAttribute("tipoUsuario");
                         //out.println("Sesion obtenida id:"+id+" tipo: "+tipo);
-                        out.println(Docente.obtenerPorIdUsuario(idU).getNombreD()+"!");
+                        out.println(Docente.obtenerPorIdUsuario(idU).getNombreD()+"!");                        
                     %>
                     </a></li>
                 </ul>
@@ -70,7 +71,7 @@
                 <li><a href="maestro-Alumnos.jsp">Mis alumnos</a></li>
                 <li><a href="maestro-materias.jsp">Mis materias</a></li>
                 <li><a href="tareas_asignadas.jsp">Admin tareas</a></li>
-                <li><a href="maestro-mis-documentos.html">Mis documentos</a></li>
+                <li><a href="maestro-mis-documentos.jsp">Mis documentos</a></li>
                 <li><a href="maestro-contenido-multimedia.html">Admin contenido Mult.</a></li>
             </ul>
         </nav>

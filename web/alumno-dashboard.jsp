@@ -18,6 +18,7 @@
         <!-- <link rel="stylesheet" href="css/nav.css"> -->
         <!-- <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet"> -->
         <link rel="stylesheet" href="css/nav-christ.css">
+        <script src="js/sesion.js"></script>
     </head>
     <body>
         <div class="navbar">

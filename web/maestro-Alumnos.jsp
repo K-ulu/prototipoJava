@@ -27,8 +27,9 @@
         fonts.googleapis.com/css?family=Acme" rel="stylesheet"> -->
     <!--CSS para el header-->
     <link rel="stylesheet" href="css/nav-christ.css">
+    <script src="js/sesion.js"></script>
 </head>
-<body>
+<body onMouseOver="hayActividad()">
     <div class="navbar">
         <div class="nav-logo">
             <a href="index.jsp.html"><img src="img/kulu_logo_160.png"></a>
@@ -73,7 +74,7 @@
             <li><a href="maestro-Alumnos.jsp">Mis alumnos</a></li>
             <li><a href="maestro-materias.jsp">Mis materias</a></li>
             <li><a href="tareas_asignadas.jsp">Admin tareas</a></li>
-            <li><a href="maestro-mis-documentos.html">Mis documentos</a></li>
+            <li><a href="maestro-mis-documentos.jsp">Mis documentos</a></li>
             <li><a href="maestro-contenido-multimedia.html">Admin contenido Mult.</a></li>
         </ul>
     </nav>
