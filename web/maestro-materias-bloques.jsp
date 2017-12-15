@@ -62,11 +62,16 @@
                   String tipo = (String)sesionStatus.getAttribute("tipoUsuario");
                   //out.println("Sesion obtenida id:"+id+" tipo: "+tipo);
                   out.println(Docente.obtenerPorIdUsuario(idU).getNombreD()+"!");
-                  
-                int idMateria = Integer.parseInt(request.getParameter("variable")); 
-                Materia materia = null;
-                materia = Materia.obtenerPorId(idMateria);
-                String nombreMateria = materia.getNombre();
+                  int idMateria = -1;  
+                  String nombreMateria="";
+                    try{
+                        idMateria = Integer.parseInt(request.getParameter("variable")); 
+                        Materia materia = null;
+                        materia = Materia.obtenerPorId(idMateria);
+                        nombreMateria = materia.getNombre();
+                    }catch (Exception e){
+                        idMateria = 0;
+                    }
               %>
                 </a></li>
           </ul>

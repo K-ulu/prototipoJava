@@ -11,13 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelos.TareaAsignada;
+import modelos.TareaEntregada;
 
 /**
  *
  * @author Norma
  */
-public class crudTareas_asignadas extends HttpServlet {
+public class crudTareas_entregadas extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,36 +34,22 @@ public class crudTareas_asignadas extends HttpServlet {
         PrintWriter out = response.getWriter();
                 
         try{  
-            //Integer idMateria= Integer.parseInt(request.getParameter("id"));
-            if (request.getParameter("agregar") != null) {
-                String nombre = request.getParameter("nombre");
-                String descripcion = request.getParameter("descripcion");
-                int materia =Integer.parseInt(request.getParameter("materia"));
-                String docenteID = request.getParameter("docenteID");
-                docenteID = docenteID.trim();
-                int doc = Integer.parseInt(docenteID); 
-                int idBloq =Integer.parseInt(request.getParameter("bloque"));
-                TareaAsignada.guardarObjeto(nombre, descripcion, idBloq, doc, materia);
-            }
-
-            else if (request.getParameter("editar") != null) {
-                out.println("EDITAR");
-                int idTarea = Integer.parseInt(request.getParameter("idTar"));
-                String nombre = request.getParameter("nombre");
-                String descripcion = request.getParameter("descripcion");
-                int materia =Integer.parseInt(request.getParameter("materia"));
-                int idBloc = Integer.parseInt(request.getParameter("IDbloque"));
-                TareaAsignada.actualizarObjeto(idTarea, nombre, descripcion, idBloc, materia);
+            int idTAsignada = Integer.parseInt(request.getParameter("idTAsignada"));
+            out.println(idTAsignada);
+            if (request.getParameter("editar") != null) {
+                int idTareaEntregada =Integer.parseInt(request.getParameter("idTar"));
+                int calificacion = Integer.parseInt(request.getParameter("calificacion"));
+                TareaEntregada.actualizarObjeto(idTareaEntregada, calificacion);
             }
             else if(request.getParameter("cancelar") != null){                
-                response.sendRedirect("tareas_asignadas.jsp");
+                response.sendRedirect("tareas_entregadas.jsp?variable="+idTAsignada);
             }
             else{
                 Integer idTarea = Integer.parseInt(request.getParameter("variable1"));//Obtenemos el id del bloque
-                TareaAsignada.eliminarObjeto(idTarea);
+                TareaEntregada.eliminarObjeto(idTarea);
             }
             //out.println(idMateria);
-            response.sendRedirect("tareas_asignadas.jsp");
+            response.sendRedirect("tareas_entregadas.jsp?variable="+idTAsignada);
         }
         catch (Exception e){
             out.println("Error"+ e.getCause()+ e.getMessage());

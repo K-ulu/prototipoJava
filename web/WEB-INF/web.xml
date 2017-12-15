@@ -32,6 +32,14 @@
         <servlet-name>crudBloques</servlet-name>
         <servlet-class>servelets.crudBloques</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>crudTareas_asignadas</servlet-name>
+        <servlet-class>servelets.crudTareas_asignadas</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>crudTareas_entregadas</servlet-name>
+        <servlet-class>servelets.crudTareas_entregadas</servlet-class>
+    </servlet>
     
     <servlet-mapping>
         <servlet-name>crudAlumno</servlet-name>
@@ -65,6 +73,15 @@
         <servlet-name>crudBloques</servlet-name>
         <url-pattern>/crudBloques</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crudTareas_asignadas</servlet-name>
+        <url-pattern>/crudTareas_asignadas</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>crudTareas_entregadas</servlet-name>
+        <url-pattern>/crudTareas_entregadas</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             60

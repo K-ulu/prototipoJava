@@ -65,7 +65,7 @@
                     int idSesionD = Docente.obtenerPorIdUsuario(idU).getIdDocente();
                     String NombreDocente = Docente.obtenerPorIdUsuario(idU).getNombreD();
                     NombreDocente += " "+ Docente.obtenerPorIdUsuario(idU).getApPaternoD();
-                    int identificador=0;
+                    out.println(Docente.obtenerPorIdUsuario(idU).getNombreD() +"!");
                 %>
                 </a></li>
             </ul>
@@ -180,7 +180,7 @@
 
                             out.println("<tr>");
                             out.println("<td>"+nombreM+"</td>");
-                            out.println("<td>"+ nombreTarea +"</td>");
+                            out.println("<td><a href=\"tareas_entregadas.jsp?variable="+id+"\">"+ nombreTarea +"</a></td>");
                             out.println("<td>"+descripcionT+"</td>");
                             if (idBloque!=0)
                                 out.println("<td>"+nombreB+"</td>");

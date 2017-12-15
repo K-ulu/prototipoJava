@@ -6,6 +6,7 @@
 package modelos;
 
 import db.Conexion;
+import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.sql.Blob;
 
 /**
  *
@@ -25,6 +27,7 @@ public class TareaEntregada {
     private String nombreArchivo;
     private Integer idAlumno;
     private Integer calificacion;
+    private Blob tarea; 
     
     public TareaEntregada(){
         this.idTareaEntregada = null;
@@ -32,14 +35,16 @@ public class TareaEntregada {
         this.nombreArchivo = null;
         this.idAlumno = null;
         this.calificacion = null;
+        this.tarea = null;
     }
     
-    public TareaEntregada(Integer idTareaEntregada, int idTareaAsignada, String nombreArchivo, int idAlumno, int calificacion){
+    public TareaEntregada(Integer idTareaEntregada, int idTareaAsignada, String nombreArchivo, int idAlumno, int calificacion, Blob tarea){
         this.idTareaEntregada = idTareaEntregada;
         this.idTareaAsignada = idTareaAsignada;
         this.nombreArchivo = nombreArchivo;
         this.idAlumno = idAlumno;
         this.calificacion = calificacion;
+        this.tarea = tarea;
     }
 
     public Integer getIdTareaEntregada() {
@@ -82,14 +87,19 @@ public class TareaEntregada {
         this.calificacion = calificacion;
     }
     
+    public Blob getTarea() {
+        return tarea;
+    }
+
+    public void setTarea(Blob tarea) {
+        this.tarea = tarea;
+    }
     /*
-    
         MMETODOS PARA OPERACIONES SOBRE LA BD, SON METODOS ESTATICOS (NO ES NECESARIO INSTANCIAR UN OBJETO DE LA CLASE)
-    
     */
     
     //devuelve true cuando es guardado exitosamente, false cuando pasa un error
-    public static boolean guardarObjeto(int idTareaAsignada, String nombreArchivo, int idAlumno, Integer calificacion) {
+    public static boolean guardarObjeto(int idTareaAsignada, String nombreArchivo, int idAlumno, Integer calificacion, InputStream tarea, int tamano) {
         //variables a usar
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -97,38 +107,12 @@ public class TareaEntregada {
             
         try {           
             //caso cuando no existe el docente, se iserta uno  
-            consulta = "insert into tareas_entregadas (idTareaEntregada, idTareaAsignada, nombreArchivo, idAlumno, calificacion) values(null,?,?,?,null)";
+            consulta = "insert into tareas_entregadas (idTareaEntregada, idTareaAsignada, nombreArchivo, idAlumno, calificacion, tarea) values(null,?,?,?,null,?)";
             pst = Conexion.getConexion().prepareStatement(consulta);
             pst.setInt(1, idTareaAsignada);
             pst.setString(2, nombreArchivo);
             pst.setInt(3, idAlumno); 
-            
-            //si afecto a algun registro (se inserto correctamente)
-            if(pst.executeUpdate() == 1){
-                return true; //el true indica que se inserto exitosamente
-            }
-            
-            return false;
-        } catch (SQLException ex) {
-            Logger.getLogger(Docente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
-    }
-    
-    //devuelve true cuando es guardado exitosamente, false cuando pasa un error
-    public static boolean guardarObjeto(TareaEntregada tareaEntregada) {
-        //variables a usar
-        PreparedStatement pst = null;
-        ResultSet rs = null;
-        String consulta;
-            
-        try {           
-            //caso cuando no existe el docente, se iserta uno  
-            consulta = "insert into tareas_entregadas (idTareaEntregada, idTareaAsignada, nombreArchivo, idAlumno, calificacion) values(null,?,?,?,null)";
-            pst = Conexion.getConexion().prepareStatement(consulta);
-            pst.setInt(1, tareaEntregada.getIdTareaAsignada());
-            pst.setString(2, tareaEntregada.getNombreArchivo());
-            pst.setInt(3, tareaEntregada.getIdAlumno()); 
+            pst.setBlob(4, tarea, tamano);
             
             //si afecto a algun registro (se inserto correctamente)
             if(pst.executeUpdate() == 1){
@@ -283,9 +267,8 @@ public class TareaEntregada {
             //ejecutamos la consulta y guardamos resultados
             resultado = pst.executeQuery();
             while(resultado.next()){
-                tareaEntregada = new TareaEntregada(resultado.getInt("idTareaEntregada"), resultado.getInt("idTareaAsignada"), resultado.getString("nombreArchivo"), resultado.getInt("idAlumno"), resultado.getInt("calificacion"));
-             }
-            
+                tareaEntregada = new TareaEntregada(resultado.getInt("idTareaEntregada"), resultado.getInt("idTareaAsignada"), resultado.getString("nombreArchivo"), resultado.getInt("idAlumno"), resultado.getInt("calificacion"), resultado.getBlob("tarea"));
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Docente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -296,15 +279,52 @@ public class TareaEntregada {
     public static List<TareaEntregada> obtenerTodos() throws SQLException {
         List<TareaEntregada> tareasEntregadas = new ArrayList<>();
         try{
-         PreparedStatement consulta = Conexion.getConexion().prepareStatement("select * from tareas_entregadas");
-         ResultSet resultado = consulta.executeQuery();
-         while(resultado.next()){
-            tareasEntregadas.add(new TareaEntregada(resultado.getInt("idTareaEntregada"), resultado.getInt("idTareaAsignada"), resultado.getString("nombreArchivo"), resultado.getInt("idAlumno"), resultado.getInt("calificacion")));
-         }
-      }catch(SQLException ex){
-         throw new SQLException(ex);
-      }
+            PreparedStatement consulta = Conexion.getConexion().prepareStatement("select * from tareas_entregadas");
+            ResultSet resultado = consulta.executeQuery();
+            while(resultado.next()){
+                tareasEntregadas.add(new TareaEntregada(resultado.getInt("idTareaEntregada"), resultado.getInt("idTareaAsignada"), resultado.getString("nombreArchivo"), resultado.getInt("idAlumno"), resultado.getInt("calificacion"), resultado.getBlob("tarea")));
+            }
+        }catch(SQLException ex){
+            throw new SQLException(ex);
+        }
       return tareasEntregadas;
     }     
+    
+    //nos devuelve una lista con todos los objetos de la tabla
+    public static List<TareaEntregada> obtenerTodosID(int idTareaAsignada) throws SQLException {
+        List<TareaEntregada> tareasEntregadas = new ArrayList<>();
+        PreparedStatement pst = null;
+        ResultSet resultado;
+        String consulta;
+        
+        try{
+            //verificamos si ya existe el registro (en caso que exista lo actualizamos, de lo contrario insertamos)
+            //preparacion de la consulta
+            consulta = "select * from tareas_entregadas where idTareaAsignada = ?";
+            pst = Conexion.getConexion().prepareStatement(consulta);
+            //asignamos valores
+            pst.setInt(1, idTareaAsignada);
+            //ejecutamos la consulta y guardamos resultados
+            resultado = pst.executeQuery();
+            
+            while(resultado.next()){
+                tareasEntregadas.add(new TareaEntregada(resultado.getInt("idTareaEntregada"), resultado.getInt("idTareaAsignada"), resultado.getString("nombreArchivo"), resultado.getInt("idAlumno"), resultado.getInt("calificacion"), resultado.getBlob("tarea")));
+            }
+        }catch(SQLException ex){
+            throw new SQLException(ex);
+        }
+      return tareasEntregadas;
+    }
+    
+    /*public static void main(String []arg){
+        try {
+            List<TareaEntregada> tarea = new ArrayList<>();
+            //tarea = TareaEntregada.obtenerTodosID(idTareaAsignada);
+            tarea = TareaEntregada.obtenerTodos();
+            System.out.println(tarea.size());
+        } catch (SQLException ex) {
+            Logger.getLogger(TareaEntregada.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }*/
     
 }
