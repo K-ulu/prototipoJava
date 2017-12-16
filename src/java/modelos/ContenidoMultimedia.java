@@ -103,12 +103,13 @@ public class ContenidoMultimedia {
             
         try {           
             //caso cuando no existe el grupo, se iserta uno  
-            consulta = "insert into contenidomultimedia (idContenido, nombreContenido, tipoContenido, fechaCreacionContenido, contenidoMultimedia, idDocente) values(null,?,?,?,?,null)";
+            consulta = "insert into contenidomultimedia (idContenido, nombreContenido, tipoContenido, fechaCreacionContenido, contenidoMultimedia, idDocente) values(null,?,?,?,?,?)";
             pst = Conexion.getConexion().prepareStatement(consulta);
             pst.setString(1, nombreContenido);
             pst.setString(2, tipoContenido);
             pst.setString(3, fechaCreacionContenido);
             pst.setBlob(4, contenidoMultimedia, tamano);
+            pst.setInt(5, idDocente);
             
             //si afecto a algun registro (se inserto correctamente)
             if(pst.executeUpdate() == 1){
@@ -188,4 +189,28 @@ public class ContenidoMultimedia {
       return contenidos;
     } 
     
+    //nos devuelve una lista con todos los objetos de la tabla
+    public static List<ContenidoMultimedia> obtenerTodosID(int idDocente) throws SQLException {
+        List<ContenidoMultimedia> contenidos = new ArrayList<>();
+        PreparedStatement pst = null;
+        ResultSet resultado;
+        String consulta;
+            
+        try {   
+            //verificamos si ya existe el registro (en caso que exista lo actualizamos, de lo contrario insertamos)
+            //preparacion de la consulta
+            consulta = "select * from contenidomultimedia where idDocente = ? ";
+            pst = Conexion.getConexion().prepareStatement(consulta);
+            //asignamos valores
+            pst.setString(1, String.valueOf(idDocente));
+            //ejecutamos la consulta y guardamos resultados
+            resultado = pst.executeQuery();
+         while(resultado.next()){
+            contenidos.add(new ContenidoMultimedia(resultado.getInt("idContenido"), resultado.getString("nombreContenido"), resultado.getString("tipoContenido"), resultado.getString("fechaCreacionContenido"), resultado.getBlob("contenidoMultimedia"),  resultado.getInt("idDocente")));
+         }
+      }catch(SQLException ex){
+         throw new SQLException(ex);
+      }
+      return contenidos;
+    } 
 }

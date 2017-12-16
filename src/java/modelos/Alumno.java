@@ -30,6 +30,7 @@ public class Alumno {
     private String CURP;
     private Integer idGrupo;
     private Integer idUsuario;
+    private Integer idDocente;
     
     public Alumno(){
         this.idAlumno = null;
@@ -41,9 +42,10 @@ public class Alumno {
         this.CURP = null;
         this.idGrupo = null;
         this.idUsuario = null;
+        this.idDocente = null;
     }
     
-    public Alumno(Integer idAlumno, String nombreA, String apPaternoA, String apMaternoA, String generoA, String fechaNacimientoA, String CURP, Integer idGrupo, Integer idUsuario){
+    public Alumno(Integer idAlumno, String nombreA, String apPaternoA, String apMaternoA, String generoA, String fechaNacimientoA, String CURP, Integer idGrupo, Integer idUsuario, Integer idDocente){
         this.idAlumno = idAlumno;
         this.nombreA = nombreA;
         this.apPaternoA = apPaternoA;
@@ -53,6 +55,15 @@ public class Alumno {
         this.CURP = CURP;
         this.idGrupo = idGrupo;
         this.idUsuario = idUsuario;
+        this.idDocente = idDocente;
+    }
+
+    public Integer getIdDocente() {
+        return idDocente;
+    }
+
+    public void setIdDocente(Integer idDocente) {
+        this.idDocente = idDocente;
     }
 
     public Integer getIdAlumno() {
@@ -134,7 +145,7 @@ public class Alumno {
     */  
     
     //devuelve true cuando es guardado exitosamente, false cuando paso un 
-    public static boolean guardarObjeto(String nombreA, String apPaternoA, String apMaternoA, String generoA, String fechaNacimientoA, String CURP, Integer idGrupo, Integer idUsuario) {
+    public static boolean guardarObjeto(String nombreA, String apPaternoA, String apMaternoA, String generoA, String fechaNacimientoA, String CURP, Integer idGrupo, Integer idUsuario, Integer idDocente) {
         System.out.println("Aqui entro");
         //variables a usar
         PreparedStatement pst = null;
@@ -143,7 +154,7 @@ public class Alumno {
             
         try {           
             //caso cuando no existe el alumno, se iserta uno  
-            consulta = "insert into alumnos (idAlumno, nombreA, apPaternoA, apMaternoA, generoA, fechaNacimientoA, CURP, idGrupo, idUsuario) values(null,?,?,?,?,?,?,?,?)";
+            consulta = "insert into alumnos (idAlumno, nombreA, apPaternoA, apMaternoA, generoA, fechaNacimientoA, CURP, idGrupo, idUsuario, idDocente) values(null,?,?,?,?,?,?,?,?,?)";
             pst = Conexion.getConexion().prepareStatement(consulta);
             pst.setString(1, nombreA);
             pst.setString(2, apPaternoA);
@@ -158,6 +169,7 @@ public class Alumno {
                 pst.setString(7, String.valueOf(String.valueOf(idGrupo)));
             }
             pst.setString(8, String.valueOf(idUsuario));                        
+            pst.setString(9, String.valueOf(idDocente));
             
             //si afecto a algun registro (se inserto correctamente)
             if(pst.executeUpdate() == 1){
@@ -180,7 +192,7 @@ public class Alumno {
             
         try {           
             //caso cuando no existe el docente, se iserta uno  
-            consulta = "insert into alumnos (idAlumno, nombreA, apPaternoA, apMaternoA, generoA, fechaNacimientoA, CURP, idGrupo, idUsuario) values(null,?,?,?,?,?,?,?,?)";
+            consulta = "insert into alumnos (idAlumno, nombreA, apPaternoA, apMaternoA, generoA, fechaNacimientoA, CURP, idGrupo, idUsuario, idDocente) values(null,?,?,?,?,?,?,?,?,?)";
             pst = Conexion.getConexion().prepareStatement(consulta);
             pst.setString(1, alumno.getNombreA());
             pst.setString(2, alumno.getApPaternoA());
@@ -194,7 +206,8 @@ public class Alumno {
             else{
                 pst.setString(7, String.valueOf(alumno.getIdGrupo()));
             }
-            pst.setString(8, String.valueOf(alumno.getIdUsuario()));                        
+            pst.setString(8, String.valueOf(alumno.getIdUsuario())); 
+            pst.setString(9, String.valueOf(alumno.getIdDocente()));
             
             //si afecto a algun registro (se inserto correctamente)
             if(pst.executeUpdate() == 1){
@@ -209,7 +222,7 @@ public class Alumno {
     }
     
     //devuelve true si es actualizado correctamente, false cuando pasa un error al actualizar    
-    public static boolean actualizarObjeto(Integer idAlumno, String nombreA, String apPaternoA, String apMaternoA, String generoA, String fechaNacimientoA, String CURP, Integer idGrupo, Integer idUsuario) {
+    public static boolean actualizarObjeto(Integer idAlumno, String nombreA, String apPaternoA, String apMaternoA, String generoA, String fechaNacimientoA, String CURP, Integer idGrupo) {
         //variables a usar
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -271,7 +284,7 @@ public class Alumno {
             //verificamos los resultados, si existe alguno lo actualizamos con los datos
             if(rs.absolute(1)){
                 //caso cuando no existe el docente, se iserta uno  
-                consulta = "update alumnos set nombreA = ?, apPaternoA = ?, apMaternoA = ?, generoA = ?, fechaNacimientoA = ?, CURP = ?, idGrupo = ? where idDocente = ?";
+                consulta = "update alumnos set nombreA = ?, apPaternoA = ?, apMaternoA = ?, generoA = ?, fechaNacimientoA = ?, CURP = ?, idGrupo = ? where idAlumno = ?";
                 pst = Conexion.getConexion().prepareStatement(consulta);
                 pst.setString(1, alumno.getNombreA());
                 pst.setString(2, alumno.getApPaternoA());
@@ -280,7 +293,7 @@ public class Alumno {
                 pst.setString(5, alumno.getFechaNacimientoA());
                 pst.setString(6, alumno.getCURP());
                 pst.setString(7, String.valueOf(alumno.getIdGrupo()));
-                pst.setString(8, String.valueOf(alumno.getIdUsuario())); 
+                pst.setString(8, String.valueOf(alumno.getIdAlumno()));
                 
                 //si afecto a algun registro (se actualizo correctamente)
                 if(pst.executeUpdate() == 1){
@@ -361,11 +374,11 @@ public class Alumno {
             //ejecutamos la consulta y guardamos resultados
             resultado = pst.executeQuery();
             while(resultado.next()){
-                alumno = new Alumno(resultado.getInt("idAlumno"), resultado.getString("nombreA"), resultado.getString("apPaternoA"), resultado.getString("apMaternoA"), resultado.getString("generoA"), resultado.getString("fechaNacimientoA"),resultado.getString("CURP"),resultado.getInt("idGrupo"), resultado.getInt("idUsuario"));
+                alumno = new Alumno(resultado.getInt("idAlumno"), resultado.getString("nombreA"), resultado.getString("apPaternoA"), resultado.getString("apMaternoA"), resultado.getString("generoA"), resultado.getString("fechaNacimientoA"),resultado.getString("CURP"),resultado.getInt("idGrupo"), resultado.getInt("idUsuario"), resultado.getInt("idDocente"));
              }
             
         } catch (SQLException ex) {
-            Logger.getLogger(Docente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Alumno.class.getName()).log(Level.SEVERE, null, ex);
         }
         return alumno;
     }
@@ -387,11 +400,11 @@ public class Alumno {
             //ejecutamos la consulta y guardamos resultados
             resultado = pst.executeQuery();
             while(resultado.next()){
-                alumno = new Alumno(resultado.getInt("idAlumno"), resultado.getString("nombreA"), resultado.getString("apPaternoA"), resultado.getString("apMaternoA"), resultado.getString("generoA"), resultado.getString("fechaNacimientoA"),resultado.getString("CURP"),resultado.getInt("idGrupo"), resultado.getInt("idUsuario"));
+                alumno = new Alumno(resultado.getInt("idAlumno"), resultado.getString("nombreA"), resultado.getString("apPaternoA"), resultado.getString("apMaternoA"), resultado.getString("generoA"), resultado.getString("fechaNacimientoA"),resultado.getString("CURP"),resultado.getInt("idGrupo"), resultado.getInt("idUsuario"), resultado.getInt("idDocente"));
              }
             
         } catch (SQLException ex) {
-            Logger.getLogger(Docente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Alumno.class.getName()).log(Level.SEVERE, null, ex);
         }
         return alumno;
     }
@@ -403,7 +416,7 @@ public class Alumno {
          PreparedStatement consulta = Conexion.getConexion().prepareStatement("select * from Alumnos");
          ResultSet resultado = consulta.executeQuery();
          while(resultado.next()){
-            alumnos.add(new Alumno(resultado.getInt("idAlumno"), resultado.getString("nombreA"), resultado.getString("apPaternoA"), resultado.getString("apMaternoA"), resultado.getString("generoA"), resultado.getString("fechaNacimientoA"),resultado.getString("CURP"),resultado.getInt("idGrupo"), resultado.getInt("idUsuario")));
+            alumnos.add(new Alumno(resultado.getInt("idAlumno"), resultado.getString("nombreA"), resultado.getString("apPaternoA"), resultado.getString("apMaternoA"), resultado.getString("generoA"), resultado.getString("fechaNacimientoA"),resultado.getString("CURP"),resultado.getInt("idGrupo"), resultado.getInt("idUsuario"), resultado.getInt("idDocente")));
          }
       }catch(SQLException ex){
          throw new SQLException(ex);
@@ -413,5 +426,31 @@ public class Alumno {
     
     public static String imo(){
         return "hola";
+    }
+    
+    public static List<Alumno> obtenerPorIdDocente(int idDocente){
+        //variables a usar
+        PreparedStatement pst = null;
+        ResultSet resultado;
+        String consulta;
+        List<Alumno> alumno = new ArrayList<>();    
+        
+        try {   
+            //verificamos si ya existe el registro (en caso que exista lo actualizamos, de lo contrario insertamos)
+            //preparacion de la consulta
+            consulta = "select * from alumnos where idDocente = ? ";
+            pst = Conexion.getConexion().prepareStatement(consulta);
+            //asignamos valores
+            pst.setInt(1, idDocente);
+            //ejecutamos la consulta y guardamos resultados
+            resultado = pst.executeQuery();
+            while(resultado.next()){
+                alumno.add(new Alumno(resultado.getInt("idAlumno"), resultado.getString("nombreA"), resultado.getString("apPaternoA"), resultado.getString("apMaternoA"), resultado.getString("generoA"), resultado.getString("fechaNacimientoA"),resultado.getString("CURP"),resultado.getInt("idGrupo"), resultado.getInt("idUsuario"), resultado.getInt("idDocente")));
+             }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Docente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return alumno;
     }
 }

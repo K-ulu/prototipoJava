@@ -91,13 +91,14 @@
                 out.println("<h3> Fecha de Entrega: "+fechaEntrega+"</h3>");
                 out.println("<p>"+descripcion+"</p>");
                 out.println("<form action=\"cargarTarea\" enctype=\"multipart/form-data\" method=\"POST\">");
+                out.println("<input class=\"input\" type=\"hidden\" name=\"idAlumno\" value=\"" +alumno+ "\">");
                 out.println("<input type=\"text\" name=\"idTarea\" value=\""+ idTareaAsignada+ "\" style=\"display:none\">");                                 
-                out.println("<label for=\"\">Seleccione archivo:</label>");
-                out.println("<input class=\"input\" type=\"file\" name=\"archivo\">");
+                out.println("<label for=\"\">Seleccione archivo:</label><br>");
+                out.println("<input class=\"boton\" type=\"file\" name=\"archivo\">");
                 out.println("<input class=\"boton\" type=\"submit\" value=\"Agregar\" name=\"agregar\">");
                 out.println("<div class=\"clear\"></div>");
                 out.println("</form>");
-                out.println("<button class=\"boton\">Volver</button>");
+                out.println("<a href=\"alumno-materias-bloques.jsp?variable="+idMateria+"\"><button class=\"boton\">Volver</button></a>");
             }
         %>
     </div>

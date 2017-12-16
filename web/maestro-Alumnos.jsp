@@ -62,6 +62,7 @@
                     String tipo = (String)sesionStatus.getAttribute("tipoUsuario");
                     //out.println("Sesion obtenida id:"+id+" tipo: "+tipo);
                     out.println(Docente.obtenerPorIdUsuario(idU).getNombreD()+"!");
+                    int idDoc = Docente.obtenerPorIdUsuario(idU).getIdDocente();
                 %>
                 </a></li>
             </ul>
@@ -114,7 +115,7 @@
                     String miCurp="";
                     int grupo=0;
                     List<Alumno> alumnito = new ArrayList<>();
-                    alumnito = Alumno.obtenerTodos();  
+                    alumnito = Alumno.obtenerPorIdDocente(idDoc);  
                 
                     for (int i=0;i<alumnito.size();i++)
                     {
@@ -158,27 +159,33 @@
     </div>
     <!-- Modal content-->
     <div id="myModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" style="width: 380px;">
             <div class="modal-header">
                 <span class="close">&times;</span>
-                <h2>Agregar un Alumno nuevo!</h2>
+                <center><h2>Agregar un Alumno nuevo!</h2></center>
             </div>
             <div class="modal-body">
                 <div class="modal-body2">
                     <form action="crudAlumno" method='post'>
+                        <input class="input" type="hidden" name="idDocente" value="<%=idDoc%>" />  
                         <input class="input" type="hidden" name="idAlumno" value="0"/>                      
                         <label>Nombre del alumno </label>
-                        <input class="input" type="text" name="nombre" placeholder="Nombre" />
+                        <input class="input" type="text" name="nombre" placeholder="Nombre" style="width: 300px;"/>
                         <label>Apellido Paterno del alumno</label>
-                        <input class="input" type="text" name="apellidoP" placeholder="apellido" />
+                        <input class="input" type="text" name="apellidoP" placeholder="apellido" style="width: 300px;"/>
                         <label>Apellido Materno del alumno</label>
-                        <input class="input" type="text" name="apellidoM" placeholder="apellido" />
-                        <label>Genero del alumno</label>
-                        <select class="input" name="generoA">
-                            <option value="femenino">Femenino</option>
-                            <option value="masculino">Masculino</option>
-                        </select>
-
+                        <input class="input" type="text" name="apellidoM" placeholder="apellido" style="width: 300px;"/>
+                        
+                        <label class="input2">Genero del alumno</label>
+                        <div class="input">
+                            <select class="input2" name="generoA">
+                                <option value="femenino">Femenino</option>
+                                <option value="masculino">Masculino</option>
+                            </select>
+                            <label class="input2" size="6" style="float: left; display: inline-block;">Curp</label>
+                            <input class="input2" type="text" name="curp" placeholder="curp" style="width: 120px;"/>
+                        </div>
+                        <br><br><br>
                         <label>Fecha de nacimiento</label>
                         <div class="input">
                             <input class="input2" type="text" name="anio" placeholder="año" size="5"/>                        
@@ -199,30 +206,43 @@
 
                             <input class="input2" type="text" name="dia" placeholder="dia" size="5"/>                        
                         </div>
+                        <br><br><br>   
+                        <div class="input">
+                            <label class="campo" style="float: left; display: inline-block;">Seleccione el Grupo</label>
+                            <select name="idGrupo" class="campo" style="width: 170px;">
+                                <%
+                                    int idG =0;
+                                    String nombrG="";
+                                List<Grupos> grupito = new ArrayList<>();
+                                grupito = Grupos.obtenerTodosID(idDoc);  
 
-                        <label class="input">Curp</label>
-                        <input class="input" type="text" name="curp" placeholder="curp" />
-                        <label>id del Grupo</label>
-                        <!--input class="input" type="text" name="idGrupo" placeholder="Grupo" /-->
-                        <select name="idGrupo" class="input2">
-                            <%
-                                int idG =0;
-                                String nombrG="";
-                            List<Grupos> grupito = new ArrayList<>();
-                            grupito = Grupos.obtenerTodos();  
+                            for (int i=0;i<grupito.size();i++)
+                            {
+                               idG = grupito.get(i).getIdGrupo();
+                               nombrG = grupito.get(i).getLetra();
 
-                        for (int i=0;i<grupito.size();i++)
-                        {
-                           idG = grupito.get(i).getIdGrupo();
-                           nombrG = grupito.get(i).getLetra();
-
-                           out.println("<option value="+ idG +"> Grupo "+ nombrG +"</option>");
-                        }            
-                    %>
-                        </select>
-                        <input class="modal-boton active-boton" type="submit" value="Agregar" name="agregar">
-                        <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
-                        <div class="clear"></div>
+                               out.println("<option value="+ idG +"> Grupo "+ nombrG +"</option>");
+                            }            
+                        %>
+                            </select> 
+                        </div>
+                       <!--Apartir de aqui son los campos para llenar los datos del usuario-->    
+                        <div class="input">
+                            <label>Correo Electronico</label>
+                            <input class="input2" type="text" name="correo" id="correo"placeholder="Correo Electrónico" style="float: left; display: inline-block; width: 137px;">
+                            <input class="input2" type="text" name="correo2" id="correo2" placeholder="Confirmar correo" style="width: 137px;">
+                        </div>
+                        
+                        <div class="input">
+                            <label>Contrasenia</label>
+                            <input class="input2" type="password" name="contrasena" id="contrasena"placeholder="Contraseña" style="float: left; display: inline-block; width: 137px;">
+                            <input class="input2" type="password" name="contrasena2" id="contrasena2" placeholder="Confirmar Contraseña" style="width: 137px;">
+                        </div>
+                        <div class="input">    
+                            <input class="modal-boton active-boton" type="submit" value="Agregar" name="agregar">
+                            <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
+                        </div>
+                            <div class="clear"></div>
                     </form>
                 </div>
             </div>
@@ -246,7 +266,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close editarclose">&times;</span>
-                <h2>Editar un Alumno!</h2>
+                <center><h2>Editar un Alumno!</h2></center>
             </div>
             <div class="modal-body">
                 <div class="modal-body2">
@@ -261,7 +281,11 @@
                         <label>Nombre del alumno </label>
                         <input class="input" id='nomb' name="nombre" value= ''/>
                         <label>Genero del alumno</label>
-                        <input class="input" id='geni' name="genero" value= ''/>
+                        <!--input class="input" id='geni' name="genero" value= ''/-->
+                        <select class="input" name="genero" id='geni'>
+                            <option value="femenino">Femenino</option>
+                            <option value="masculino">Masculino</option>
+                        </select>
                         <label>Fecha de nacimiento del alumno</label>
                         <input class="input" id='fecha' name="fechaNac" value= ''/>
                         <label class="input">Curp</label>
@@ -270,7 +294,7 @@
                         <select name="idGrupo" class="input2" id='idGroup'>
                         <%
                             grupito = new ArrayList<>();
-                            grupito = Grupos.obtenerTodos();  
+                            grupito = Grupos.obtenerTodosID(idDoc);  
 
                             for (int i=0;i<grupito.size();i++)
                             {

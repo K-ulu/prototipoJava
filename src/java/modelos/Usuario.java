@@ -418,7 +418,7 @@ public class Usuario {
             //si afecto a algun registro (se inserto)
             if(pst.executeUpdate() == 1){
                 int idUsuario = Util.getUltimoId("idUsuario", "usuarios"); //recuperamos id del ultimo usuario (el que acabamos de insertar)                
-                if(Alumno.guardarObjeto(alumno.getNombreA(), alumno.getApPaternoA(), alumno.getApMaternoA(), alumno.getGeneroA(), alumno.getFechaNacimientoA(), alumno.getCURP(), null, idUsuario)){
+                if(Alumno.guardarObjeto(alumno.getNombreA(), alumno.getApPaternoA(), alumno.getApMaternoA(), alumno.getGeneroA(), alumno.getFechaNacimientoA(), alumno.getCURP(), null, idUsuario, alumno.getIdDocente())){
                     return true;
                 }                
                 return false;

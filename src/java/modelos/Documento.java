@@ -92,15 +92,12 @@ public class Documento {
             
         try {           
             //caso cuando no existe el grupo, se iserta uno  
-            consulta = "insert into documentos (idDocumento, nombreDocumento, tipoDocumento, documento, idDocente) values(null,?,?,?,null)";
+            consulta = "insert into documentos (idDocumento, nombreDocumento, tipoDocumento, documento, idDocente) values(null,?,?,?,?)";
             pst = Conexion.getConexion().prepareStatement(consulta);
             pst.setString(1, nombreDocumento);
             pst.setString(2, tipoDocumento);
             pst.setBlob(3, documento, tamano);
-            /*if(idDocente == null)
-                pst.setString(4, "null"); 
-            else 
-                pst.setInt(4, idDocente);*/ 
+            pst.setInt(4, idDocente);
             
             //si afecto a algun registro (se inserto correctamente)
             if(pst.executeUpdate() == 1){
@@ -218,4 +215,28 @@ public class Documento {
       return documentos;
     }  
     
+    //nos devuelve una lista con todos los objetos de la tabla
+    public static List<Documento> obtenerTodosID(int idDocente) throws SQLException {
+        List<Documento> documentos = new ArrayList<>();
+        PreparedStatement pst = null;
+        ResultSet resultado;
+        String consulta;
+            
+        try {   
+            //verificamos si ya existe el registro (en caso que exista lo actualizamos, de lo contrario insertamos)
+            //preparacion de la consulta
+            consulta = "select * from documentos where idDocente = ? ";
+            pst = Conexion.getConexion().prepareStatement(consulta);
+            //asignamos valores
+            pst.setString(1, String.valueOf(idDocente));
+            //ejecutamos la consulta y guardamos resultados
+            resultado = pst.executeQuery();
+         while(resultado.next()){
+            documentos.add(new Documento(resultado.getInt("idDocumento"), resultado.getString("nombreDocumento"), resultado.getString("tipoDocumento"), resultado.getBlob("documento"),  resultado.getInt("idDocente")));
+         }
+      }catch(SQLException ex){
+         throw new SQLException(ex);
+      }
+      return documentos;
+    }
 }

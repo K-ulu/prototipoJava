@@ -39,7 +39,8 @@ public class crudMaterias extends HttpServlet {
                 String nombre = request.getParameter("nombre");
                 String grado = request.getParameter("grado");
                 Integer idDocente = Integer.parseInt(request.getParameter("idDocente"));
-                Materia.guardarObjeto(nombre,grado,idDocente);
+                if (!nombre.isEmpty() || ! nombre.equals(""))
+                    Materia.guardarObjeto(nombre,grado,idDocente);
             }
 
             else if (request.getParameter("editar") != null) {  

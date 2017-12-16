@@ -58,7 +58,8 @@
                         int idU = (int)sesionStatus.getAttribute("idUsuario");
                         String tipo = (String)sesionStatus.getAttribute("tipoUsuario");
                         //out.println("Sesion obtenida id:"+id+" tipo: "+tipo);
-                        out.println(Docente.obtenerPorIdUsuario(idU).getNombreD()+"!");                        
+                        out.println(Docente.obtenerPorIdUsuario(idU).getNombreD()+"!");
+                        int idDoc = Docente.obtenerPorIdUsuario(idU).getIdDocente();
                     %>
                     </a></li>
                 </ul>
@@ -102,19 +103,17 @@
                     </tr>
                     <%
                         int id =0;
-                        int idDoc =0;
                         String grado="";
                         String letraG="";
                         String turno="";
                         int total=0;
                     
                     List<Grupos> grupito = new ArrayList<>();
-                    grupito = Grupos.obtenerTodos();  
+                    grupito = Grupos.obtenerTodosID(idDoc);  
 
                     for (int i=0;i<grupito.size();i++)
                     {
                        id = grupito.get(i).getIdGrupo();
-                       idDoc = grupito.get(i).getIdDocente();
                        grado = grupito.get(i).getGrado();
                        letraG = grupito.get(i).getLetra();
                        turno = grupito.get(i).getTurno();
@@ -158,8 +157,8 @@
                             <label>Agregue un nombre al grupo </label>
                             <input class="input" type="text" name="nombre" placeholder="Nombre" />
                             <label>ID del Docente</label>
-                            <input class="input" type="text" value = "1" disabled/>
-                            <input class="input" type="hidden" name="idDocente" value = "1"/>
+                            <input class="input" type="text" value = <%=idDoc%> disabled />
+                            <input class="input" type="hidden" name="idDocente" value= <%=idDoc%> />
                             <label>Seleccione el grado</label>
                             <select class="input" name="grado">
                                 <option value="5">5to</option>

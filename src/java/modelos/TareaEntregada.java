@@ -28,6 +28,7 @@ public class TareaEntregada {
     private Integer idAlumno;
     private Integer calificacion;
     private Blob tarea; 
+    private String fechaEntrega;
     
     public TareaEntregada(){
         this.idTareaEntregada = null;
@@ -36,15 +37,25 @@ public class TareaEntregada {
         this.idAlumno = null;
         this.calificacion = null;
         this.tarea = null;
+        this.fechaEntrega = null;
     }
     
-    public TareaEntregada(Integer idTareaEntregada, int idTareaAsignada, String nombreArchivo, int idAlumno, int calificacion, Blob tarea){
+    public TareaEntregada(Integer idTareaEntregada, int idTareaAsignada, String nombreArchivo, int idAlumno, int calificacion, Blob tarea, String fechaEntrega){
         this.idTareaEntregada = idTareaEntregada;
         this.idTareaAsignada = idTareaAsignada;
         this.nombreArchivo = nombreArchivo;
         this.idAlumno = idAlumno;
         this.calificacion = calificacion;
         this.tarea = tarea;
+        this.fechaEntrega = fechaEntrega;
+    }
+
+    public String getFechaEntrega() {
+        return fechaEntrega;
+    }
+
+    public void setFechaEntrega(String fechaEntrega) {
+        this.fechaEntrega = fechaEntrega;
     }
 
     public Integer getIdTareaEntregada() {
@@ -99,7 +110,7 @@ public class TareaEntregada {
     */
     
     //devuelve true cuando es guardado exitosamente, false cuando pasa un error
-    public static boolean guardarObjeto(int idTareaAsignada, String nombreArchivo, int idAlumno, Integer calificacion, InputStream tarea, int tamano) {
+    public static boolean guardarObjeto(int idTareaAsignada, String nombreArchivo, int idAlumno, Integer calificacion, InputStream tarea, int tamano, String fechaEntrega) {
         //variables a usar
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -107,12 +118,13 @@ public class TareaEntregada {
             
         try {           
             //caso cuando no existe el docente, se iserta uno  
-            consulta = "insert into tareas_entregadas (idTareaEntregada, idTareaAsignada, nombreArchivo, idAlumno, calificacion, tarea) values(null,?,?,?,null,?)";
+            consulta = "insert into tareas_entregadas (idTareaEntregada, idTareaAsignada, nombreArchivo, idAlumno, calificacion, tarea, fechaEntrega) values(null,?,?,?,null,?,?)";
             pst = Conexion.getConexion().prepareStatement(consulta);
             pst.setInt(1, idTareaAsignada);
             pst.setString(2, nombreArchivo);
             pst.setInt(3, idAlumno); 
             pst.setBlob(4, tarea, tamano);
+            pst.setString(5, fechaEntrega);
             
             //si afecto a algun registro (se inserto correctamente)
             if(pst.executeUpdate() == 1){
@@ -267,7 +279,7 @@ public class TareaEntregada {
             //ejecutamos la consulta y guardamos resultados
             resultado = pst.executeQuery();
             while(resultado.next()){
-                tareaEntregada = new TareaEntregada(resultado.getInt("idTareaEntregada"), resultado.getInt("idTareaAsignada"), resultado.getString("nombreArchivo"), resultado.getInt("idAlumno"), resultado.getInt("calificacion"), resultado.getBlob("tarea"));
+                tareaEntregada = new TareaEntregada(resultado.getInt("idTareaEntregada"), resultado.getInt("idTareaAsignada"), resultado.getString("nombreArchivo"), resultado.getInt("idAlumno"), resultado.getInt("calificacion"), resultado.getBlob("tarea"), resultado.getString("fechaEntrega"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Docente.class.getName()).log(Level.SEVERE, null, ex);
@@ -282,7 +294,7 @@ public class TareaEntregada {
             PreparedStatement consulta = Conexion.getConexion().prepareStatement("select * from tareas_entregadas");
             ResultSet resultado = consulta.executeQuery();
             while(resultado.next()){
-                tareasEntregadas.add(new TareaEntregada(resultado.getInt("idTareaEntregada"), resultado.getInt("idTareaAsignada"), resultado.getString("nombreArchivo"), resultado.getInt("idAlumno"), resultado.getInt("calificacion"), resultado.getBlob("tarea")));
+                tareasEntregadas.add(new TareaEntregada(resultado.getInt("idTareaEntregada"), resultado.getInt("idTareaAsignada"), resultado.getString("nombreArchivo"), resultado.getInt("idAlumno"), resultado.getInt("calificacion"), resultado.getBlob("tarea"), resultado.getString("fechaEntrega")));
             }
         }catch(SQLException ex){
             throw new SQLException(ex);
@@ -308,7 +320,7 @@ public class TareaEntregada {
             resultado = pst.executeQuery();
             
             while(resultado.next()){
-                tareasEntregadas.add(new TareaEntregada(resultado.getInt("idTareaEntregada"), resultado.getInt("idTareaAsignada"), resultado.getString("nombreArchivo"), resultado.getInt("idAlumno"), resultado.getInt("calificacion"), resultado.getBlob("tarea")));
+                tareasEntregadas.add(new TareaEntregada(resultado.getInt("idTareaEntregada"), resultado.getInt("idTareaAsignada"), resultado.getString("nombreArchivo"), resultado.getInt("idAlumno"), resultado.getInt("calificacion"), resultado.getBlob("tarea"), resultado.getString("fechaEntrega")));
             }
         }catch(SQLException ex){
             throw new SQLException(ex);

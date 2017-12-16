@@ -51,7 +51,9 @@ public class cargarContenido extends HttpServlet {
             // Los items obtenidos serán cada uno de los campos del formulario,
             // tanto campos normales como ficheros subidos.
             List items = upload.parseRequest(request);
-            
+            String nombre="", tipo="";
+            InputStream archivo = null;
+            int tamano=0, idDoc = 0;
             // Se recorren todos los items, que son de tipo FileItem
             for (Object item : items) {
                 FileItem uploaded = (FileItem) item;
@@ -62,22 +64,24 @@ public class cargarContenido extends HttpServlet {
                     // No es campo de formulario, guardamos el fichero en algún sitio
                     //File fichero = new File("/tmp", uploaded.getName());
                     //uploaded.write(fichero);
-                    String nombre = uploaded.getName();
-                    String tipo = uploaded.getContentType();
-                    InputStream archivo = uploaded.getInputStream();
-                    int tamano = (int) uploaded.getSize();
+                    nombre = uploaded.getName();
+                    tipo = uploaded.getContentType();
+                    archivo = uploaded.getInputStream();
+                    tamano = (int) uploaded.getSize();
                     out.println(tipo.length());
-                    
-                    if(ContenidoMultimedia.guardarObjeto(null, nombre, tipo, Util.getFecha(), archivo, tamano, null)){
-                        //response.sendRedirect("maestro-mis-documentos.jsp");
-                    } 
                 } else {
                     // es un campo de formulario, podemos obtener clave y valor
                     String key = uploaded.getFieldName();
                     String valor = uploaded.getString();
-                    out.println(key + " "+ valor);
+                    if (key.equals("idDocente")){
+                        valor = valor.trim();
+                        idDoc= Integer.parseInt(valor);
+                    }
                 }
-            }            
+            }
+            if(ContenidoMultimedia.guardarObjeto(null, nombre, tipo, Util.getFecha(), archivo, tamano, idDoc)){
+                //response.sendRedirect("maestro-mis-documentos.jsp");
+            } 
             //redireccionamos a la pagina de maestro-mis-documentos
             response.sendRedirect("maestro-contenido-multimedia.jsp");
         } catch (org.apache.commons.fileupload.FileUploadException ex) {

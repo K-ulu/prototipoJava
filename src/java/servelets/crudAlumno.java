@@ -6,6 +6,7 @@
 package servelets;
 
 import com.sun.java.swing.plaf.windows.resources.windows;
+import db.Util;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelos.Alumno;
+import modelos.Usuario;
 
 /**
  *
@@ -54,13 +56,45 @@ public class crudAlumno extends HttpServlet {
                 String fechaNacimientoA = anio + "-" + mes + "-"+dia;
                 String CURP = request.getParameter("curp");
                 Integer idGrupo =Integer.parseInt(request.getParameter("idGrupo"));
+                String idDoc = request.getParameter("idDocente");
+                idDoc = idDoc.trim();
+                int idDocente = Integer.parseInt(idDoc);
                 out.println(apPaternoA);
-                Alumno.guardarObjeto(nombreA, apPaternoA, apMaternoA, generoA, fechaNacimientoA, CURP, idGrupo, 3) ; 
+                
+                List<String> errores = new ArrayList<String>();
+                String correo = request.getParameter("correo");
+                String correo2 = request.getParameter("correo2");
+                String contrasena = request.getParameter("contrasena");
+                String contrasena2 = request.getParameter("contrasena2");
+                if(!correo.equals("") && !correo2.equals("")){
+                    if(!correo.equals(correo2)){
+                        errores.add("Los correos deben coincidir");
+                    }                
+                } else {
+                    errores.add("Complete los campos de correo");
+                }
+
+                if(!contrasena.equals("") && !contrasena2.equals("")){
+                    if(!contrasena.equals(contrasena2)){
+                        errores.add("Las contrasenas deben coincidir");
+                    }                
+                } 
+                else {
+                    errores.add("Complete los campos de contrasena");
+                }
+                //si hay errores regresamos a la página de registro para que se corrijan
+                if(errores.size() > 0){
+                    response.sendRedirect("maestro-Alumnos.jsp?errors=true");
+                } else { //procedemos a guardar la info en la bd
+                    Usuario usuario = new Usuario(null, correo, contrasena, Util.getFecha());
+                    Alumno alumno = new Alumno(null, nombreA, apPaternoA, apMaternoA, generoA, fechaNacimientoA, CURP, idGrupo, 3, idDocente); 
+                    //Alumno.guardarObjeto(nombreA, apPaternoA, apMaternoA, generoA, fechaNacimientoA, CURP, idGrupo, 3, idDocente) ; 
+                    if(Usuario.guardarObjeto(usuario)){
+                        alumno.setIdUsuario(Util.getUltimoId("idUsuario", "usuarios"));
+                        Alumno.guardarObjeto(alumno);
+                    } 
+                }
             } 
-            /*else if (request.getParameter("eliminar") != null) {
-                idAlumno =Integer.parseInt(request.getParameter("idAlumno"));
-                Alumno.eliminarObjeto(idAlumno);
-            }*/
             else if (request.getParameter("editar") != null) {
                 idAlumno =Integer.parseInt(request.getParameter("idAlum"));
                 String nombreA = request.getParameter("nombre");
@@ -70,7 +104,7 @@ public class crudAlumno extends HttpServlet {
                 String fechaNacimientoA = request.getParameter("fechaNac");
                 String CURP = request.getParameter("curp");
                 Integer idGrupo =Integer.parseInt(request.getParameter("idGrupo"));
-                Alumno.actualizarObjeto(idAlumno,nombreA, apPaternoA, apMaternoA, generoA, fechaNacimientoA, CURP, idGrupo,3);
+                Alumno.actualizarObjeto(idAlumno,nombreA, apPaternoA, apMaternoA, generoA, fechaNacimientoA, CURP, idGrupo);
             }
             else if(request.getParameter("cancelar") != null){
                 response.sendRedirect("maestro-Alumnos.jsp");
@@ -79,7 +113,6 @@ public class crudAlumno extends HttpServlet {
                 idAlumno = Integer.parseInt(request.getParameter("variable1"));
                 Alumno.eliminarObjeto(idAlumno);
             }
-            //response.sendRedirect("maestro-Alumnos.jsp?op=op&idAlumno="+idAlumno);
             response.sendRedirect("maestro-Alumnos.jsp");
         }
         catch (Exception e){

@@ -374,4 +374,29 @@ public class Grupos {
         }
       return total;
     }
+    
+    //nos devuelve una lista con todos los objetos de la tabla
+    public static List<Grupos> obtenerTodosID(int idDocente) throws SQLException {
+        List<Grupos> grupos = new ArrayList<>();
+        PreparedStatement pst = null;
+        ResultSet resultado;
+        String consulta;
+            
+        try {   
+            //verificamos si ya existe el registro (en caso que exista lo actualizamos, de lo contrario insertamos)
+            //preparacion de la consulta
+            consulta = "select * from grupos where idDocente = ? ";
+            pst = Conexion.getConexion().prepareStatement(consulta);
+            //asignamos valores
+            pst.setString(1, String.valueOf(idDocente));
+            //ejecutamos la consulta y guardamos resultados
+            resultado = pst.executeQuery();
+         while(resultado.next()){
+            grupos.add(new Grupos(resultado.getInt("idGrupo"), resultado.getInt("idDocente"), resultado.getString("Grado"), resultado.getString("letra"), resultado.getString("Turno"), resultado.getInt("totalAlumnos")));
+         }
+      }catch(SQLException ex){
+         throw new SQLException(ex);
+      }
+      return grupos;
+    }
 }

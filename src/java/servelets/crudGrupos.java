@@ -38,14 +38,18 @@ public class crudGrupos extends HttpServlet {
             Integer idGrupo=0;
             if (request.getParameter("agregar") != null) {
                 String nombre = request.getParameter("nombre");
-                int tam = nombre.length();
-                String nomb = nombre.substring((tam-1),tam);
-                Integer idDocente = Integer.parseInt(request.getParameter("idDocente"));
+                String idDocente = request.getParameter("idDocente");
+                idDocente = idDocente.trim();
+                int idDoc = Integer.parseInt(idDocente);
                 String grado = request.getParameter("grado");
                 String turno = request.getParameter("turno");
-                Grupos.insertar(nomb, idDocente,grado,turno);
+                
+                if (!nombre.isEmpty() || !nombre.equals("")){
+                    int tam = nombre.length();
+                    String nomb = nombre.substring((tam-1),tam);
+                    Grupos.insertar(nomb, idDoc,grado,turno);
+                }
             }
-
             else if (request.getParameter("editar") != null) {  
                 idGrupo =Integer.parseInt(request.getParameter("idGrup"));
                 String nombre = request.getParameter("nombre");
@@ -75,7 +79,7 @@ public class crudGrupos extends HttpServlet {
         response.sendRedirect("maestro-Grupos.jsp");
         }
         catch (Exception e){
-            out.println("Error");
+            out.println("Error"+ e.getMessage());
         }
     }
 

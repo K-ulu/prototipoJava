@@ -146,7 +146,7 @@
       curp.value = miCurp;
             
       var miGrup = document.getElementById("idGroup");
-      for(var j=0; j<miGrup.length; j++){    
+      for(var j=0; j<miGrup.length; j++){ 
           if(miGrup[j].value==grupo){
              miGrup[j].selected = true;  
           }

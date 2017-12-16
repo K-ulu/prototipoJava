@@ -62,7 +62,8 @@
                         int idU = (int)sesionStatus.getAttribute("idUsuario");
                         String tipo = (String)sesionStatus.getAttribute("tipoUsuario");
                         //out.println("Sesion obtenida id:"+id+" tipo: "+tipo);
-                        out.println(Docente.obtenerPorIdUsuario(idU).getNombreD()+"!");                        
+                        out.println(Docente.obtenerPorIdUsuario(idU).getNombreD()+"!");  
+                        int idDoc = Docente.obtenerPorIdUsuario(idU).getIdDocente();
                     %>
                     </a></li>
                 </ul>
@@ -107,7 +108,7 @@
                     <%
                         
                         List<ContenidoMultimedia> contenidos = new ArrayList<>();
-                        contenidos = ContenidoMultimedia.obtenerTodos();
+                        contenidos = ContenidoMultimedia.obtenerTodosID(idDoc);
                         Integer idContenido, idDocente;
                         String nombreContenido, tipoContenido, fechaCreacionContenido;
                         Blob contenidoMultimedia;
@@ -121,7 +122,7 @@
                             tipoContenido = contenidos.get(i).getTipoContenido();
                             fechaCreacionContenido = contenidos.get(i).getFechaCreacionContenido();
                             contenidoMultimedia = contenidos.get(i).getContenidoMultimedia();
-                            idDocente = contenidos.get(i).getIdDocente();
+                            idDocente = idDoc;
                             
                             out.println("<tr>");
                             out.println("<td>"+nombreContenido+"</td>");
@@ -166,22 +167,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <span class="close">&times;</span>
-                    <h2>Nuevo Documento</h2>
+                    <h2>Nuevo Contenido</h2>
                 </div>
                 <div class="modal-body">
                     <form action="cargarContenido" enctype="multipart/form-data" method="POST">
-                        <!--<label for="">Nombre:</label>
-                        <input class="input" type="text" name="nombre">
-                        <label for="">Descripción:</label>
-                        <input class="input" type="text" name="descripcion">
-                        <label for="">Materia:</label>
-                        <select class="input" class="" name="materia">
-                            <option value="seleccione">Seleccione</option>
-                            <option value="espaniol">Español</option>
-                            <option value="matematicas">Matemáticas</option>
-                            <option value="historia">Historia</option>
-                            <option value="geografia">Geografía</option>
-                        </select> -->
+                        <input class="input" type="hidden" name="idDocente" value="<%=idDoc%>"> 
                         <label for="">Seleccione archivo:</label>
                         <input class="input" type="file" name="archivo">
                         <input class="modal-boton active-boton" type="submit" value="Agregar" name="agregar">
@@ -189,6 +179,7 @@
                         <div class="clear"></div>
                     </form>
                 </div>
+                <br>
             </div>
         </div>
         <footer>

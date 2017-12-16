@@ -40,9 +40,17 @@ public class crudBloques extends HttpServlet {
                 String nombre = request.getParameter("nombre");
                 String descripcion = request.getParameter("descripcion");
                 String unidad = request.getParameter("unidad");
-                unidad = unidad.substring((unidad.length()-1),unidad.length());
-                int uni = Integer.parseInt(unidad);
-                Bloque.guardarObjeto(1, idMateria,nombre,descripcion, uni);
+                if (!nombre.isEmpty() || !nombre.equals("")){
+                    if (!unidad.isEmpty() || !unidad.equals("")){
+                        unidad = unidad.substring((unidad.length()-1),unidad.length());
+                        try{
+                            int uni = Integer.parseInt(unidad);
+                            Bloque.guardarObjeto(1, idMateria,nombre,descripcion, uni);
+                        }catch(Exception e){
+                            response.sendRedirect("maestro-materias-bloques.jsp?variable="+idMateria);
+                        }
+                    }
+                }
             }
 
             else if (request.getParameter("editar") != null) {

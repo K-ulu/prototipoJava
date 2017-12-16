@@ -5,6 +5,7 @@
  */
 package servelets;
 
+import db.Util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -15,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelos.Alumno;
 import modelos.Documento;
 import modelos.TareaEntregada;
 import org.apache.commons.fileupload.FileItem;
@@ -51,8 +53,9 @@ public class cargarTarea extends HttpServlet {
             // Los items obtenidos serán cada uno de los campos del formulario,
             // tanto campos normales como ficheros subidos.
             List items = upload.parseRequest(request);
-            String id ="";
-            
+            String nombre="", tipo="";
+            InputStream archivo = null;
+            int tamano =0, idAlum=0, idTareaAsignada=0;
             // Se recorren todos los items, que son de tipo FileItem
             for (Object item : items) {
                 FileItem uploaded = (FileItem) item;
@@ -63,25 +66,31 @@ public class cargarTarea extends HttpServlet {
                     // No es campo de formulario, guardamos el fichero en algún sitio
                     //File fichero = new File("/tmp", uploaded.getName());
                     //uploaded.write(fichero);
-                    String nombre = uploaded.getName();
-                    String tipo = uploaded.getContentType();
-                    InputStream archivo = uploaded.getInputStream();
-                    int tamano = (int) uploaded.getSize();
-                    out.println(tipo.length());
+                    nombre = uploaded.getName();
+                    tipo = uploaded.getContentType();
+                    archivo = uploaded.getInputStream();
+                    tamano = (int) uploaded.getSize();
+                    //out.println(tipo.length());
                     
-                    //if(TareaEntregada.guardarObjeto(null, nombre, tipo, archivo, tamano, null)){
-                        //response.sendRedirect("maestro-mis-documentos.jsp");
-                    //} 
-                } else {
+                } 
+                else {
                     // es un campo de formulario, podemos obtener clave y valor
                     String key = uploaded.getFieldName();
                     String valor = uploaded.getString();
-                    out.println(key + " "+ valor);
-                    if(key.equals("idTarea")){
-                       id = valor;
+                    if (key.equals("idAlumno")){
+                        valor = valor.trim();
+                        idAlum= Integer.parseInt(valor);
+                    }
+                    if (key.equals("idTarea")){
+                        valor = valor.trim();
+                        idTareaAsignada = Integer.parseInt(valor);
                     }
                 }
-            }            
+            }  
+            if(TareaEntregada.guardarObjeto(idTareaAsignada, nombre, idAlum, 0, archivo, tamano, Util.getFecha())){
+                out.println("insertado");
+                //response.sendRedirect("maestro-mis-documentos.jsp");
+            }//redireccionamos a la pagina de maestro-mis-documentos
             //redireccionamos a la pagina de maestro-mis-documentos
             response.sendRedirect("alumno-dashboard.jsp");
         } catch (FileUploadException ex) {

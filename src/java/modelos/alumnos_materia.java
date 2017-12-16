@@ -52,7 +52,12 @@ public class alumnos_materia {
         this.idMateria = idMateria;
         this.idAlumno = idAlumno;
     }
-
+    
+    public alumnos_materia(Integer idAlumno, Integer idMateria) {
+       this.idAlumno = idAlumno;
+        this.idMateria = idMateria;
+    }
+    
     public alumnos_materia() {
         this.idAlumnosMateria = null;
         this.idMateria = null;
@@ -185,4 +190,44 @@ public class alumnos_materia {
         }
       return alumMateria;
     }
+    
+    //nos devuelve una lista con todos los objetos de la tabla
+    public static List<alumnos_materia> obtenerTodosIDG(Integer idGrupo) throws SQLException {
+        List<alumnos_materia> alumMateria = new ArrayList<>();
+        PreparedStatement pst = null;
+        ResultSet resultado;
+        String consulta;
+        try{
+            consulta = "SELECT alumnos.idAlumno, grupos_materia.idMateria from alumnos, grupos_materia where grupos_materia.idGrupo = alumnos.idGrupo and grupos_materia.idGrupo = ?";
+            pst = Conexion.getConexion().prepareStatement(consulta);
+            //asignamos valores
+            pst.setString(1, String.valueOf(idGrupo));
+            //ejecutamos la consulta y guardamos resultados
+            resultado = pst.executeQuery();
+            while(resultado.next()){
+                alumMateria.add(new alumnos_materia(resultado.getInt("idAlumno"), resultado.getInt("idMateria")));
+            }
+        }catch(SQLException ex){
+            throw new SQLException(ex);
+        }
+      return alumMateria;
+    }
+    
+    /*public static void main(String[] args){
+        
+        try {
+            List<alumnos_materia> cons = new ArrayList<>();
+            cons = alumnos_materia.obtenerTodosIDG(27);
+            
+            for (int i=0;i<cons.size();i++)
+            {
+                System.out.println(cons.get(i).getIdAlumno());
+                System.out.println(cons.get(i).getIdMateria());
+            }
+            
+            //System.out.println(cons);
+        } catch (SQLException ex) {
+            Logger.getLogger(GruposMateria.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }*/
 }

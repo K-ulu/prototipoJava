@@ -145,7 +145,7 @@
                         String grado="", idGrupMateria="";
                         
                     List<Materia> mat = new ArrayList<>();
-                    mat = Materia.obtenerTodos();  
+                    mat = Materia.obtenerTodosID(idDocente);  
 
                     for (int i=0;i<mat.size();i++)
                     {
@@ -240,7 +240,7 @@
                         String nombreG="";
 
                         List<Grupos> grup = new ArrayList<>();
-                        grup = Grupos.obtenerTodos();  
+                        grup = Grupos.obtenerTodosID(idDocente);  
 
                         for (int i=0;i<grup.size();i++)
                         {

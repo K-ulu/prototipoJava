@@ -105,12 +105,13 @@
                       <th>Nombre Archivo</th>
                       <th>Alumno</th>
                       <th>Calificacion</th>
+                      <th>Fecha Entregada</th>
                       <th colspan="3">Acciones</th>
                     </tr>
                     <tr>
                       <%
                         int id =0, idTareaA=0, idAlumno=0, calificacion=0;
-                        String nombreArchivo="", nombreCA ="";
+                        String nombreArchivo="", nombreCA ="", fecha="";
                         Blob documento;
                         //formateador
                         DecimalFormat formatter = new DecimalFormat("#.##");
@@ -125,6 +126,7 @@
                             idAlumno = tarea.get(i).getIdAlumno();
                             calificacion = tarea.get(i).getCalificacion();
                             documento = tarea.get(i).getTarea();
+                            fecha = tarea.get(i).getFechaEntrega();
                             
                             Alumno alum = Alumno.obtenerPorId(idAlumno);
                             nombreCA = alum.getNombreA() + " ";
@@ -132,7 +134,11 @@
                             out.println("<tr>");
                             out.println("<td>"+nombreArchivo+"</td>");
                             out.println("<td>"+ nombreCA +"</td>");
-                            out.println("<td>"+calificacion+"</td>");
+                            if (calificacion==0)
+                                out.println("<td></td>");
+                            else
+                                out.println("<td>"+calificacion+"</td>");
+                            out.println("<td>"+fecha+"</td>");
                             
                             out.println("<td><button class='boton' id='miBoton' name='editar' onClick='getTareas_entregadas(" +id+ ")'><i class='fa fa-pencil' aria-hidden='true'></i>Calificar </button></td>");
                             out.println("<form name=\"formulario"+i+"\" action=\"servletDondeIr\" method=\"Post\">");
