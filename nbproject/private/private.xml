@@ -3,14 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
+            <file>file:/C:/Users/Christopher%20Paredes/Documents/GitHub/prototipoJava/web/maestro-Alumnos.jsp</file>
+            <file>file:/C:/Users/Christopher%20Paredes/Documents/GitHub/prototipoJava/web/soporte.jsp</file>
             <file>file:/C:/Users/Christopher%20Paredes/Documents/GitHub/prototipoJava/web/maestro-Grupos.jsp</file>
-            <file>file:/C:/Users/Christopher%20Paredes/Documents/GitHub/prototipoJava/src/java/modelos/Docente.java</file>
-=======
-            <file>file:/C:/Users/Norma/Documents/NetBeansProjects/prototipoJava/src/java/servelets/crudTareas_asignadas.java</file>
-            <file>file:/C:/Users/Norma/Documents/NetBeansProjects/prototipoJava/web/tareas_asignadas.jsp</file>
-            <file>file:/C:/Users/Norma/Documents/NetBeansProjects/prototipoJava/src/java/modelos/TareaAsignada.java</file>
->>>>>>> development
+            <file>file:/C:/Users/Christopher%20Paredes/Documents/GitHub/prototipoJava/src/java/servelets/crudMaterias.java</file>
+            <file>file:/C:/Users/Christopher%20Paredes/Documents/GitHub/prototipoJava/web/maestro-materias.jsp</file>
+            <file>file:/C:/Users/Christopher%20Paredes/Documents/GitHub/prototipoJava/web/maestro-materias-bloques.jsp</file>
         </group>
     </open-files>
 </project-private>
