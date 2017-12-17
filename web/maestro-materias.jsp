@@ -115,6 +115,7 @@
     </ul>
   </nav>
  <hr class="style13">
+ <div class="pattern">
   <!--Empieza a escrbir aquí -->
     <div class="container">
         <h2 class="titulo">Mis Materias</h2>
@@ -179,7 +180,7 @@
                 %>
             </table>
         </div>
-    </div>
+
   <!-- The Modal aparece cuando se selecciona editar-->
     <div id="edit" class="modal">
         <div class="modal-content">
@@ -211,6 +212,8 @@
             </div>
         </div>
     </div> 
+      </div>
+ </div>
     <footer>
     <div class="foot">
       <nav class="nav-extras nav-extras-fondo">

@@ -23,7 +23,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Maestro Dashboard</title>
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/alumno-materia-bloques.css">
+<!--    <link rel="stylesheet" href="css/alumno-materia-bloques.css">-->
+<link rel="stylesheet" href="css/alumnoDashboard.css">
     <!-- <link rel="stylesheet" href="css/nav.css"> -->
     <!-- <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet" -->
     <link rel="stylesheet" href="css/nav-christ.css">
@@ -79,6 +80,7 @@
             </div>
         </div>
         <hr class="style13">
+        <div class="pattern">
         <nav class="nav-extras">
             <ul>
                 <li><a href="alumno-dashboard.jsp">Dashboard</a></li>
@@ -87,6 +89,7 @@
             </ul>
         </nav>
         <hr class="style13">
+        <div class="container">
     <div class="bloques">
         <center><h1 class=""><%=nombreMateria%></h1></center>
         <%
@@ -114,9 +117,12 @@
                 }      
             %>
     </div>
+        </div>
+    </div>
     <footer>
         <div class="foot">
             <nav class="nav-extras nav-extras-fondo">
+                <div class="footer">
                 <ul>
                     <li class="active"><a href="">¿Quienes Somos?</a></li>
                     <li><a href="">Kulu for bussines</a></li>
@@ -124,6 +130,7 @@
                     <li><a href="">Contactos</a></li>
                     <li><a href="">Soporte</a></li>
                 </ul>
+                </div>
             </nav>
         </div>
     </footer>

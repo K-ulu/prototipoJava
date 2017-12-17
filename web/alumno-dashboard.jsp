@@ -65,6 +65,7 @@
             </div>
         </div>
         <hr class="style13">
+        <div class="pattern">
         <nav class="nav-extras">
             <ul>
                 <li><a href="alumno-dashboard.jsp">Dashboard</a></li>
@@ -73,6 +74,7 @@
             </ul>
         </nav>
         <hr class="style13">
+        <div class="container">
         <div class="alumno">
             <img src="img/slider-alumno.png" alt="slider-alumno">
         </div>
@@ -95,15 +97,19 @@
                 }      
             %>
         </div>
+        </div>
+        </div>
         <footer>
             <div class="foot">
                 <nav class="nav-extras nav-extras-fondo">
+                    <div class="footer">
                     <ul>
                         <li class="active"><a href="quienes_somos.jsp">¿Quiénes somos? </a></li>
                         <li><a href="kulu_business.jsp">K'ulu' for business</a></li>
                         <li><a href="contacto.jsp">Contacto</a></li>
                         <li><a href="soporte.jsp">Soporte</a></li>
                     </ul>
+                    </div>
                 </nav>
             </div>
         </footer>
