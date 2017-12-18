@@ -53,14 +53,37 @@
             <!--Parte para el slider-->
             <div class="slideshow">
                 <ul class="slider">
-                    <li>
+                    <li><a href="soporte.jsp">
                         <img src="img/soporte.jpg" alt="">
                         <section class="caption">
                             <h1>Soporte</h1>
                             <p>¿Cómo te podemos ayudar?</p>
                         </section>
-                    </li>
+                    </a></li>
                     
+                    <li><a href="quienes_somos.jsp">
+                        <img src="img/itch_front.jpg" alt="">
+                        <section class="caption">
+                            <h1>¿Quiénes somos?</h1>
+                            <p>Acerca de nosotros...</p>
+                        </section>
+                    </a></li>
+                    
+                    <li><a href="kulu_business.jsp">
+                        <img src="img/kulu_business.jpg" alt="">
+                        <section class="caption">
+                            <h1>K'ulu' for business</h1>
+                            <p>Incrementa tu productividad...</p>
+                        </section>
+                    </a></li>
+                    
+                    <li><a href="contacto.jsp">
+                        <img src="img/contacto.jpg" alt="">
+                        <section class="caption">
+                            <h1>Contacto</h1>
+                            <p>¡Acércate a nosotros!</p>
+                        </section>
+                    </a></li>
                     
                 </ul>
                 <ol class="pagination">
@@ -73,9 +96,9 @@
                 </div>
             </div>
         </div>
-        <div id="contenido">
+        <div id="contenido2">
             <div class="temas">
-                <div class="">
+                <div class="estilo">
                     
                     <h2>¿Necesitas ayuda?</h2>
                    <br><p>Visita nuestro <a href='#'>centro de ayuda</a> para consultar tutoriales o <a href='#'>preguntas frecuentes</a>

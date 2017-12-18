@@ -53,14 +53,37 @@
             <!--Parte para el slider-->
             <div class="slideshow">
                 <ul class="slider">
-                    <li>
+                    <li><a href="quienes_somos.jsp">
                         <img src="img/itch_front.jpg" alt="">
                         <section class="caption">
                             <h1>¿Quiénes somos?</h1>
                             <p>Acerca de nosotros...</p>
                         </section>
-                    </li>
+                    </a></li>
                     
+                    <li><a href="kulu_business.jsp">
+                        <img src="img/kulu_business.jpg" alt="">
+                        <section class="caption">
+                            <h1>K'ulu' for business</h1>
+                            <p>Incrementa tu productividad...</p>
+                        </section>
+                    </a></li>
+                    
+                    <li><a href="contacto.jsp">
+                        <img src="img/contacto.jpg" alt="">
+                        <section class="caption">
+                            <h1>Contacto</h1>
+                            <p>¡Acércate a nosotros!</p>
+                        </section>
+                    </a></li>
+                    
+                    <li><a href="soporte.jsp">
+                        <img src="img/soporte.jpg" alt="">
+                        <section class="caption">
+                            <h1>Soporte</h1>
+                            <p>¿Cómo te podemos ayudar?</p>
+                        </section>
+                    </a></li>
                     
                 </ul>
                 <ol class="pagination">
@@ -75,7 +98,7 @@
         </div>
         <div id="contenido2">
             <div class="temas">
-                <div class="">                    
+                <div class="estilo">                    
                     <h2>K'ulu' - Plataforma educativa</h2>
                     <br><p>El proyecto K’ulu’ nace en el Instituto Tecnológico de Chetumal en el año 2016, siendo sus miembros fundadores Norma Javier, Christopher Paredes y Gerardo Vázquez. El nombre del proyecto es tomado del idioma Maya y significa “mapache”; la idea detrás de esta decisión es la representación de la cultura de la región y al mismo tiempo honramos al Instituto que es nuestra casa.
                         <br><br>Deseamos ser una herramienta que integre las tecnologías actuales en favor de la educación, para así poder proveer a los estudiantes una nueva forma de complementar su aprendizaje; y así mismo promover la colaboración dentro y fuera del aula.
