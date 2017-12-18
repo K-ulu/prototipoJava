@@ -15,7 +15,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Maestro Dashboard</title>
+    <title>K'ulu' - Alumno Tareas</title>
     <link rel="stylesheet" href="css/font-awesome.min.css">
 <!--    <link rel="stylesheet" href="css/alumno-materia-bloques-tarea.css">-->
 <link rel="stylesheet" href="css/alumnoDashboard.css">
@@ -96,8 +96,8 @@
                 out.println("<form action=\"cargarTarea\" enctype=\"multipart/form-data\" method=\"POST\">");
                 out.println("<input class=\"input\" type=\"hidden\" name=\"idAlumno\" value=\"" +alumno+ "\">");
                 out.println("<input type=\"text\" name=\"idTarea\" value=\""+ idTareaAsignada+ "\" style=\"display:none\">");                                 
-                out.println("<label for=\"\">Seleccione archivo:</label><br>");
-                out.println("<input class=\"boton\" type=\"file\" name=\"archivo\">");
+                out.println("<label for=\"archivo\" id=\"bArch\">Seleccione archivo</label>");
+                out.println("<input class=\"inputfile\"  type=\"file\" name=\"archivo\" id=\"archivo\">");
                 out.println("<input class=\"boton\" type=\"submit\" value=\"Agregar\" name=\"agregar\">");
                 out.println("<div class=\"clear\"></div>");
                 out.println("</form>");
@@ -122,6 +122,7 @@
             </nav>
         </div>
     </footer>
+    <script src="js/file_select.js"></script>
 </body>
 
 </html>
