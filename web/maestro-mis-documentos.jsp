@@ -32,15 +32,15 @@
         <!-- Empieza codigo para la barra de navegacion -->
         <div class="navbar">
             <div class="nav-logo">
-                <a href="index.html"><img src="img/kulu_logo_160.png"></a>
+                <a href="index.jsp"><img src="img/kulu_logo_160.png"></a>
             </div>
             <div class="nav-menu">
                 <li class="dropDown"><a href="javascript:void(0)" class="dropButton"><i class="fa fa-bars"></i> Menu</a>
                     <div class="dropDown-content">
-                        <a href="#" Noticias</a>
-                        <a href="#">Recursos Pedagógicos</a>
-                        <a href="#">null</a>
-                        <a href="#">null</a>
+                        <a href="quienes_somos.jsp">¿Quiénes somos?</a>
+                        <a href="kulu_business.jsp">K'ulu' for business</a>
+                        <a href="contacto.jsp">Contacto</a>
+                        <a href="soporte.jsp">Soporte</a>
                     </div>
                 </li>
             </div>
