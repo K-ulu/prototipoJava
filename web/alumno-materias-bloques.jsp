@@ -144,20 +144,19 @@
         </div>
     </div>
     <footer>
-        <div class="foot">
-            <nav class="nav-extras nav-extras-fondo">
-                <div class="footer">
-                <ul>
-                    <li class="active"><a href="">¿Quienes Somos?</a></li>
-                    <li><a href="">Kulu for bussines</a></li>
-                    <li><a href="">Afiliados</a></li>
-                    <li><a href="">Contactos</a></li>
-                    <li><a href="">Soporte</a></li>
-                </ul>
-                </div>
-            </nav>
-        </div>
-    </footer>
+            <div class="foot">
+                <nav class="nav-extras nav-extras-fondo">
+                    <div class="footer">
+                    <ul>
+                        <li class="active"><a href="quienes_somos.jsp">¿Quiénes somos? </a></li>
+                        <li><a href="kulu_business.jsp">K'ulu' for business</a></li>
+                        <li><a href="contacto.jsp">Contacto</a></li>
+                        <li><a href="soporte.jsp">Soporte</a></li>
+                    </ul>
+                    </div>
+                </nav>
+            </div>
+        </footer>
 </body>
 
 </html>
