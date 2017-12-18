@@ -124,8 +124,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> parent of 4d970e3... Merge branch 'chris2' into development
+=======
+>>>>>>> parent of 1bbc111... update
         <div class="foot">
             <nav class="nav-extras nav-extras-fondo">
                 <div class="footer">
@@ -140,6 +143,7 @@
             </nav>
         </div>
     </footer>
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -168,6 +172,8 @@
 >>>>>>> parent of 81d088d... Merge branch 'christopher' into development
 =======
 >>>>>>> parent of 4d970e3... Merge branch 'chris2' into development
+=======
+>>>>>>> parent of 1bbc111... update
 </body>
 
 </html>
