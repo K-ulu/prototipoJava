@@ -118,7 +118,7 @@ div.container {
   z-index: -1;
   overflow: auto;
   margin: 0 auto;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   padding: 10px;
   width: 90%;
 }
@@ -170,7 +170,7 @@ label{
   font-size: 15px;
   padding: 10px;
   margin: 5px;
-    position: absolute;
+    position: fixed;
     z-index: 2;
 }
 
@@ -189,6 +189,5 @@ label{
   /*overflow: hidden;
   position: absolute;*/
   z-index: -1;
-  margin-left: 60px;
-  margin-top: 10px;
+  margin-left: 70px;
 }

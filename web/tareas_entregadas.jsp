@@ -23,7 +23,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Maestro Tareas</title>
+    <title>K'ulu' - Maestro Tareas Entregadas</title>
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <!--Css para la pagina (El cuerpo y footer)-->
     <link rel="stylesheet" href="css/maestro-mis-documentos.css">
@@ -164,17 +164,16 @@
             <a href="#">&raquo;</a>
         </div>
     </div>
+  </div>
     <footer>
     <div class="foot">
       <nav class="nav-extras nav-extras-fondo">
-          <div class="footer">
         <ul>
           <li class="active"><a href="quienes_somos.jsp">¿Quiénes somos? </a></li>
           <li><a href="kulu_business.jsp">K'ulu' for business</a></li>
           <li><a href="contacto.jsp">Contacto</a></li>
           <li><a href="soporte.jsp">Soporte</a></li>
         </ul>
-              </div>
       </nav>
     </div>
   </footer>

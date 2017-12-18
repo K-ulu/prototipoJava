@@ -21,7 +21,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Maestro Dashboard</title>
+        <title>K'ulu' - Maestro Mis documentos</title>
         <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="css/maestro-mis-documentos.css">
         <link rel="stylesheet" href="css/nav-christ.css">
@@ -144,7 +144,7 @@
                     %>                
                 </table>
             </div>
-            <!--<div class="pagination">
+            <div class="pagination">
                 <a href="#">&laquo;</a>
                 <a href="#">1</a>
                 <a class="active" href="#">2</a>
@@ -153,7 +153,7 @@
                 <a href="#">5</a>
                 <a href="#">6</a>
                 <a href="#">&raquo;</a>
-            </div>-->
+            </div>
         </div>
         <!-- Trigger/Open The Modal -->
         <!--<button id="myBtn">Open Modal</button>-->

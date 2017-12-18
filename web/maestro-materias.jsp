@@ -104,6 +104,7 @@
         </div>                
     </div>
   <hr class="style13">
+  <div class="pattern">
   <nav class="nav-extras">
     <ul>
       <li><a href="maestro-Grupos.jsp">Mis grupos</a></li>
@@ -115,7 +116,6 @@
     </ul>
   </nav>
  <hr class="style13">
- <div class="pattern">
   <!--Empieza a escrbir aquí -->
     <div class="container">
         <h2 class="titulo">Mis Materias</h2>
@@ -180,6 +180,16 @@
                 %>
             </table>
         </div>
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#">1</a>
+                <a class="active" href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">&raquo;</a>
+            </div>
 
   <!-- The Modal aparece cuando se selecciona editar-->
     <div id="edit" class="modal">
