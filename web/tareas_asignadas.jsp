@@ -28,6 +28,9 @@
     <!--CSS para el header-->
     <link rel="stylesheet" href="css/nav-christ.css">
     <script language="javascript" src="js/jquery-1.2.6.min.js"></script>
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-web.min.js"></script>
 </head>
 
 <body>
@@ -117,25 +120,7 @@
                         <input class="input" type="text" name="docenteID" value=" <%= idSesionD %> " style="display:none"/>
                         
                         <label>Fecha de entrega</label>
-                        <div class="input">
-                            <input class="input2" type="text" name="anio" placeholder="año" size="5"/>                        
-                            <select name="mes" class="input2">
-                                <option value="01">Enero</option>
-                                <option value="02">Febrero</option>
-                                <option value="03">Marzo</option>
-                                <option value="04">Abril</option>
-                                <option value="05">Mayo</option>
-                                <option value="06">Junio</option>
-                                <option value="07">Julio</option>
-                                <option value="08">Agosto</option>
-                                <option value="09">Septiembre</option>
-                                <option value="10">Octubre</option>
-                                <option value="11">Noviembre</option>
-                                <option value="12">Diciembre</option>                        
-                            </select>
-
-                            <input class="input2" type="text" name="dia" placeholder="dia" size="5"/>                        
-                        </div>
+                        <input class="campo" type="text" name="fecha" id="fecha" readonly="readonly" placeholder="Fecha Entrega">
                         
                         <input class="modal-boton active-boton" type="submit" value="Agregar" name="agregar"/>
                         <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
@@ -275,7 +260,8 @@
                         <input class="input" type="text" name="docenteID" value="" id="docentID" style="display:none"/>
                         
                         <label>Fecha de entrega</label>
-                        <input class="input" id='fecha' name="fechaE" value= ''/>
+                        <!--<input class="input" id='fecha' name="fechaE" value= ''/>-->
+                        <input class="input" type="text" name="fechaE" id="fechaE"  placeholder="Fecha Entrega">
                         
                         <input class="modal-boton active-boton" type="submit" value="Editar" name="editar"/>
                         <input class="modal-boton" type="submit" value="Cancelar" name="cancelar">
@@ -298,8 +284,47 @@
       </nav>
     </div>
   </footer>
-        <script src="js/modal.js"></script>
-        <script src="js/funciones.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/funciones.js"></script>
+    <script>        
+        jQuery(function($){
+            $.datepicker.regional['es'] = {
+                    closeText: 'Cerrar',
+                    prevText: '&#x3c;Ant',
+                    nextText: 'Sig&#x3e;',
+                    currentText: 'Hoy',
+                    monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+                    'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+                    monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',
+                    'Jul','Ago','Sep','Oct','Nov','Dic'],
+                    dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
+                    dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
+                    dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
+                    weekHeader: 'Sm',
+                    dateFormat: 'yy-mm-dd',
+                    firstDay: 1,
+                    isRTL: false,
+                    showMonthAfterYear: false,
+                    yearSuffix: '',
+                    yearRange: "1950:2017"
+                };
+            $.datepicker.setDefaults($.datepicker.regional['es']);
+        });
+        $(document).ready(function() {
+            $("#fecha").datepicker({
+                changeMonth:true,
+                changeYear:true
+            });
+         });
+         $(document).ready(function() {
+            $("#fechaE").datepicker({
+                changeMonth:true,
+                changeYear:true
+            });
+         });
+
+
+    </script>
 </body>
 
 </html>

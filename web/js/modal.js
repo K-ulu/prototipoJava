@@ -244,6 +244,6 @@
       var idSD = document.getElementById("docentID");
       idSD.value = idSesionD;
       
-      var fechita = document.getElementById("fecha");
+      var fechita = document.getElementById("fechaE");
       fechita.value = fech;
 }

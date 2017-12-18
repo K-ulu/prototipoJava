@@ -42,11 +42,8 @@ public class crudTareas_asignadas extends HttpServlet {
                 String docenteID = request.getParameter("docenteID");
                 docenteID = docenteID.trim();
                 int doc = Integer.parseInt(docenteID); 
-                int idBloq =Integer.parseInt(request.getParameter("bloque"));
-                String anio= request.getParameter("anio");
-                String mes= request.getParameter("mes");
-                String dia= request.getParameter("dia");
-                String fechaEntrega= anio + "-" + mes + "-"+dia;
+                int idBloq =Integer.parseInt(request.getParameter("bloque"));                
+                String fechaEntrega= request.getParameter("fecha");
                 TareaAsignada.guardarObjeto(nombre, descripcion, idBloq, doc, materia,fechaEntrega);
             }
 
