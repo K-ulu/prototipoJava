@@ -72,6 +72,7 @@
         </div>
     </div>
     <hr class="style13">
+    <div class="pattern">
     <nav class="nav-extras">
         <ul>
             <li><a href="maestro-Grupos.jsp">Mis grupos</a></li>
@@ -232,7 +233,8 @@
                 </div>
             </div>
         </div>
-    </div>   
+    </div>  
+    </div>
     <footer>
         <div class="foot">
             <nav class="nav-extras nav-extras-fondo">
