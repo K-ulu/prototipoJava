@@ -83,6 +83,7 @@
     </div>
 
   <hr class="style13">
+  <div class="pattern">
   <nav class="nav-extras">
     <ul>
       <li><a href="maestro-Grupos.jsp">Mis grupos</a></li>
@@ -166,12 +167,14 @@
     <footer>
     <div class="foot">
       <nav class="nav-extras nav-extras-fondo">
+          <div class="footer">
         <ul>
-          <li class="active"><a href="">¿Quienes Somos?</a></li>
-          <li><a href="">Kulu for bussines</a></li>
-          <li><a href="">Contacto</a></li>
-          <li><a href="">Soporte</a></li>
+          <li class="active"><a href="quienes_somos.jsp">¿Quiénes somos? </a></li>
+          <li><a href="kulu_business.jsp">K'ulu' for business</a></li>
+          <li><a href="contacto.jsp">Contacto</a></li>
+          <li><a href="soporte.jsp">Soporte</a></li>
         </ul>
+              </div>
       </nav>
     </div>
   </footer>

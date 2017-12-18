@@ -100,7 +100,7 @@
                 out.println("<input class=\"input\" type=\"hidden\" name=\"idAlumno\" value=\"" +alumno+ "\">");
                 out.println("<input type=\"text\" name=\"idTarea\" value=\""+ idTareaAsignada+ "\" style=\"display:none\">");                                 
                 out.println("<label for=\"archivo\" id=\"bArch\">Seleccione archivo</label>");
-                out.println("<input class=\"inputfile\"  type=\"file\" name=\"archivo\" id=\"archivo\">");
+                out.println("<input class=\"inputfile\"  type=\"file\" name=\"archivo\" id=\"archivo\"><br><br><br>");
                 out.println("<input class=\"boton\" type=\"submit\" value=\"Agregar\" name=\"agregar\">");
                 out.println("<div class=\"clear\"></div>");
                 out.println("</form>");

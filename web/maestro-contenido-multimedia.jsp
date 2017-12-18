@@ -149,7 +149,7 @@
                     %>                
                 </table>
             </div>
-            <div class="pagination">
+            <!--<div class="pagination">
                 <a href="#">&laquo;</a>
                 <a href="#">1</a>
                 <a class="active" href="#">2</a>
@@ -158,8 +158,8 @@
                 <a href="#">5</a>
                 <a href="#">6</a>
                 <a href="#">&raquo;</a>
-            </div>
-        </div>
+            </div>-->
+        
         <!-- Trigger/Open The Modal -->
         <!--<button id="myBtn">Open Modal</button>-->
         <!-- The Modal -->
@@ -184,20 +184,21 @@
             </div>
         </div>
         </div>
+                        </div>
         <footer>
-            <div class="foot">
-                <nav class="nav-extras nav-extras-fondo">
-                    <div class="footer">
-                        <ul>
-                            <li class="active"><a href="">¿Quienes Somos?</a></li>
-                            <li><a href="">Kulu for bussines</a></li>
-                            <li><a href="">Contacto</a></li>
-                            <li><a href="">Soporte</a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </footer>
+    <div class="foot">
+      <nav class="nav-extras nav-extras-fondo">
+          <div class="footer">
+        <ul>
+          <li class="active"><a href="quienes_somos.jsp">¿Quiénes somos? </a></li>
+          <li><a href="kulu_business.jsp">K'ulu' for business</a></li>
+          <li><a href="contacto.jsp">Contacto</a></li>
+          <li><a href="soporte.jsp">Soporte</a></li>
+        </ul>
+              </div>
+      </nav>
+    </div>
+  </footer>
         <script src="js/modal.js"></script>
         <script src="js/funciones.js"></script>
     </body>
