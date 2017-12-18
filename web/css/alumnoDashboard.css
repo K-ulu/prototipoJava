@@ -171,6 +171,7 @@ label{
   padding: 10px;
   margin: 5px;
     position: fixed;
+    z-index: 2;
 }
 
 .boton {
@@ -184,7 +185,7 @@ label{
 .inputfile {
   /*width: 0.1px;
   height: 0.1px;*/
-  opacity: .1;
+  opacity: 1;
   /*overflow: hidden;
   position: absolute;*/
   z-index: -1;
