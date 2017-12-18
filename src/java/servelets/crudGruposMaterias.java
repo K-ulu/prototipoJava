@@ -39,38 +39,59 @@ public class crudGruposMaterias extends HttpServlet {
             String idGrupo[] = null;
             Integer idMateria=0;
             if (request.getParameter("agregar") != null) {
-                boolean ver = true;
+                boolean ver = true, verGrupos=true;
+                int idG =0;
                 idMateria = Integer.parseInt(request.getParameter("variable2"));
                 idGrupo = request.getParameterValues("datos");
-                for(int i=0; i < idGrupo.length; i++){
-                    GruposMateria.guardarObjeto(1, idGrupo[i], idMateria);
+                
+                List<GruposMateria> grupos = new ArrayList<>(); //Aqui obtenemos todos los grupos disponibles
+                grupos= GruposMateria.obtenerTodos();//Aqui mandamos a llamar la funcion
+                
+                for(int i=0; i < idGrupo.length; i++){//Este recorre el arreglo de mis opciones
+                    idG = Integer.parseInt(idGrupo[i]);
+                    verGrupos = true;
+                    for (int g=0; g<grupos.size(); g++){//Este recorre todo el arreglo para ver si el grupo ya fue asociado con la materia
+                        if (idG == grupos.get(g).getidGrupo()&& idMateria == grupos.get(g).getidMateria()){
+                                out.println("\nRepite datos\n");
+                                verGrupos = false;//Si ya fue asociado 
+                        }  
+                    }
+                    if (verGrupos == true){
+                        GruposMateria.guardarObjeto(1, idGrupo[i], idMateria);
                     
-                    List<alumnos_materia> cons = new ArrayList<>();
-                    List<alumnos_materia> cons2 = new ArrayList<>();//Esto se usa para controlar repetidos
-                    
-                    int idG = Integer.parseInt(idGrupo[i]);
-                    cons = alumnos_materia.obtenerTodosIDG(idG);
-                    cons2 = alumnos_materia.obtenerTodos();
-                    
-                    for (int j=0;j<cons.size();j++){
-                        int idAlum = cons.get(j).getIdAlumno();
-                        int idMat = cons.get(j).getIdMateria();
-                        ver = true;
-                        for (int k=0; k<cons2.size(); k++){
-                            if (idAlum == cons2.get(k).getIdAlumno() && idMat == cons2.get(k).getIdMateria()){
-                                ver = false;
-                            }                           
-                        }
-                        if (ver == true){
-                            alumnos_materia.guardarObjeto(j, idAlum, idMat);
+                        List<alumnos_materia> cons = new ArrayList<>();
+                        List<alumnos_materia> cons2 = new ArrayList<>();//Esto se usa para controlar repetidos
+
+                        out.println("idGrupo"+idG);
+                        cons = alumnos_materia.obtenerTodosIDG(idG);
+
+                        cons2 = alumnos_materia.obtenerTodos();
+
+                        for (int j=0;j<cons.size();j++){
+                            int idAlum = cons.get(j).getIdAlumno();
+                            int idMat = cons.get(j).getIdMateria();
+                            //out.println("idAlumno"+idAlum);
+                            //out.println("idMateria"+idMat);
                             ver = true;
+                            for (int k=0; k<cons2.size(); k++){
+                                out.println("\n"+cons2.get(k).getIdAlumno()+": "+ idAlum +"\n");
+                                out.println("\n"+cons2.get(k).getIdMateria()+": "+ idMat +"\n");
+                                                            out.println("**************************\n");
+                                if (idAlum == cons2.get(k).getIdAlumno() && idMat == cons2.get(k).getIdMateria()){
+                                    out.println("\nRepite datos\n");
+                                    ver = false;
+                                }                           
+                            }
+                            if (ver == true)
+                                alumnos_materia.guardarObjeto(j, idAlum, idMat);
+
                         }
                     }
-                } 
+                }
                 
             } 
             else if(request.getParameter("deshacer") != null) {
-                idMateria = Integer.parseInt(request.getParameter("variable3"));               
+                idMateria = Integer.parseInt(request.getParameter("variable3")); //Obtengo el id del grupo              
                 GruposMateria.eliminarObjeto(idMateria);
                 List<alumnos_materia> cons = new ArrayList<>();
                 cons = alumnos_materia.obtenerTodosIDG(idMateria);
@@ -79,7 +100,7 @@ public class crudGruposMaterias extends HttpServlet {
                     alumnos_materia.eliminarObjeto(id);
                 }
             }
-            response.sendRedirect("maestro-materias.jsp");
+            //response.sendRedirect("maestro-materias.jsp");
         }
         catch (Exception e){
             out.println("Error "+ e.getCause()+ e.getMessage());

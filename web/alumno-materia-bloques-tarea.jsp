@@ -4,6 +4,8 @@
     Author     : Norma
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page import="modelos.TareaAsignada"%>
 <%@page import="modelos.Alumno"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -68,7 +70,7 @@
                         descripcion = tarea.getDescripcionT();
                         fechaEntrega = tarea.getFechaEntrega();
                     }catch (Exception e){
-                        idMateria = 0;
+                        idMateria = -1;
                     }
                     %>                        
                     </a></li>
@@ -81,6 +83,7 @@
                 <li><a href="alumno-dashboard.jsp">Dashboard</a></li>
                 <li><a href="alumno-materias-bloques.jsp?variable=<%=idMateria%>">Bloques</a></li>
                 <li><a href="alumno-materia-bloques-tarea.jsp?variable=<%=idTareaAsignada%>">Tarea</a></li>
+                <li><a href="alumnos-contenido-multimedia.jsp">Contenido Multimedia</a></li>
             </ul>
         </nav>
         <hr class="style13">
@@ -99,6 +102,17 @@
                 out.println("<div class=\"clear\"></div>");
                 out.println("</form>");
                 out.println("<a href=\"alumno-materias-bloques.jsp?variable="+idMateria+"\"><button class=\"boton\">Volver</button></a>");
+            }
+            else{
+                List<TareaAsignada> tarAsignada = new ArrayList<>();
+                tarAsignada = TareaAsignada.obtenerTodos(); 
+                for (int j=0;j<tarAsignada.size();j++) {
+                    out.println("<div class=\"bloque\">");
+                        int idTarea = tarAsignada.get(j).getIdTareaAsignada();
+                        out.println("<a href=\"alumno-materia-bloques-tarea.jsp?variable="+idTarea+"\">"+tarAsignada.get(j).getNombreTarea()+ "</a>");
+                        out.println("Descripcion: "+ tarAsignada.get(j).getDescripcionT());
+                    out.println("</div>");       
+                }
             }
         %>
     </div>

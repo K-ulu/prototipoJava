@@ -167,7 +167,7 @@ public class alumnos_materia {
             //ejecutamos la consulta y guardamos resultados
             resultado = pst.executeQuery();
             while(resultado.next()){
-                alumMateria = new alumnos_materia(resultado.getInt("idAlumnosMateria"), resultado.getInt("AlumnosidAlumno"), resultado.getInt("MateriaidMateria"));
+                alumMateria = new alumnos_materia(resultado.getInt("MateriaidMateria"), resultado.getInt("AlumnosidAlumno"), resultado.getInt("idAlumnosMateria"));
              }
             
         } catch (SQLException ex) {
@@ -183,7 +183,7 @@ public class alumnos_materia {
             PreparedStatement consulta = Conexion.getConexion().prepareStatement("select * from alumnos_materia");
             ResultSet resultado = consulta.executeQuery();
             while(resultado.next()){
-                alumMateria.add(new alumnos_materia(resultado.getInt("idAlumnosMateria"), resultado.getInt("AlumnosidAlumno"), resultado.getInt("MateriaidMateria")));
+                alumMateria.add(new alumnos_materia(resultado.getInt("MateriaidMateria"), resultado.getInt("AlumnosidAlumno"), resultado.getInt("idAlumnosMateria")));
             }
         }catch(SQLException ex){
             throw new SQLException(ex);
