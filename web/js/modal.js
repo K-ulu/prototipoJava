@@ -53,12 +53,12 @@
         var inp = document.getElementById("var2");
         inp.value = id;
     }
-    
+       
     function quitar(idGM){        
         desasociar.style.display = "block";
         var padre = document.getElementById("formulario");
         var tabla = document.getElementById("miTabla"); //Recuperamos la tabla
-        var btn = document.getElementById("btn"); //Recuperamos la tabla
+        var btn = document.getElementById("btn"); //Recuperamos el boton
         var var1 = document.getElementById("var3");    
         
         padre.removeChild(tabla);//Si existe una tabla se elimina
@@ -69,7 +69,7 @@
                 
         if(idGM.length>0){
            var1.disabled = false;
-           /*Esta seccion es para el encabezado*/
+           //Esta seccion es para el encabezado
             var fila = document.createElement("tr");
             var valor = ("ID GRUPO");//Introducimos valor que es igual a la fila y columna
             var columna = document.createElement("th");//creamos la columna
@@ -83,7 +83,7 @@
             columna.appendChild(texto);//agregamos el texto a la columna
             fila.appendChild(columna);//agregamos la columna a la fila
             tablaReemplazo.appendChild(fila);//agregamos la fila a la tabla de reemplazo
-            /*Termina el encabezado y comenzamos aguardar valores*/
+            //Termina el encabezado y comenzamos aguardar valores
            var dato ="";
             var i=0;
             while (i < idGM.length){

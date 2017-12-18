@@ -273,12 +273,11 @@
             <div class="modal-body">
                 <div class="modal-body2">
                     <br>
-                    <form action="crudGruposMaterias" method='post' name="f1" id="formulario">
+                    <form action="crudGruposMaterias" method='post' name="f2" id="formulario">
                         <table id="miTabla" border="1">
                         </table>
-                        
                         <label>Introduzca el id del grupo que desee eliminar</label>
-                        <input class="input" id='var3' name='variable3' value= '' type="text">  
+                        <input class="input" id='var3' name="variable3" value = ""/>
                         <br>
                         <input class="modal-boton active-boton" type="submit" value="Quitar Grupo" name="deshacer" id="btn"/>
                         <input class="modal-boton" type= "submit" value="Cancelar" name="cancelar"/>
