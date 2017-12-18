@@ -79,13 +79,13 @@
                     
                     <h2>¿Necesitas ayuda?</h2>
                    <br><p>Visita nuestro <a href='#'>centro de ayuda</a> para consultar tutoriales o <a href='#'>preguntas frecuentes</a>
-<br><br><h2>Temas populares:</h2>
-<br><ul>
+                    <br><br><h2>Temas populares:</h2>
+                    <br><ul>
     
-        <li><a href='#'>Dispositivos recomendados</a></li>
-        <li> <a href='#'>Configuracion de cuenta</a></li>
-         <li><a href='#'>Descarga de videos</a></li>
-         <li><a href='#'>Puntuaciones</a></li>
+                    <li><a href='#'>Dispositivos recomendados</a></li>
+                    <li> <a href='#'>Configuracion de cuenta</a></li>
+                     <li><a href='#'>Descarga de videos</a></li>
+                     <li><a href='#'>Puntuaciones</a></li>
     
 </ul>
 </p>

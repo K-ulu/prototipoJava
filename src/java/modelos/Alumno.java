@@ -453,4 +453,30 @@ public class Alumno {
         }
         return alumno;
     }
+    
+    public static List<Alumno> obtenerPorIdGrupo (int idGrupo){
+        //variables a usar
+        PreparedStatement pst = null;
+        ResultSet resultado;
+        String consulta;
+        List<Alumno> alumno = new ArrayList<>();    
+        
+        try {   
+            //verificamos si ya existe el registro (en caso que exista lo actualizamos, de lo contrario insertamos)
+            //preparacion de la consulta
+            consulta = "select * from alumnos where idGrupo = ? ";
+            pst = Conexion.getConexion().prepareStatement(consulta);
+            //asignamos valores
+            pst.setInt(1, idGrupo);
+            //ejecutamos la consulta y guardamos resultados
+            resultado = pst.executeQuery();
+            while(resultado.next()){
+                alumno.add(new Alumno(resultado.getInt("idAlumno"), resultado.getString("nombreA"), resultado.getString("apPaternoA"), resultado.getString("apMaternoA"), resultado.getString("generoA"), resultado.getString("fechaNacimientoA"),resultado.getString("CURP"),resultado.getInt("idGrupo"), resultado.getInt("idUsuario"), resultado.getInt("idDocente")));
+             }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Docente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return alumno;
+    }
 }

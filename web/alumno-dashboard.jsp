@@ -71,6 +71,7 @@
                 <li><a href="alumno-dashboard.jsp">Dashboard</a></li>
                 <li><a href="alumno-materias-bloques.jsp">Bloques</a></li>
                 <li><a href="alumno-materia-bloques-tarea.jsp">Tarea</a></li>
+                <li><a href="alumnos-contenido-multimedia.jsp">Contenido Multimedia</a></li>
             </ul>
         </nav>
         <hr class="style13">

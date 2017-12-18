@@ -72,7 +72,7 @@
                         materia = Materia.obtenerPorId(idMateria);
                         nombreMateria = materia.getNombre();
                     }catch (Exception e){
-                        idMateria = 0;
+                        idMateria = -1;
                     }
                     %>                        
                     </a></li>
@@ -86,6 +86,7 @@
                 <li><a href="alumno-dashboard.jsp">Dashboard</a></li>
                 <li><a href="alumno-materias-bloques.jsp?variable=<%=idMateria%>">Bloques</a></li>
                 <li><a href="alumno-materia-bloques-tarea.jsp">Tarea</a></li>
+                <li><a href="alumnos-contenido-multimedia.jsp">Contenido Multimedia</a></li>
             </ul>
         </nav>
         <hr class="style13">
@@ -95,17 +96,39 @@
         <%
             int idBloque =0;
             String nombreBloque="", descripcion="";
-            
             List<Bloque> bloquito = new ArrayList<>();
-            bloquito = Bloque.obtenerTodosID(idMateria);  
+            if (idMateria == -1){               
+                List<consultaAlumnosMateria> aluMateria = new ArrayList<>();
+                aluMateria = consultaAlumnosMateria.obtenerPorId(alumno);  
+
+                for (int i=0;i<aluMateria.size();i++) {
+                    idMateria = aluMateria.get(i).getMateriaidMateria();
+                    nombreMateria = aluMateria.get(i).getNombre();
+                    out.println("<div class=\"materia\">");
+                        out.println("<center><h1>"+ nombreMateria +"</h1></center>");
+                            bloquito = Bloque.obtenerTodosID(idMateria); 
+                            for (int j=0;j< bloquito.size();j++) {
+                                nombreBloque = bloquito.get(j).getNombreBloque();
+                                descripcion = bloquito.get(j).getDescripcion();
+
+                                out.println("<div class=\"bloque\">");
+                                    out.println("<h2 class=\"\">"+ (j+1) + "._ "+ nombreBloque + "</h2>");
+                                    out.println("<p>" + descripcion+ "</p>");
+                                out.println("</div>");
+                            }
+                    out.println("</div>");
+                }
+            }
+            else{
+                bloquito = Bloque.obtenerTodosID(idMateria);  
 
                 for (int i=0;i<bloquito.size();i++) {
                     idBloque = bloquito.get(i).getIdBloque();
-                    nombreMateria = bloquito.get(i).getNombreBloque();
+                    nombreBloque = bloquito.get(i).getNombreBloque();
                     descripcion = bloquito.get(i).getDescripcion();
                     
                     out.println("<div class=\"bloque\">");
-                        out.println("<h2 class=\"\">"+ (i+1) + "._ "+ nombreMateria + "</h2>");
+                        out.println("<h2 class=\"\">"+ (i+1) + "._ "+ nombreBloque + "</h2>");
                         out.println("<p>" + descripcion+ "</p>");
                         List<TareaAsignada> tarAsignada = new ArrayList<>();
                         tarAsignada = TareaAsignada.obtenerTodosIDM(idBloque); 
@@ -114,7 +137,8 @@
                             out.println("<a href=\"alumno-materia-bloques-tarea.jsp?variable="+idTarea+"\">"+tarAsignada.get(j).getNombreTarea()+ "</a>");
                         }
                     out.println("</div>");                             
-                }      
+                }     
+            }
             %>
     </div>
         </div>

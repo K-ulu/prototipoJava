@@ -80,7 +80,7 @@ public class consultaAlumnosMateria {
       }
       return cons;
     }
-          
+    
     /*public static void main(String[] args){
         
         try {

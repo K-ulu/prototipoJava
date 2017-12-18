@@ -167,7 +167,7 @@ public class alumnos_materia {
             //ejecutamos la consulta y guardamos resultados
             resultado = pst.executeQuery();
             while(resultado.next()){
-                alumMateria = new alumnos_materia(resultado.getInt("idAlumnosMateria"), resultado.getInt("AlumnosidAlumno"), resultado.getInt("MateriaidMateria"));
+                alumMateria = new alumnos_materia(resultado.getInt("MateriaidMateria"), resultado.getInt("AlumnosidAlumno"), resultado.getInt("idAlumnosMateria"));
              }
             
         } catch (SQLException ex) {
@@ -183,7 +183,7 @@ public class alumnos_materia {
             PreparedStatement consulta = Conexion.getConexion().prepareStatement("select * from alumnos_materia");
             ResultSet resultado = consulta.executeQuery();
             while(resultado.next()){
-                alumMateria.add(new alumnos_materia(resultado.getInt("idAlumnosMateria"), resultado.getInt("AlumnosidAlumno"), resultado.getInt("MateriaidMateria")));
+                alumMateria.add(new alumnos_materia(resultado.getInt("MateriaidMateria"), resultado.getInt("AlumnosidAlumno"), resultado.getInt("idAlumnosMateria")));
             }
         }catch(SQLException ex){
             throw new SQLException(ex);
@@ -211,6 +211,29 @@ public class alumnos_materia {
             throw new SQLException(ex);
         }
       return alumMateria;
+    }
+    
+    public static alumnos_materia obtenerPorId (int idAlumno, int idMateria) throws SQLException {
+        alumnos_materia alumnoMateria=null;
+        PreparedStatement pst = null;
+        ResultSet resultado;
+        String consulta;
+        try{
+         //PreparedStatement consulta = Conexion.getConexion().prepareStatement("select Grupos.letra grupos_materia.idGruposMateria from grupos_materia, Grupos where grupos_materia.idMateria=? AND Grupos.idGrupo = grupos_materia.idGrupo");
+            consulta = "SELECT * from alumnos_materia, materia WHERE alumnos_materia.AlumnosidAlumno =? and alumnos_materia.MateriaidMateria= ?";
+            pst = Conexion.getConexion().prepareStatement(consulta);
+            //asignamos valores
+            pst.setInt(1, idAlumno);
+            pst.setInt(2, idMateria);
+            //ejecutamos la consulta y guardamos resultados
+            resultado = pst.executeQuery();
+            while(resultado.next()){
+                alumnoMateria = new alumnos_materia(resultado.getInt("MateriaidMateria"), resultado.getInt("AlumnosidAlumno"), resultado.getInt("idAlumnosMateria"));
+             }
+      }catch(SQLException ex){
+         throw new SQLException(ex);
+      }
+      return alumnoMateria;
     }
     
     /*public static void main(String[] args){
