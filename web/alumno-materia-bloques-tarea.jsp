@@ -121,6 +121,7 @@
     </div>
     <footer>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <div class="foot">
             <nav class="nav-extras nav-extras-fondo">
                 <div class="footer">
@@ -136,6 +137,8 @@
         </div>
     </footer>
 =======
+=======
+>>>>>>> parent of 81d088d... Merge branch 'christopher' into development
             <div class="foot">
                 <nav class="nav-extras nav-extras-fondo">
                     <div class="footer">
@@ -149,6 +152,9 @@
                 </nav>
             </div>
         </footer>
+<<<<<<< HEAD
+>>>>>>> parent of 81d088d... Merge branch 'christopher' into development
+=======
 >>>>>>> parent of 81d088d... Merge branch 'christopher' into development
 </body>
 
