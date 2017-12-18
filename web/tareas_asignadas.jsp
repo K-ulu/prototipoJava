@@ -69,6 +69,7 @@
                     String NombreDocente = Docente.obtenerPorIdUsuario(idU).getNombreD();
                     NombreDocente += " "+ Docente.obtenerPorIdUsuario(idU).getApPaternoD();
                     out.println(Docente.obtenerPorIdUsuario(idU).getNombreD() +"!");
+                    int idDoc = Docente.obtenerPorIdUsuario(idU).getIdDocente();
                 %>
                 </a></li>
             </ul>
@@ -174,7 +175,7 @@
                         String descripcionT="";
                         String nombreM="", nombreB="";
                         List<TareaAsignada> tarea = new ArrayList<>();
-                        tarea = TareaAsignada.obtenerTodos();  
+                        tarea = TareaAsignada.obtenerTodosID(idDoc);  
                 
                         for (int i=0;i<tarea.size();i++) {
                             id = tarea.get(i).getIdTareaAsignada();

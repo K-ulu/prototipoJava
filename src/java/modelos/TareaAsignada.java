@@ -370,4 +370,30 @@ public class TareaAsignada {
         }
       return tareasAsignadas;
     }
+    
+    //nos devuelve una lista con todos los objetos de la tabla
+    public static List<TareaAsignada> obtenerTodosID(int idDocente) throws SQLException {
+        List<TareaAsignada> tareasAsignadas = new ArrayList<>();
+        //variables a usar
+        PreparedStatement pst = null;
+        ResultSet resultado;
+        String consulta;
+            
+        try {   
+            //verificamos si ya existe el registro (en caso que exista lo actualizamos, de lo contrario insertamos)
+            //preparacion de la consulta
+            consulta = "select * from tareas_asignadas where idDocente = ? ";
+            pst = Conexion.getConexion().prepareStatement(consulta);
+            //asignamos valores
+            pst.setInt(1, idDocente);
+            //ejecutamos la consulta y guardamos resultados
+            resultado = pst.executeQuery();
+            while(resultado.next()){
+                tareasAsignadas.add(new TareaAsignada(resultado.getInt("idTareaAsignada"), resultado.getString("nombreTarea"), resultado.getString("descripcionT"), resultado.getInt("idBloque"), resultado.getInt("idDocente"), resultado.getInt("idMateria"), resultado.getString("fechaEntrega")));
+             }
+        }catch(SQLException ex){
+           throw new SQLException(ex);
+        }
+      return tareasAsignadas;
+    }
 }
