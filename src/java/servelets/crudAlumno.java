@@ -50,10 +50,7 @@ public class crudAlumno extends HttpServlet {
                 String apPaternoA = request.getParameter("apellidoP");
                 String apMaternoA = request.getParameter("apellidoM");
                 String generoA = request.getParameter("generoA");
-                String anio= request.getParameter("anio");
-                String mes= request.getParameter("mes");
-                String dia= request.getParameter("dia");
-                String fechaNacimientoA = anio + "-" + mes + "-"+dia;
+                String fechaNacimientoA = request.getParameter("fecha");;
                 String CURP = request.getParameter("curp");
                 Integer idGrupo =Integer.parseInt(request.getParameter("idGrupo"));
                 String idDoc = request.getParameter("idDocente");

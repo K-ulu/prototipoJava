@@ -28,6 +28,9 @@
     <!--CSS para el header-->
     <link rel="stylesheet" href="css/nav-christ.css">
     <script src="js/sesion.js"></script>
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-web.min.js"></script>
 </head>
 <body onMouseOver="hayActividad()">
     <div class="navbar">
@@ -187,26 +190,8 @@
                         </div>
                         <br><br><br>
                         <label>Fecha de nacimiento</label>
-                        <div class="input">
-                            <input class="input2" type="text" name="anio" placeholder="año" size="5"/>                        
-                            <select name="mes" class="input2">
-                                <option value="01">Enero</option>
-                                <option value="02">Febrero</option>
-                                <option value="03">Marzo</option>
-                                <option value="04">Abril</option>
-                                <option value="05">Mayo</option>
-                                <option value="06">Junio</option>
-                                <option value="07">Julio</option>
-                                <option value="08">Agosto</option>
-                                <option value="09">Septiembre</option>
-                                <option value="10">Octubre</option>
-                                <option value="11">Noviembre</option>
-                                <option value="12">Diciembre</option>                        
-                            </select>
-
-                            <input class="input2" type="text" name="dia" placeholder="dia" size="5"/>                        
-                        </div>
-                        <br><br><br>   
+                        <input class="campo" type="text" name="fecha" id="fecha" readonly="readonly" placeholder="Fecha Nacimiento">
+                        <br>
                         <div class="input">
                             <label class="campo" style="float: left; display: inline-block;">Seleccione el Grupo</label>
                             <select name="idGrupo" class="campo" style="width: 170px;">
@@ -287,7 +272,7 @@
                             <option value="masculino">Masculino</option>
                         </select>
                         <label>Fecha de nacimiento del alumno</label>
-                        <input class="input" id='fecha' name="fechaNac" value= ''/>
+                        <input class="campo" type="text" name="fechaNac" id="fechaNac"  placeholder="Fecha Nacimiento">
                         <label class="input">Curp</label>
                         <input class="input" id='curpito' name="curp" value= ''/>
                         <label>id del Grupo</label>
@@ -316,5 +301,44 @@
     </div>
     <script src="js/modal.js"></script>
     <script src="js/funciones.js"></script>
+    <script>        
+        jQuery(function($){
+            $.datepicker.regional['es'] = {
+                    closeText: 'Cerrar',
+                    prevText: '&#x3c;Ant',
+                    nextText: 'Sig&#x3e;',
+                    currentText: 'Hoy',
+                    monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+                    'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+                    monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',
+                    'Jul','Ago','Sep','Oct','Nov','Dic'],
+                    dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
+                    dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
+                    dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
+                    weekHeader: 'Sm',
+                    dateFormat: 'yy-mm-dd',
+                    firstDay: 1,
+                    isRTL: false,
+                    showMonthAfterYear: false,
+                    yearSuffix: '',
+                    yearRange: "1950:2017"
+                };
+            $.datepicker.setDefaults($.datepicker.regional['es']);
+        });
+        $(document).ready(function() {
+            $("#fecha").datepicker({
+                changeMonth:true,
+                changeYear:true
+            });
+         });
+         $(document).ready(function() {
+            $("#fechaNac").datepicker({
+                changeMonth:true,
+                changeYear:true
+            });
+         });
+
+
+    </script>
 </body>
 </html>

@@ -139,7 +139,7 @@
       var gener = document.getElementById("geni");
       gener.value = gen;
       
-      var fechita = document.getElementById("fecha");
+      var fechita = document.getElementById("fechaNac");
       fechita.value = fech;
       
       var curp = document.getElementById("curpito");
