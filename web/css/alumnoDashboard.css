@@ -170,7 +170,7 @@ label{
   font-size: 15px;
   padding: 10px;
   margin: 5px;
-    position: absolute;
+    position: fixed;
 }
 
 .boton {
@@ -188,4 +188,5 @@ label{
   /*overflow: hidden;
   position: absolute;*/
   z-index: -1;
+  margin-left: 70px;
 }
